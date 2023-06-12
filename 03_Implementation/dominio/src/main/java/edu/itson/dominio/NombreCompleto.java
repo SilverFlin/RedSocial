@@ -24,7 +24,19 @@ public class NombreCompleto {
     public NombreCompleto() {
         // No hace falta hacer nada.
     }
-
+    
+    /**
+     * Contructor del nombre completo
+     * @param nombres
+     * @param apellidoPaterno
+     * @param apellidoMaterno 
+     */
+    public NombreCompleto(String nombres, String apellidoPaterno, String apellidoMaterno) {
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
+    
     /**
      * Obtiene los nombres de la persona.
      *

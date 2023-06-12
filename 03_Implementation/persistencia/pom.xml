@@ -30,9 +30,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>dominio</groupId>
-            <artifactId>dominio.datos</artifactId>
-            <version>1.0.0</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dominio</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
