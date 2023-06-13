@@ -24,7 +24,21 @@ public class Direccion {
     public Direccion() {
         // No hace falta hacer nada.
     }
-
+    
+    /**
+     * Constructor de la direccion
+     * @param ciudad
+     * @param municipio
+     * @param estado 
+     */
+    public Direccion(String ciudad, String municipio, String estado) {
+        this.ciudad = ciudad;
+        this.municipio = municipio;
+        this.estado = estado;
+    }
+    
+    
+    
     /**
      * Obtiene la ciudad de la dirección.
      *

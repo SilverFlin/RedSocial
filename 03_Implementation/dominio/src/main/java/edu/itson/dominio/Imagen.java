@@ -22,7 +22,18 @@ public final class Imagen {
     public Imagen() {
         // No hace falta hacer nada.
     }
-
+    /**
+     * Constructor de la imagen
+     * @param fileName
+     * @param imageData 
+     */
+    public Imagen(String fileName, Binary imageData) {
+        this.fileName = fileName;
+        this.imageData = imageData;
+    }
+    
+    
+    
     /**
      * Obtiene el nombre de la imágen.
      *

@@ -1,12 +1,17 @@
 package edu.itson.dominio;
 
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 /**
  *
  */
 public class Usuario {
 
+    /**
+     * ID del usuario
+     */
+    private ObjectId id;
     /**
      * Nombre completo del usuario.
      */
@@ -48,7 +53,57 @@ public class Usuario {
     public Usuario(final TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+    /**
+     * Aqui se crea el constructor completo del usuario
+     * @param id
+     * @param nombreCompleto
+     * @param password
+     * @param telefono
+     * @param avatar
+     * @param fechaNacimiento
+     * @param genero
+     * @param direccion
+     * @param tipoUsuario 
+     */
+    public Usuario(ObjectId id, NombreCompleto nombreCompleto, String password, String telefono, Imagen avatar, LocalDateTime fechaNacimiento, GeneroUsuario genero, Direccion direccion, TipoUsuario tipoUsuario) {
+        this.id = id;
+        this.nombreCompleto = nombreCompleto;
+        this.password = password;
+        this.telefono = telefono;
+        this.avatar = avatar;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.direccion = direccion;
+        this.tipoUsuario = tipoUsuario;
+    }
 
+    /**
+     * Aqui es el constuctor del usuario sin id
+     * @param nombreCompleto
+     * @param password
+     * @param telefono
+     * @param avatar
+     * @param fechaNacimiento
+     * @param genero
+     * @param direccion
+     * @param tipoUsuario 
+     */
+    public Usuario(NombreCompleto nombreCompleto, String password, String telefono, Imagen avatar, LocalDateTime fechaNacimiento, GeneroUsuario genero, Direccion direccion, TipoUsuario tipoUsuario) {
+        this.nombreCompleto = nombreCompleto;
+        this.password = password;
+        this.telefono = telefono;
+        this.avatar = avatar;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.direccion = direccion;
+        this.tipoUsuario = tipoUsuario;
+    }
+    /**
+     * Construsctor por ausencia
+     */
+    public Usuario() {
+    }
+    
     /**
      * Obtiene nombre completo del usuario.
      *
@@ -174,7 +229,18 @@ public class Usuario {
     public void setDireccion(final Direccion direccion) {
         this.direccion = direccion;
     }
-
+    
+    /**
+     * Obtiene el tipo de usuario que obtiene el cliente
+     * 
+     * @param tipoUsuario 
+     */
+    
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+    
+    
     /**
      * Obtiene el tipo de usuario.
      *
@@ -183,5 +249,24 @@ public class Usuario {
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
-
-}
+    /**
+     * Obitene el ID     
+     * 
+     * @return el ID del usuario
+     */
+    public ObjectId getId() {
+        return id;
+    }
+    /**
+     * Obtiene el ID del usuario
+     * 
+     * @param id 
+     */
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
+    
+    
+    
+}   
