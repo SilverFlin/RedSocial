@@ -1,6 +1,7 @@
 package edu.itson.dominio;
 
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -10,7 +11,7 @@ public class Usuario {
     /**
      * ID del usuario
      */
-    private Object id;
+    private ObjectId id;
     /**
      * Nombre completo del usuario.
      */
@@ -64,7 +65,7 @@ public class Usuario {
      * @param direccion
      * @param tipoUsuario 
      */
-    public Usuario(Object id, NombreCompleto nombreCompleto, String password, String telefono, Imagen avatar, LocalDateTime fechaNacimiento, GeneroUsuario genero, Direccion direccion, TipoUsuario tipoUsuario) {
+    public Usuario(ObjectId id, NombreCompleto nombreCompleto, String password, String telefono, Imagen avatar, LocalDateTime fechaNacimiento, GeneroUsuario genero, Direccion direccion, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.password = password;
@@ -75,7 +76,7 @@ public class Usuario {
         this.direccion = direccion;
         this.tipoUsuario = tipoUsuario;
     }
-    
+
     /**
      * Aqui es el constuctor del usuario sin id
      * @param nombreCompleto
@@ -249,21 +250,22 @@ public class Usuario {
         return tipoUsuario;
     }
     /**
-     * Obtiene el id
+     * Obitene el ID     
      * 
-     * @return el id del usuario
+     * @return el ID del usuario
      */
-    public Object getId() {
+    public ObjectId getId() {
         return id;
     }
     /**
-     * Obtiene el id del usuario
+     * Obtiene el ID del usuario
      * 
      * @param id 
      */
-    public void setId(Object id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
+    
     
     
     

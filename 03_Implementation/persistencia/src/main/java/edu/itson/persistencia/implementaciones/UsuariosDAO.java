@@ -43,9 +43,8 @@ public class UsuariosDAO implements IUsuarios {
     public UsuariosDAO(MongoDatabase database) {
         usuariosCollection = database.getCollection("Usuarios");
     }
-
     @Override
-    public Usuario agregarUsuario(Usuario usuario) {
+    public Usuario agregar(Usuario usuario) {
         try {
             Document d = new Document("nombreCompleto", new Document()
                     .append("nombres", usuario.getNombreCompleto().getNombres())
@@ -72,8 +71,20 @@ public class UsuariosDAO implements IUsuarios {
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) {
-        Object id = usuario.getId();
+    public Usuario eliminar(Usuario usuario) {
+          Object id = usuario.getId();
+        try {
+            Document filtro = new Document("_id", id);
+            DeleteResult dr = usuariosCollection.deleteOne(filtro);
+        } catch (Exception e) {
+            throw new RuntimeException("Error. No es posible eliminar al usuario" + e.getMessage(), e);
+        }
+        return usuario;
+    }
+
+    @Override
+    public Usuario actualizar(Usuario usuario) {
+       Object id = usuario.getId();
         try {
             Document filtro = new Document("_id", id);
             Document update = new Document("$set", new Document("nombreCompleto", new Document()
@@ -102,19 +113,7 @@ public class UsuariosDAO implements IUsuarios {
     }
 
     @Override
-    public Usuario eliminarUsuario(Usuario usuario) {
-        Object id = usuario.getId();
-        try {
-            Document filtro = new Document("_id", id);
-            DeleteResult dr = usuariosCollection.deleteOne(filtro);
-        } catch (Exception e) {
-            throw new RuntimeException("Error. No es posible eliminar al usuario" + e.getMessage(), e);
-        }
-        return usuario;
-    }
-
-    @Override
-    public Usuario buscarPorID(Object id) {
+    public Usuario buscarID(String id) {
         try {
             Document filtro = new Document("_id", id);
             Document documentoUsuario = usuariosCollection.find(filtro).first();

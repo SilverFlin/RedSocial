@@ -3,15 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package edu.itson.persistencia.interfaces;
-import edu.itson.dominio.Usuario;
+
 import java.util.List;
 
 /**
  *
  * @author luis-
  */
-public interface IUsuarios extends IBaseDAO<Usuario> {
+public interface IBaseDAO<T> {
     
+    public T agregar(T t);
+    public T eliminar(T t);
+    public T actualizar(T t);
+    public T buscarID(String id);
+    public List<T> buscarTodos();
     
- 
 }
