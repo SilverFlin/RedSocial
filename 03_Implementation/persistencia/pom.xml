@@ -26,7 +26,7 @@
         
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mongo-java-driver-3.12.14</artifactId>
+            <artifactId>mongo-java-driver-3.12.13</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
