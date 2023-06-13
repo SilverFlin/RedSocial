@@ -17,22 +17,12 @@
             <artifactId>dominio</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+                
+        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bson-3.0.4</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mongo-java-driver-3.12.13</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>dominio</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.13</version>
         </dependency>
     </dependencies>
 </project>
