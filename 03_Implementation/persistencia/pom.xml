@@ -5,6 +5,12 @@
     <artifactId>persistencia</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <exec.mainClass>edu.itson.persistencia.Persistencia</exec.mainClass>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -22,20 +28,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>mongo-java-driver-3.12.14</artifactId>
             <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>edu.itson.persistencia.Persistencia</exec.mainClass>
-    </properties>
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.13</version>
         </dependency>
     </dependencies>
 </project>
