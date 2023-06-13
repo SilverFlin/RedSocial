@@ -9,7 +9,7 @@ import interfaces.IUsuariosDAO;
 /**
  *
  */
-public class UsuariosDAO implements IUsuariosDAO {
+public final class UsuariosDAO implements IUsuariosDAO {
 
     /**
      * Collección con la que el DAO interactúa.
@@ -44,22 +44,22 @@ public class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario agregar(Usuario t) {
+    public Usuario agregar(final Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Usuario eliminar(Usuario usuario) {
+    public Usuario eliminar(final Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Usuario actualizar(Usuario t) {
+    public Usuario actualizar(final Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Usuario buscarPorId(String id) {
+    public Usuario buscarPorId(final String id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

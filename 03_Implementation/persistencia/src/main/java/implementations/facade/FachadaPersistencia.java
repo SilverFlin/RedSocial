@@ -14,11 +14,20 @@ import interfaces.IUsuariosDAO;
 /**
  *
  */
-public class FachadaPersistencia implements IPersistencia {
+public final class FachadaPersistencia implements IPersistencia {
 
-    IComentariosDAO comentariosDAO;
-    IUsuariosDAO usuariosDAO;
-    IPostsDAO postsDAO;
+    /**
+     * Instancia de ComentariosDAO.
+     */
+    private IComentariosDAO comentariosDAO;
+    /**
+     * Instancia de UsuariosDAO.
+     */
+    private IUsuariosDAO usuariosDAO;
+    /**
+     * Instancia de PostsDAO.
+     */
+    private IPostsDAO postsDAO;
 
     /**
      * Constructor por defecto, inicializa los DAO.
@@ -42,7 +51,9 @@ public class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Comentario eliminarComentario(Comentario comentario) throws PersistenciaException {
+    public Comentario eliminarComentario(
+            final Comentario comentario
+    ) throws PersistenciaException {
         try {
             return this.comentariosDAO.eliminar(comentario);
         } catch (PersistenciaException e) {

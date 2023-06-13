@@ -14,7 +14,7 @@ import interfaces.IComentariosDAO;
 /**
  *
  */
-public class ComentariosDAO implements IComentariosDAO {
+public final class ComentariosDAO implements IComentariosDAO {
 
     /**
      * Collección con la que el DAO interactúa.

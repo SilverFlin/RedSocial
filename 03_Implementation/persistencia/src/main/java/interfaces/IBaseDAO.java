@@ -13,7 +13,7 @@ public interface IBaseDAO<T> {
      * Persiste el parámetro en la base de datos.
      *
      * @param t la entidad guardada.
-     * @return
+     * @return la entidad guardada
      * @throws PersistenciaException
      */
     T agregar(T t) throws PersistenciaException;

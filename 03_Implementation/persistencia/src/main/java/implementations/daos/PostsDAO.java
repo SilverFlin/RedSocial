@@ -14,7 +14,7 @@ import interfaces.IPostsDAO;
 /**
  *
  */
-public class PostsDAO implements IPostsDAO {
+public final class PostsDAO implements IPostsDAO {
 
     /**
      * Collección con la que el DAO interactúa.

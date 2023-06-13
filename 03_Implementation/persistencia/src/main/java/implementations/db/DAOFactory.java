@@ -10,7 +10,7 @@ import interfaces.IUsuariosDAO;
 /**
  *
  */
-public class DAOFactory {
+public final class DAOFactory {
 
     private DAOFactory() {
         throw new IllegalStateException("Utility class");
