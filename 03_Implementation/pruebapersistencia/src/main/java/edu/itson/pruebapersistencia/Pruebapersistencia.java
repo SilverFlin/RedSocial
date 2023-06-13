@@ -52,9 +52,9 @@ public class Pruebapersistencia {
         /*
          * Prueba busqueda por ID
          */
-        Post post2 = postdao.buscarID("6488dcb2d394bd15f8aae77b");
+        Post post2 = postdao.buscarID("6488afafd93a496465dc4e82");
         System.out.println("Prueba Busqueda por ID:");
-        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: " + post2.getContenido().getTexto());
+        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: " );
 
         /*
          *   Prueba busqueda de todos
@@ -69,14 +69,19 @@ public class Pruebapersistencia {
         /*
          * Prueba Actulizacion
          */
-        post.setTitulo("PEDRO");
-        postdao.actualizar(post);
+        
+        Post postNew = postdao.buscarID("6488afafd93a496465dc4e82");
+        System.out.println(postNew);
+        postNew.setTitulo("Hola");
+        System.out.println("Prueba actualiza");
+        postdao.actualizar(postNew);
         System.out.println("Listo");
         
          /*
          * Prueba Eliminar
          */
-         postdao.eliminar(postdao.buscarID("6488dcb2d394bd15f8aae77b"));
+         System.out.println("Prueba Elimina");
+        // postdao.eliminar(postdao.buscarID("6488dcb2d394bd15f8aae77b"));
         
         
     }
