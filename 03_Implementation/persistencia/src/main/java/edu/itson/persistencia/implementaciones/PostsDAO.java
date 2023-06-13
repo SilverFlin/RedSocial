@@ -6,15 +6,19 @@ package edu.itson.persistencia.implementaciones;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import edu.itson.dominio.Post;
 import edu.itson.persistencia.interfaces.IPostDAO;
 import interfaces.IConectionDB;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -33,7 +37,7 @@ public class PostsDAO implements IPostDAO {
         try {
             if (newPost != null) {
                 MongoDatabase database = connectionDB.crearConexion();
-                MongoCollection<Post> coleccion = database.getCollection("comentarios", Post.class);
+                MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
                 coleccion.insertOne(newPost);
             }
         } catch (Exception ex) {
@@ -61,7 +65,7 @@ public class PostsDAO implements IPostDAO {
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
-            Document filtroActualizacion = new Document("_id", newpost.getId());
+            Document filtroActualizacion = new Document("_id", new ObjectId(newpost.getId().toString()));
             Document cambiosARealizar = new Document();
             cambiosARealizar.append("$set", new Document()
                     .append("contenido", newpost.getContenido())
@@ -77,19 +81,15 @@ public class PostsDAO implements IPostDAO {
 
     @Override
     public Post buscarID(String id) {
-        Post exPost = null;
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
-            Document filtros = new Document();
-            filtros.append("id", id);
-            FindIterable<Post> comentarios = coleccion.find(filtros);
-            exPost = comentarios.first();
-            return exPost;
+            Post post = coleccion.find(new Document("_id", new ObjectId(id))).first();
+            return post;
         } catch (Exception ex) {
             Logger.getLogger(PostsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return exPost;
+        return null;
     }
 
     @Override
@@ -97,9 +97,14 @@ public class PostsDAO implements IPostDAO {
         List<Post> listaPosts = null;
         try {
             MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Post> coleccion = database.getCollection("Posts", Post.class);
-            listaPosts = new LinkedList<>();
-            return coleccion.find().into(listaPosts);
+            MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
+            MongoCursor<Post> resultadoConsulta = coleccion.find().iterator();
+            ArrayList<Post> listaP = new ArrayList<>();
+            while (resultadoConsulta.hasNext()) {
+                listaP.add(resultadoConsulta.next());
+            }
+            List<Post> lista = listaP;
+            return lista;
         } catch (Exception ex) {
             Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
         }

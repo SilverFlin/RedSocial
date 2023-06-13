@@ -11,7 +11,7 @@ public class Comentario implements Comentable {
     /**
      * Usuario que realiza el comentario.
      */
-    private Usuario creador;
+    private Usuario creador;    
     /**
      * Objeto al que se le realiza el comentario.
      */
