@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -51,9 +52,8 @@ public class PostsDAO implements IPostDAO {
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
-            Document filtros = new Document();
-            filtros.append("_id", deletedPost.getId());
-            coleccion.deleteOne(filtros);
+            Bson filter = new Document("_id", deletedPost.getId());
+            coleccion.deleteOne(filter);
         } catch (Exception ex) {
             Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,22 +61,16 @@ public class PostsDAO implements IPostDAO {
     }
 
     @Override
-    public Post actualizar(Post newpost) {
+    public Post actualizar(Post post) {
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
-            Document filtroActualizacion = new Document("_id", new ObjectId(newpost.getId().toString()));
-            Document cambiosARealizar = new Document();
-            cambiosARealizar.append("$set", new Document()
-                    .append("contenido", newpost.getContenido())
-                    .append("creador", newpost.getCreador())
-                    .append("fechaHoraCreacion", newpost.getFechaHoraCreacion())
-                    .append("tipopost", newpost.getTipoPost())
-                    .append("titulo", newpost.getTitulo()));
+            Bson filter = new Document("_id", post.getId());
+            coleccion.replaceOne(filter, post);
         } catch (Exception ex) {
             Logger.getLogger(IPostDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return newpost;
+        return post;
     }
 
     @Override

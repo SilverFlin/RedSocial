@@ -1,5 +1,6 @@
 package edu.itson.pruebapersistencia;
 
+import edu.itson.dominio.ContenidoPost;
 import edu.itson.dominio.NombreCompleto;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.TipoPost;
@@ -8,9 +9,7 @@ import edu.itson.persistencia.implementaciones.PostsDAO;
 import implementaciones.ConectionDB;
 import interfaces.IConectionDB;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import org.bson.codecs.jsr310.LocalDateTimeCodec;
 
 /**
  *
@@ -32,33 +31,53 @@ public class Pruebapersistencia {
         Post post = new Post(TipoPost.NORMAL);
         LocalDateTime date = LocalDateTime.now();
         post.setFechaHoraCreacion(date);
-        post.setTitulo("PEDO");
+        post.setTitulo("Segundo Post");
         Usuario creador = new Usuario();
         NombreCompleto nombre = new NombreCompleto();
-        nombre.setNombres("Juan");
-        nombre.setApellidoPaterno("Lopez");
-        nombre.setApellidoMaterno("Estrada");
+        nombre.setNombres("Adrian");
+        ContenidoPost contenido = new ContenidoPost();
+        contenido.setTexto("Hola me llamo Gerardo");
+        post.setContenido(contenido);
+        nombre.setApellidoPaterno("Abriles");
+        nombre.setApellidoMaterno("Chavez");
         creador.setNombreCompleto(nombre);
         post.setCreador(creador);
+
+        /*
+         * Prueba agregar 
+         */
+//         postdao.agregar(post);
+//        System.out.println("Prueba agregar");   
+
+        /*
+         * Prueba busqueda por ID
+         */
+        Post post2 = postdao.buscarID("6488dcb2d394bd15f8aae77b");
+        System.out.println("Prueba Busqueda por ID:");
+        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: " + post2.getContenido().getTexto());
+
+        /*
+         *   Prueba busqueda de todos
+         */
+        List<Post> lista = postdao.buscarTodos();
+        System.out.println("Prueba busqueda de TODOS:");
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(i + ".- " + lista.get(i).getTitulo());
+
+        }
+
+        /*
+         * Prueba Actulizacion
+         */
+        post.setTitulo("PEDRO");
+        postdao.actualizar(post);
+        System.out.println("Listo");
         
-       // String hexString = "6488afafd93a496465dc4e82";
-       
-        // postdao.agregar(post);
-       
-       
-        Post post2 = postdao.buscarID("6488cf9a290c624030c4cc96");
-        System.out.println("------------------------------");
-        if (post2 == null) {
-            System.out.println("no jala");
-        }else{
-           System.out.println(post2.getTitulo());
-        System.out.println("------------------------------");
-        }
-         List<Post> lista = postdao.buscarTodos();
-         for (int i = 0; i < lista.size(); i++) {
-             System.out.println(lista.get(i).getTitulo()); 
-          
-        }
+         /*
+         * Prueba Eliminar
+         */
+         postdao.eliminar(postdao.buscarID("6488dcb2d394bd15f8aae77b"));
+        
         
     }
 

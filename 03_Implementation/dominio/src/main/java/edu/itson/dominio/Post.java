@@ -169,6 +169,11 @@ public class Post implements Comentable {
     public TipoPost getTipoPost() {
         return tipoPost;
     }
+
+    @Override
+    public String toString() {
+        return "Post{fechaHoraCreacion=" + fechaHoraCreacion + ", creador=" + creador + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + ", tipoPost=" + tipoPost + '}';
+    }
     
     
 
