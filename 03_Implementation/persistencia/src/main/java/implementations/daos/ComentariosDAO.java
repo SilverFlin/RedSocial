@@ -1,108 +1,133 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package edu.itson.persistencia.implementaciones;
+package implementations.daos;
 
+import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import edu.itson.dominio.Comentario;
-import edu.itson.persistencia.interfaces.IComentarios;
-import interfaces.IConectionDB;
+import exceptions.PersistenciaException;
+import implementations.db.Connection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.Document;
+import interfaces.IComentariosDAO;
 
 /**
  *
- * @author MoonA
  */
-public class ComentariosDAO implements IComentarios {
+public class ComentariosDAO implements IComentariosDAO {
 
-    public final IConectionDB connectionDB;
+    /**
+     * Collección con la que el DAO interactúa.
+     */
+    private final MongoCollection<Comentario> collection;
 
-    public ComentariosDAO(IConectionDB connectionDB) {
-        this.connectionDB = connectionDB;
+    /**
+     * Instancia de esta clase.
+     */
+    private static ComentariosDAO comentariosDAO;
+
+    /**
+     * Constructor que inicializa la colección.
+     */
+    public ComentariosDAO() {
+        this.collection
+                = Connection
+                        .getDb()
+                        .getCollection("comentarios", Comentario.class);
     }
 
-    @Override
-    public Comentario agregar(Comentario t) {
-        try {
-            if (t != null) {
-                MongoDatabase database = connectionDB.crearConexion();
-                MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-                coleccion.insertOne(t);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(ComentariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+    /**
+     * Método que regresa una instancia de la clase. Usa el patrón Singleton.
+     *
+     * @return instancia de la clase.
+     */
+    public static ComentariosDAO getInstance() {
+        if (ComentariosDAO.comentariosDAO == null) {
+            ComentariosDAO.comentariosDAO = new ComentariosDAO();
         }
-        return t;
+        return ComentariosDAO.comentariosDAO;
     }
 
     @Override
-    public Comentario eliminar(Comentario t) {
-        try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Comentario> coleccion = database.getCollection("usuarios", Comentario.class);
-            Document filtros = new Document();
-            filtros.append("_id", t.getUsuario().getId());
-            coleccion.deleteOne(filtros);
-        } catch (Exception ex) {
-            Logger.getLogger(Comentario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return t;
-    }
+    public Comentario agregar(
+            final Comentario comentario
+    ) throws PersistenciaException {
 
-    @Override
-    public Comentario actualizar(Comentario t) {
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            Document filtroActualizacion = new Document("_id", t.getUsuario().getId());
-            Document cambiosARealizar = new Document();
-            cambiosARealizar.append("$set", new Document()
-                    .append("usuario", t.getUsuario())
-                    .append("objetivo", t.getObjetivo())
-                    .append("fechaHoraCreacion", t.getFechaHoraCreacion())
-                    .append("contenido", t.getContenido()));
-        } catch (Exception ex) {
-            Logger.getLogger(ComentariosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return t;
-    }
-
-    @Override
-    public Comentario buscarID(String id) {
-        Comentario comentario = null;
-        try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            Document filtros = new Document();
-            filtros.append("_id", id);
-            FindIterable<Comentario> comentarios = coleccion.find(filtros);
-            comentario = comentarios.first();
-            return comentario;
-        } catch (Exception ex) {
-            Logger.getLogger(ComentariosDAO.class.getName()).log(Level.SEVERE, null, ex);
+            this.collection.insertOne(comentario);
+        } catch (MongoException ex) {
+            String msg = "No se pudo agregar el comentario" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
         return comentario;
     }
 
     @Override
-    public List<Comentario> buscarTodos() {
-        List<Comentario> listacomentario = null;
+    public Comentario eliminar(
+            final Comentario comentario
+    ) throws PersistenciaException {
+
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            listacomentario = new LinkedList<>();
-            return coleccion.find().into(listacomentario);
-        } catch (Exception ex) {
-            Logger.getLogger(Comentario.class.getName()).log(Level.SEVERE, null, ex);
+            Document filtros = new Document();
+            filtros.append("_id", comentario.getUsuario().getId());
+            this.collection.deleteOne(filtros);
+        } catch (MongoException ex) {
+            String msg = "No se pudo eliminar el comentario" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return listacomentario;
+        return comentario;
+    }
+
+    @Override
+    public Comentario actualizar(
+            final Comentario comentario
+    ) throws PersistenciaException {
+
+        try {
+            Document filtroActualizacion
+                    = new Document("_id", comentario.getUsuario().getId());
+            Document cambiosARealizar = new Document();
+            cambiosARealizar.append("$set", new Document()
+                    .append("usuario", comentario.getUsuario())
+                    .append("objetivo", comentario.getObjetivo())
+                    .append("fechaHoraCreacion", comentario
+                            .getFechaHoraCreacion())
+                    .append("contenido", comentario.getContenido()));
+        } catch (MongoException ex) {
+            String msg = "No se pudo actualizar comentario" + ex.getMessage();
+            throw new PersistenciaException(msg);
+        }
+        return comentario;
+    }
+
+    @Override
+    public Comentario buscarPorId(
+            final String id
+    ) throws PersistenciaException {
+        Comentario comentario;
+        try {
+            Document filtros = new Document();
+            filtros.append("_id", id);
+            FindIterable<Comentario> comentarios
+                    = this.collection.find(filtros);
+            comentario = comentarios.first();
+            return comentario;
+        } catch (MongoException ex) {
+            String msg = "No se pudo buscar el comentario" + ex.getMessage();
+            throw new PersistenciaException(msg);
+        }
+    }
+
+    @Override
+    public List<Comentario> buscarTodos() throws PersistenciaException {
+        List<Comentario> listacomentario;
+        try {
+            listacomentario = new LinkedList<>();
+            return this.collection.find().into(listacomentario);
+        } catch (MongoException ex) {
+            String msg = "No se pudo buscar los comentarios" + ex.getMessage();
+            throw new PersistenciaException(msg);
+        }
     }
 
 }

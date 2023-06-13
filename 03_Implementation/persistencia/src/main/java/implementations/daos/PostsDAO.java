@@ -1,109 +1,124 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package edu.itson.persistencia.implementaciones;
+package implementations.daos;
 
+import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import edu.itson.dominio.Post;
-import edu.itson.persistencia.interfaces.IPostDAO;
-import interfaces.IConectionDB;
+import exceptions.PersistenciaException;
+import implementations.db.Connection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.Document;
+import interfaces.IPostsDAO;
 
 /**
  *
- * @author gerar
  */
-public class PostsDAO implements IPostDAO {
+public class PostsDAO implements IPostsDAO {
 
-    public final IConectionDB connectionDB;
+    /**
+     * Collección con la que el DAO interactúa.
+     */
+    private final MongoCollection<Post> collection;
+    /**
+     * Instancia de esta clase.
+     */
+    private static PostsDAO postsDAO;
 
-    public PostsDAO(IConectionDB connectionDB) {
-        this.connectionDB = connectionDB;
+    /**
+     * Constructor que inicializa la colección.
+     */
+    public PostsDAO() {
+        this.collection
+                = Connection
+                        .getDb()
+                        .getCollection("posts", Post.class);
+
+    }
+
+    /**
+     * Método que regresa una instancia de la clase. Usa el patrón Singleton.
+     *
+     * @return instancia de la clase.
+     */
+    public static PostsDAO getInstance() {
+        if (PostsDAO.postsDAO == null) {
+            PostsDAO.postsDAO = new PostsDAO();
+        }
+        return PostsDAO.postsDAO;
     }
 
     @Override
-    public Post agregar(Post newPost) {
+    public Post agregar(final Post post) throws PersistenciaException {
         try {
-            if (newPost != null) {
-                MongoDatabase database = connectionDB.crearConexion();
-                MongoCollection<Post> coleccion = database.getCollection("comentarios", Post.class);
-                coleccion.insertOne(newPost);
+            if (post != null) {
+
+                this.collection.insertOne(post);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(PostsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MongoException ex) {
+            String msg = "No se pudo agregar el post" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return newPost;
+        return post;
     }
 
     @Override
-    public Post eliminar(Post deletedPost) {
+    public Post eliminar(final Post post) throws PersistenciaException {
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
             Document filtros = new Document();
-            filtros.append("_id", deletedPost.getId());
-            coleccion.deleteOne(filtros);
-        } catch (Exception ex) {
-            Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
+            filtros.append("_id", post.getId());
+            this.collection.deleteOne(filtros);
+        } catch (MongoException ex) {
+            String msg = "No se pudo eliminar el post" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return deletedPost;
+        return post;
     }
 
     @Override
-    public Post actualizar(Post newpost) {
+    public Post actualizar(final Post post) throws PersistenciaException {
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
-            Document filtroActualizacion = new Document("_id", newpost.getId());
+            Document filtroActualizacion = new Document("_id", post.getId());
             Document cambiosARealizar = new Document();
             cambiosARealizar.append("$set", new Document()
-                    .append("contenido", newpost.getContenido())
-                    .append("creador", newpost.getCreador())
-                    .append("fechaHoraCreacion", newpost.getFechaHoraCreacion())
-                    .append("tipopost", newpost.getTipoPost())
-                    .append("titulo", newpost.getTitulo()));
-        } catch (Exception ex) {
-            Logger.getLogger(IPostDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    .append("contenido", post.getContenido())
+                    .append("creador", post.getCreador())
+                    .append("fechaHoraCreacion", post.getFechaHoraCreacion())
+                    .append("tipopost", post.getTipoPost())
+                    .append("titulo", post.getTitulo()));
+            return post;
+        } catch (MongoException ex) {
+            String msg = "No se pudo actualizar el post" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return newpost;
     }
 
     @Override
-    public Post buscarID(String id) {
+    public Post buscarPorId(final String id) throws PersistenciaException {
+
         Post exPost = null;
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Post> coleccion = database.getCollection("posts", Post.class);
             Document filtros = new Document();
             filtros.append("id", id);
-            FindIterable<Post> comentarios = coleccion.find(filtros);
+            FindIterable<Post> comentarios = this.collection.find(filtros);
             exPost = comentarios.first();
             return exPost;
-        } catch (Exception ex) {
-            Logger.getLogger(PostsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MongoException ex) {
+            String msg = "No se pudo buscar el post" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return exPost;
     }
 
     @Override
-    public List<Post> buscarTodos() {
-        List<Post> listaPosts = null;
+    public List<Post> buscarTodos() throws PersistenciaException {
+        List<Post> listaPosts;
         try {
-            MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Post> coleccion = database.getCollection("Posts", Post.class);
             listaPosts = new LinkedList<>();
-            return coleccion.find().into(listaPosts);
+            return this.collection.find().into(listaPosts);
         } catch (Exception ex) {
-            Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
+            String msg = "No se pudo buscar los posts" + ex.getMessage();
+            throw new PersistenciaException(msg);
         }
-        return listaPosts;
     }
 
 }
