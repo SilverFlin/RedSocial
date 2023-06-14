@@ -65,8 +65,9 @@ public class Pruebapersistencia {
 //        NombreCompleto nombreCompleto = new NombreCompleto("Luis", "Ruiz", "Acuña");
 //        usuario.setNombreCompleto(nombreCompleto);
 //        comentario.setUsuario(usuario);
-//        comentariosDAO.agregar(comentario);
-        comentariosDAO.buscarID("");
+//        Comentario comentario2 = comentariosDAO.agregar(comentario);
+//        System.out.println(comentario2.getId());
+        System.out.println(comentariosDAO.buscarID("64891098e804103ddae25680"));
     }
 
     private static void probarPostsDao() {
