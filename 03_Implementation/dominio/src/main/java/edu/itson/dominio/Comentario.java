@@ -2,12 +2,17 @@ package edu.itson.dominio;
 
 import interfaces.Comentable;
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 /**
  *
  */
 public class Comentario implements Comentable {
 
+    /**
+     * Atributo id asignado al comentario.
+     */
+    private ObjectId id;
     /**
      * Usuario que realiza el comentario.
      */
@@ -30,6 +35,42 @@ public class Comentario implements Comentable {
      */
     public Comentario() {
         // No hace falta hacer nada.
+    }
+
+    /**
+     * Obtiene le id del comentario.
+     *
+     * @return id del comentario.
+     */
+    public ObjectId getId() {
+        return id;
+    }
+
+    /**
+     * Actualiza el id del comentario.
+     *
+     * @param id
+     */
+    public void setId(final ObjectId id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el creador.
+     *
+     * @return obtiene el creador del comentario.
+     */
+    public Usuario getCreador() {
+        return creador;
+    }
+
+    /**
+     * actualizar el creador del comentario.
+     *
+     * @param creador
+     */
+    public void setCreador(final Usuario creador) {
+        this.creador = creador;
     }
 
     /**

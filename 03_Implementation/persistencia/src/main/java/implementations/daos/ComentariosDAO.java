@@ -69,7 +69,7 @@ public final class ComentariosDAO implements IComentariosDAO {
 
         try {
             Document filtros = new Document();
-            filtros.append("_id", comentario.getUsuario().getId());
+            filtros.append("_id", comentario.getId());
             this.collection.deleteOne(filtros);
         } catch (MongoException ex) {
             String msg = "No se pudo eliminar el comentario" + ex.getMessage();
@@ -85,14 +85,17 @@ public final class ComentariosDAO implements IComentariosDAO {
 
         try {
             Document filtroActualizacion
-                    = new Document("_id", comentario.getUsuario().getId());
+                    = new Document("_id", comentario.getId());
             Document cambiosARealizar = new Document();
             cambiosARealizar.append("$set", new Document()
                     .append("usuario", comentario.getUsuario())
                     .append("objetivo", comentario.getObjetivo())
-                    .append("fechaHoraCreacion", comentario
-                            .getFechaHoraCreacion())
+                    .append(
+                            "fechaHoraCreacion",
+                            comentario.getFechaHoraCreacion()
+                    )
                     .append("contenido", comentario.getContenido()));
+            this.collection.updateOne(filtroActualizacion, cambiosARealizar);
         } catch (MongoException ex) {
             String msg = "No se pudo actualizar comentario" + ex.getMessage();
             throw new PersistenciaException(msg);
