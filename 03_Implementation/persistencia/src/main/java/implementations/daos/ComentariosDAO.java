@@ -69,7 +69,7 @@ public final class ComentariosDAO implements IComentariosDAO {
 
         try {
             Document filtros = new Document();
-            filtros.append("_id", comentario.getUsuario().getId());
+            filtros.append("_id", comentario.getId());
             this.collection.deleteOne(filtros);
         } catch (MongoException ex) {
             String msg = "No se pudo eliminar el comentario" + ex.getMessage();

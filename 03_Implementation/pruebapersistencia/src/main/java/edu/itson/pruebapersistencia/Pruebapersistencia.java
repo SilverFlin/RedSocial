@@ -1,8 +1,13 @@
 package edu.itson.pruebapersistencia;
 
+import edu.itson.dominio.Comentario;
+import edu.itson.dominio.ContenidoComentario;
+import edu.itson.dominio.NombreCompleto;
+import edu.itson.dominio.Usuario;
 import exceptions.PersistenciaException;
 import implementations.db.DAOFactory;
 import interfaces.IComentariosDAO;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -35,15 +40,16 @@ public final class Pruebapersistencia {
 //        newComentario.setUsuario(nuevoUsuario);
 //        comentariosDAO.agregar(newComentario);
 //      System.out.println(comentariosDAO.buscarID("6487fca8130b0abe43ee3aad"));
-//        Comentario comentarioActualizar = new Comentario();
-//        Usuario usuario = new Usuario();
-//                usuario.setId(new ObjectId("6487fca8130b0abe43ee3aad"));
-//      usuario.setNombreCompleto(new NombreCompleto("Juan", "Luna", "Ruelas"));
-//        comentarioActualizar.setUsuario(usuario);
-//        ContenidoComentario cont = new ContenidoComentario();
-//        cont.setTexto("Hola");
-//        comentarioActualizar.setContenido(cont);
-//        comentariosDAO.actualizar(comentarioActualizar);
+        Comentario comentarioActualizar = new Comentario();
+        comentarioActualizar.setId(new ObjectId("64891098e804103ddae25680"));
+        Usuario usuario = new Usuario();
+                usuario.setId(new ObjectId("64891098e804103ddae25680"));
+      usuario.setNombreCompleto(new NombreCompleto("Juan", "Luna", "Ruelas"));
+        comentarioActualizar.setUsuario(usuario);
+        ContenidoComentario cont = new ContenidoComentario();
+        cont.setTexto("Hola");
+        comentarioActualizar.setContenido(cont);
+        comentariosDAO.eliminar(comentarioActualizar);
 //        List<Comentario> listaComentario = comentariosDAO.buscarTodos();
 //        for (int i = 0; i < listaComentario.size(); i++) {
 //  System.out.println(listaComentario.get(i).getUsuario().getNombreCompleto());
