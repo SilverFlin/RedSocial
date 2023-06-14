@@ -1,15 +1,17 @@
 package implementations.daos;
 
 import com.mongodb.MongoException;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import edu.itson.dominio.Post;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
-import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
 import interfaces.IPostsDAO;
+import java.util.ArrayList;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -78,14 +80,8 @@ public final class PostsDAO implements IPostsDAO {
     @Override
     public Post actualizar(final Post post) throws PersistenciaException {
         try {
-            Document filtroActualizacion = new Document("_id", post.getId());
-            Document cambiosARealizar = new Document();
-            cambiosARealizar.append("$set", new Document()
-                    .append("contenido", post.getContenido())
-                    .append("creador", post.getCreador())
-                    .append("fechaHoraCreacion", post.getFechaHoraCreacion())
-                    .append("tipopost", post.getTipoPost())
-                    .append("titulo", post.getTitulo()));
+            Bson filter = new Document("_id", post.getId());
+            this.collection.replaceOne(filter, post);
             return post;
         } catch (MongoException ex) {
             String msg = "No se pudo actualizar el post" + ex.getMessage();
@@ -96,13 +92,10 @@ public final class PostsDAO implements IPostsDAO {
     @Override
     public Post buscarPorId(final String id) throws PersistenciaException {
 
-        Post exPost = null;
         try {
-            Document filtros = new Document();
-            filtros.append("id", id);
-            FindIterable<Post> comentarios = this.collection.find(filtros);
-            exPost = comentarios.first();
-            return exPost;
+            return this.collection
+                    .find(new Document("_id", new ObjectId(id)))
+                    .first();
         } catch (MongoException ex) {
             String msg = "No se pudo buscar el post" + ex.getMessage();
             throw new PersistenciaException(msg);
@@ -111,10 +104,17 @@ public final class PostsDAO implements IPostsDAO {
 
     @Override
     public List<Post> buscarTodos() throws PersistenciaException {
-        List<Post> listaPosts;
+
         try {
-            listaPosts = new LinkedList<>();
-            return this.collection.find().into(listaPosts);
+            MongoCursor<Post> resultadoConsulta
+                    = this.collection
+                            .find()
+                            .iterator();
+            List<Post> listaP = new ArrayList<>();
+            while (resultadoConsulta.hasNext()) {
+                listaP.add(resultadoConsulta.next());
+            }
+            return listaP;
         } catch (Exception ex) {
             String msg = "No se pudo buscar los posts" + ex.getMessage();
             throw new PersistenciaException(msg);

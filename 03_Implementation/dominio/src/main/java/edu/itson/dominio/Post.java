@@ -8,9 +8,9 @@ import org.bson.types.ObjectId;
  *
  */
 public class Post implements Comentable {
-    
+
     /**
-     * ID del Objeto
+     * ID del Objeto.
      */
     private ObjectId id;
     /**
@@ -48,6 +48,12 @@ public class Post implements Comentable {
     }
 
     /**
+     * Constructor vacio.
+     */
+    public Post() {
+    }
+
+    /**
      * Obtiene la fecha y hora de creación del post.
      *
      * @return fecha y hora de creación del post.
@@ -64,7 +70,8 @@ public class Post implements Comentable {
     public void setFechaHoraCreacion(final LocalDateTime fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
     }
-     /**
+
+    /**
      * Obtiene el ID del Post.
      *
      * @return id del post.
@@ -74,11 +81,11 @@ public class Post implements Comentable {
     }
 
     /**
-     * Establece el ID del Post
+     * Establece el ID del Post.
      *
-     * @param id 
+     * @param id
      */
-    public void setId(ObjectId id) {
+    public void setId(final ObjectId id) {
         this.id = id;
     }
 
@@ -161,6 +168,22 @@ public class Post implements Comentable {
      */
     public TipoPost getTipoPost() {
         return tipoPost;
+    }
+
+    /**
+     * Regresa un string con todos los atributos de la clase.
+     *
+     * @return todos los atributos de la clase en string.
+     */
+    @Override
+    public String toString() {
+        return "Post{"
+                + "fechaHoraCreacion=" + fechaHoraCreacion
+                + ", creador=" + creador
+                + ", titulo=" + titulo
+                + ", contenido=" + contenido
+                + ", fechaHoraEdicion=" + fechaHoraEdicion
+                + ", tipoPost=" + tipoPost + '}';
     }
 
 }
