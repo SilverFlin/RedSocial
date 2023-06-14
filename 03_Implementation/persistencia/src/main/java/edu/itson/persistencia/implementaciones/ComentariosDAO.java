@@ -67,8 +67,7 @@ public class ComentariosDAO implements IComentarios {
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            Document filtroActualizacion = new Document("_id", t.getUsuario().getId());
-            System.out.println(t.getUsuario().getNombreCompleto());
+            Document filtroActualizacion = new Document("_id", t.getId());
             Document cambiosARealizar = new Document();
             cambiosARealizar.append("$set", new Document()
                     .append("usuario", t.getUsuario())
