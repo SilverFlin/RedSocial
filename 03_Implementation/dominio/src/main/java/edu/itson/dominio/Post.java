@@ -2,12 +2,17 @@ package edu.itson.dominio;
 
 import interfaces.Comentable;
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 /**
  *
  */
 public class Post implements Comentable {
-
+    
+    /**
+     * ID del Objeto
+     */
+    private ObjectId id;
     /**
      * Fecha y hora de creación del post.
      */
@@ -58,6 +63,23 @@ public class Post implements Comentable {
      */
     public void setFechaHoraCreacion(final LocalDateTime fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
+    }
+     /**
+     * Obtiene el ID del Post.
+     *
+     * @return id del post.
+     */
+    public ObjectId getId() {
+        return id;
+    }
+
+    /**
+     * Establece el ID del Post
+     *
+     * @param id 
+     */
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     /**
