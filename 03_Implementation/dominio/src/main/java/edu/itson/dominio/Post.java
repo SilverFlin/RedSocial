@@ -10,7 +10,7 @@ import org.bson.types.ObjectId;
 public class Post implements Comentable {
 
     /**
-     * ID del Objeto
+     * ID del Objeto.
      */
     private ObjectId id;
     /**
@@ -48,7 +48,7 @@ public class Post implements Comentable {
     }
 
     /**
-     * Constructor vacio
+     * Constructor vacio.
      */
     public Post() {
     }
@@ -81,11 +81,11 @@ public class Post implements Comentable {
     }
 
     /**
-     * Establece el ID del Post
+     * Establece el ID del Post.
      *
      * @param id
      */
-    public void setId(ObjectId id) {
+    public void setId(final ObjectId id) {
         this.id = id;
     }
 
@@ -170,11 +170,20 @@ public class Post implements Comentable {
         return tipoPost;
     }
 
+    /**
+     * Regresa un string con todos los atributos de la clase.
+     *
+     * @return todos los atributos de la clase en string.
+     */
     @Override
     public String toString() {
-        return "Post{fechaHoraCreacion=" + fechaHoraCreacion + ", creador=" + creador + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + ", tipoPost=" + tipoPost + '}';
+        return "Post{"
+                + "fechaHoraCreacion=" + fechaHoraCreacion
+                + ", creador=" + creador
+                + ", titulo=" + titulo
+                + ", contenido=" + contenido
+                + ", fechaHoraEdicion=" + fechaHoraEdicion
+                + ", tipoPost=" + tipoPost + '}';
     }
-    
-    
 
 }

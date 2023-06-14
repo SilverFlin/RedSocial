@@ -6,6 +6,7 @@
 **/nbproject/genfiles.properties
 **/nbproject/project.properties
 **/nbactions.xml
+**/nb-configuration.xml
 **/target/
 build/
 nbbuild/

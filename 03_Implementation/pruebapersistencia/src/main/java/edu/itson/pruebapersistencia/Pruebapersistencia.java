@@ -5,18 +5,27 @@ import edu.itson.dominio.NombreCompleto;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.TipoPost;
 import edu.itson.dominio.Usuario;
-import edu.itson.persistencia.implementaciones.PostsDAO;
-import implementaciones.ConectionDB;
-import interfaces.IConectionDB;
+import exceptions.PersistenciaException;
+import implementations.db.DAOFactory;
+import interfaces.IPostsDAO;
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  *
  */
-public class Pruebapersistencia {
+public final class Pruebapersistencia {
 
-    public static void main(String[] args) {
+    private Pruebapersistencia() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    /**
+     * Método principal.
+     *
+     * @param args
+     */
+    public static void main(final String[] args) {
         probarDaos();
     }
 
@@ -24,10 +33,9 @@ public class Pruebapersistencia {
         // TODO
     }
 
-    private static void probarPostsDao() {
+    private static void probarPostsDao() throws PersistenciaException {
         // TODO
-        IConectionDB conexion = new ConectionDB();
-        PostsDAO postdao = new PostsDAO(conexion);
+        IPostsDAO postdao = DAOFactory.getPostsDAO();
         Post post = new Post(TipoPost.NORMAL);
         LocalDateTime date = LocalDateTime.now();
         post.setFechaHoraCreacion(date);
@@ -44,17 +52,17 @@ public class Pruebapersistencia {
         post.setCreador(creador);
 
         /*
-         * Prueba agregar 
+         * Prueba agregar
          */
-//         postdao.agregar(post);
-//        System.out.println("Prueba agregar");   
+//        postdao.agregar(post);
+//        System.out.println("Prueba agregar");
 
         /*
          * Prueba busqueda por ID
          */
-        Post post2 = postdao.buscarID("6488afafd93a496465dc4e82");
+        Post post2 = postdao.buscarPorId("6488afafd93a496465dc4e82");
         System.out.println("Prueba Busqueda por ID:");
-        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: " );
+        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: ");
 
         /*
          *   Prueba busqueda de todos
@@ -69,21 +77,19 @@ public class Pruebapersistencia {
         /*
          * Prueba Actulizacion
          */
-        
-        Post postNew = postdao.buscarID("6488afafd93a496465dc4e82");
+        Post postNew = postdao.buscarPorId("6488afafd93a496465dc4e82");
         System.out.println(postNew);
         postNew.setTitulo("Hola");
         System.out.println("Prueba actualiza");
         postdao.actualizar(postNew);
         System.out.println("Listo");
-        
-         /*
+
+        /*
          * Prueba Eliminar
          */
-         System.out.println("Prueba Elimina");
+        System.out.println("Prueba Elimina");
         // postdao.eliminar(postdao.buscarID("6488dcb2d394bd15f8aae77b"));
-        
-        
+
     }
 
     private static void probarUsuariosDao() {
@@ -91,8 +97,12 @@ public class Pruebapersistencia {
     }
 
     private static void probarDaos() {
-        probarComentariosDao();
-        probarPostsDao();
-        probarUsuariosDao();
+        try {
+            probarComentariosDao();
+            probarPostsDao();
+            probarUsuariosDao();
+        } catch (PersistenciaException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
