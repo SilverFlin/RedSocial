@@ -6,15 +6,21 @@ package edu.itson.persistencia.implementaciones;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import edu.itson.dominio.Comentario;
 import edu.itson.persistencia.interfaces.IComentarios;
 import interfaces.IConectionDB;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -46,7 +52,7 @@ public class ComentariosDAO implements IComentarios {
     public Comentario eliminar(Comentario t) {
         try {
             MongoDatabase database = connectionDB.crearConexion();
-            MongoCollection<Comentario> coleccion = database.getCollection("usuarios", Comentario.class);
+            MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
             Document filtros = new Document();
             filtros.append("_id", t.getUsuario().getId());
             coleccion.deleteOne(filtros);
@@ -62,12 +68,14 @@ public class ComentariosDAO implements IComentarios {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
             Document filtroActualizacion = new Document("_id", t.getUsuario().getId());
+            System.out.println(t.getUsuario().getNombreCompleto());
             Document cambiosARealizar = new Document();
             cambiosARealizar.append("$set", new Document()
                     .append("usuario", t.getUsuario())
                     .append("objetivo", t.getObjetivo())
                     .append("fechaHoraCreacion", t.getFechaHoraCreacion())
                     .append("contenido", t.getContenido()));
+            coleccion.updateOne(filtroActualizacion, cambiosARealizar);
         } catch (Exception ex) {
             Logger.getLogger(ComentariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,19 +84,16 @@ public class ComentariosDAO implements IComentarios {
 
     @Override
     public Comentario buscarID(String id) {
-        Comentario comentario = null;
+        Comentario com = null;
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            Document filtros = new Document();
-            filtros.append("_id", id);
-            FindIterable<Comentario> comentarios = coleccion.find(filtros);
-            comentario = comentarios.first();
-            return comentario;
+            com = coleccion.find(new Document("_id", new ObjectId(id))).first();
+            return com;
         } catch (Exception ex) {
             Logger.getLogger(ComentariosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return comentario;
+        return com;
     }
 
     @Override
@@ -97,8 +102,12 @@ public class ComentariosDAO implements IComentarios {
         try {
             MongoDatabase database = connectionDB.crearConexion();
             MongoCollection<Comentario> coleccion = database.getCollection("comentarios", Comentario.class);
-            listacomentario = new LinkedList<>();
-            return coleccion.find().into(listacomentario);
+            MongoCursor<Comentario> resultadoConsulta = coleccion.find().iterator();
+            ArrayList<Comentario> listaC = new ArrayList<>();
+            while (resultadoConsulta.hasNext()) {
+                listaC.add(resultadoConsulta.next());
+            }
+            return listacomentario;
         } catch (Exception ex) {
             Logger.getLogger(Comentario.class.getName()).log(Level.SEVERE, null, ex);
         }
