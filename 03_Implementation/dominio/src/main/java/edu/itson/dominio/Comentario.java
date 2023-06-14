@@ -37,19 +37,39 @@ public class Comentario implements Comentable {
         // No hace falta hacer nada.
     }
 
+    /**
+     * Obtiene le id del comentario.
+     *
+     * @return id del comentario.
+     */
     public ObjectId getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    /**
+     * Actualiza el id del comentario.
+     *
+     * @param id
+     */
+    public void setId(final ObjectId id) {
         this.id = id;
     }
 
+    /**
+     * Obtiene el creador.
+     *
+     * @return obtiene el creador del comentario.
+     */
     public Usuario getCreador() {
         return creador;
     }
 
-    public void setCreador(Usuario creador) {
+    /**
+     * actualizar el creador del comentario.
+     *
+     * @param creador
+     */
+    public void setCreador(final Usuario creador) {
         this.creador = creador;
     }
 
