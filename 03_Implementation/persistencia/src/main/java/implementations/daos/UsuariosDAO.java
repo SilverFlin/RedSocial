@@ -3,8 +3,6 @@ package implementations.daos;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.result.DeleteResult;
-import edu.itson.dominio.NombreCompleto;
 import edu.itson.dominio.Usuario;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
@@ -69,15 +67,14 @@ public final class UsuariosDAO implements IUsuariosDAO {
     public Usuario eliminar(
             final Usuario usuario
     ) throws PersistenciaException {
-        ObjectId id = usuario.getId();
         try {
-            Document filtro = new Document("_id", id);
-            DeleteResult dr = this.collection.deleteOne(filtro);
-            return usuario;
+            Document filtros = new Document("_id", usuario.getId());
+            this.collection.deleteOne(filtros);
         } catch (MongoException ex) {
             String msg = "No se pudo eliminar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
+        return usuario;
     }
 
     @Override
@@ -85,13 +82,16 @@ public final class UsuariosDAO implements IUsuariosDAO {
             final Usuario usuario
     ) throws PersistenciaException {
         try {
-            Document filtroActualizacion = new Document("_id", usuario.getId());
+            Document filtroActualizacion = new Document("_id",
+                    usuario.getId());
             Document cambiosARealizar = new Document();
-            NombreCompleto nCompleto = usuario.getNombreCompleto();
             cambiosARealizar.append("$set", new Document()
-                    .append("nombres", nCompleto.getNombres())
-                    .append("apellidoPaternos", nCompleto.getApellidoPaterno())
-                    .append("apellidoMaterno", nCompleto.getApellidoMaterno()));
+                    .append("nombres", usuario
+                            .getNombreCompleto().getNombres())
+                    .append("apellidoPaternos", usuario
+                            .getNombreCompleto().getApellidoPaterno())
+                    .append("apellidoMaterno", usuario
+                            .getNombreCompleto().getApellidoMaterno()));
 //                    .append("password", usuario.getPassword())
 //                    .append("telefono", usuario.getTelefono())
 //                    .append("avatar", new Document()
@@ -100,11 +100,14 @@ public final class UsuariosDAO implements IUsuariosDAO {
 //                    .append("fechaNacimiento", usuario.getFechaNacimiento())
 //                    .append("genero", usuario.getGenero())
 //                    .append("direccion", new Document()
-//                    .append("ciudad", usuario.getDireccion().getCiudad())
-//                   .append("municipio", usuario.getDireccion().getMunicipio())
-//                    .append("estado", usuario.getDireccion().getEstado()))
+////                            .append("ciudad",
+//usuario.getDireccion().getCiudad())
+////                            .append("municipio",
+//usuario.getDireccion().getMunicipio())
+////                            .append("estado",
+//usuario.getDireccion().getEstado()))
 //                    .append("tipoUsuario", usuario.getTipoUsuario());
-            this.collection.updateOne(filtroActualizacion, cambiosARealizar);
+            this.collection.replaceOne(filtroActualizacion, usuario);
         } catch (MongoException ex) {
             String msg = "No se pudo actualizar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
@@ -114,19 +117,18 @@ public final class UsuariosDAO implements IUsuariosDAO {
 
     @Override
     public Usuario buscarPorId(final String id) throws PersistenciaException {
-        Usuario usuario;
+        Usuario usuario = null;
         try {
             ObjectId objectId = new ObjectId(id);
-
             Document filtros = new Document();
             filtros.append("_id", objectId);
             FindIterable<Usuario> usuarios = this.collection.find(filtros);
             usuario = usuarios.first();
-            return usuario;
         } catch (MongoException ex) {
-            String msg = "No se pudo buscar el usuario" + ex.getMessage();
+            String msg = "No se pudo encontrar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
+        return usuario;
     }
 
     @Override
