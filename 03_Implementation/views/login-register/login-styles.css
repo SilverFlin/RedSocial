@@ -1,0 +1,97 @@
+body {
+  background-color: white;
+  font-size: larger;
+  font-family: sans-serif;
+}
+
+@media (max-width: 1100px) {
+  .image-logotype {
+    display: none;
+  }
+}
+
+input {
+  border-radius: 3px;
+  height: 30px;
+}
+
+.grid-login-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 5px;
+  padding-top: 45px;
+  padding-bottom: 130px;
+  padding-left: 80px;
+  padding-right: 80px;
+  border: solid grey 1px;
+  border-radius: 5px;
+  width: 300px;
+  height: 430px;
+}
+
+.image-logotype {
+  padding: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 5px;
+  margin-left: -120px;
+  margin-right: -130px;
+}
+
+.email-input {
+  display: contents;
+}
+
+.password-input {
+  display: contents;
+}
+
+.submit-button {
+  display: contents;
+}
+
+#button-sign-in {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background-color: gray;
+  padding-bottom: 10px;
+  font-size: large;
+}
+
+.image-login {
+  margin-top: -50px;
+}
+
+#label-join-now {
+  font-size: small;
+  font-weight: bold;
+}
+
+#link-join-now {
+  color: dodgerblue;
+  font-size: small;
+  font-weight: bold;
+}
+
+.log-in {
+  display: flex;
+  justify-content: space-around;
+  height: 4px;
+}
+
+#bar {
+  color: black;
+  background: grey;
+  width: 300px;
+  height: 2px;
+}
