@@ -1,0 +1,27 @@
+input.buscarLargo {
+	background: transparent;
+    border:1px solid #d7d7d7;
+	height: 30px;
+    vertical-align: middle;
+	width: 100%;
+}
+
+.buscarGeneral{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: nowrap;  
+}
+
+header {
+    font-size: 50px;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(75, 75, 75);
+    padding: 1%;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
