@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+
+  <body>
+    <div class="grid-register-container">
+      <div class="image-logotype">
+        <img src="strix.png" alt="logotype" class="logotype" />
+      </div>
+
+      <form action="example.php" class="register-form">
+        <div class="register-title"><h1>Register</h1></div>
+
+        <div class="email-input">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+        </div>
+
+        <div class="password-input">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <div class="confirm-password-input">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm your password"
+          />
+        </div>
+
+        <div class="submit-button">
+          <button type="submit" id="button-sign-up">SIGN IN</button>
+          <hr id="bar" />
+        </div>
+        <nav class="log-up">
+          <label for="joinnow" id="label-join-now"
+            >Already have an account?</label
+          >
+          <a href="" id="link-join-now">Sign in</a>
+        </nav>
+      </form>
+    </div>
+  </body>
+</html>
