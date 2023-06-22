@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Author" content="Gerardo">
+    <meta name="Description" content="Edit post page">
+    <link rel="stylesheet" href="CreatePostStyles.css">
+    <title>Edit Post</title>
+</head>
+
+<body>
+
+    <div class="fondoBlanco" id="postPreview">
+        <div id="title">
+            <h1>Edit Post</h1>
+        </div>
+        <span for="preview" id="previewtitle">Preview</span>
+        <content id="previewTitle">
+            <div id="contentHeader" class="grid-container">
+                <span class="username" id="username">
+                    <img src="UserProfilePhoto.jpg" alt="UserProfilePhoto" class="userIcon">JohnDoe</span>
+                <span class="fecha">dd/mmmm/yy</span>
+                <span class="hora">13:45</span>
+            </div>
+        </content>
+        <content id="previewContent">
+            <div class="pubBody">
+                <p class="text">
+                    Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus fringilla. Pellentesque habitant
+                    morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras porta, eros in
+                    ultricies mattis, arcu turpis Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus fringilla.
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+                    porta,
+                    eros in ultricies mattis, arcu turpis Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus
+                    fringilla.
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+                    porta,
+                    eros in ultricies mattis, arcu turpis Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus
+                    fringilla.
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras
+                    porta,
+                    eros in ultricies mattis, ...
+                </p>
+            </div>
+        </content>
+    </div>
+
+
+    <form action="" class="fondoBlanco" id="form" class="container">
+        <div id="contenedor" class="container">
+            <div class="item" id="titlefield">
+                <label for="title" class="labels">Title</label>
+                <input type="text" id="titleText" required>
+            </div>
+            <div class="item" id="txtArea">
+                <label for="content" class="labels">Content</label>
+                <textarea></textarea>
+            </div>
+            <div class="item" id="fileField">
+                <input type="file" name="file" id="file">
+            </div>
+        </div>
+        <div id="botonPart" class="container2" >
+            <input type="submit" class="item2" value="Edit" id="boton" >
+        </div>
+    </form>
+
+</body>
