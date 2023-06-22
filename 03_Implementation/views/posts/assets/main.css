@@ -1,0 +1,313 @@
+body {
+  margin: 0;
+}
+.temporalHeader,
+.temporalFooter {
+  background-color: gray;
+  height: 10vh;
+  width: 100%;
+  margin: 0;
+}
+.container {
+  display: flex;
+  height: 190vh;
+  width: 100%;
+  margin: 0;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 0;
+}
+@media screen and (min-width: 900px) {
+  .leftBar,
+  .rightBar {
+    height: inherit;
+    background-color: darkslategrey;
+    width: 10%;
+    margin: 0;
+  }
+}
+
+/* Create Post */
+.createPostBtn {
+  margin: 1em 30% 1em 30%;
+  border: none;
+  color: whitesmoke;
+  background-color: #525252;
+  border-radius: 20px;
+  padding: 1em;
+}
+.createPostBtn:hover {
+  background-color: #787676;
+}
+/* Post */
+.post {
+  margin: auto;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.postComponentsWrapper {
+  display: flex;
+  margin: auto;
+  /* background-color: gray; */
+  height: 40vh;
+  width: 70%;
+  flex-direction: column;
+}
+
+/* Post Header*/
+.postHeaderWrapper {
+  display: flex;
+  /* background-color: green; */
+  flex-direction: row;
+  height: 15%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.postHeaderWrapper .postHeader {
+  width: 60%;
+
+  background-color: rgb(55, 149, 149);
+  border-radius: 1em 2.5em 0 0;
+  padding: 5px 10px 10px 10px;
+
+  /* margin: 0; */
+}
+.postHeaderWrapper .postHeader img {
+  width: 2em;
+  height: 2em;
+  border-radius: 100px;
+  background-color: red;
+}
+.postHeaderWrapper .postHeader h1 {
+  display: inline;
+  position: relative;
+  bottom: 30%;
+  margin-left: 5%;
+}
+
+.postHeaderWrapper .postTime label {
+  display: block;
+
+  text-align: end;
+  margin-top: 5%;
+}
+
+/* Post Content*/
+.postContentWrapper {
+  background-color: rgb(93, 250, 250, 0.3);
+  height: 60%;
+  overflow: hidden;
+  display: flex;
+}
+
+.postComponentsWrapper .postContent {
+  height: auto;
+  margin: 10px;
+}
+
+.postContentWrapper .postContent h1 {
+  margin: 0;
+}
+.postContentWrapper .postContent p {
+  overflow: hidden;
+  height: 70%;
+  margin: 0.2em 0 0.2em 0;
+}
+.postContentWrapper button {
+  /* position: relative; */
+  /* flex: 0 0 10%; */
+
+  align-self: flex-end;
+  margin: 0 15px 5px 0;
+  height: 2em;
+  width: 2em;
+  background-color: transparent;
+  border: none;
+  /* padding: 1em; */
+
+  /* /* display: block; */
+  /* margin-left: 90%;
+  margin-bottom: 5%; */
+  /* left: 90%;
+  bottom: 90%; */
+}
+
+.postContentWrapper button:hover {
+  background-color: whitesmoke;
+}
+
+/* Post Footer*/
+.postFooterWrapper {
+  display: flex;
+  /* background-color: green; */
+  height: 20%;
+  flex-direction: row-reverse;
+  overflow: hidden;
+}
+
+.postFooterWrapper .postFooter {
+  width: 60%;
+  /* background-color: rgb(55, 149, 149); */
+  background-color: rgba(55, 149, 149, 0.8);
+  border-radius: 0 0 1em 2.5em;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  /* align-content: center; */
+}
+
+.postFooterWrapper .postFooter > * {
+  flex: 1 1 1em;
+}
+
+.postFooterWrapper .postFooter img {
+  height: 1.5em;
+  width: 1.5em;
+  margin: 2% 0 2% 0;
+  border-radius: 100px;
+  background-color: red;
+  flex: 0 1 1.5em;
+  position: relative;
+  left: 6px;
+}
+.postFooterWrapper .postFooter h1 {
+  margin: 0;
+  width: 60%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
+  flex-basis: 50%;
+}
+.postFooterWrapper .postFooter p {
+  margin: 0;
+  width: 60%;
+  flex-basis: 50%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
+}
+
+.postFooterWrapper .postFooter button {
+  display: inline;
+  flex: 0 0 0;
+  height: 2em;
+  width: 2em;
+  flex: 0 1 1em;
+  /* align-self: flex-end; */
+}
+
+/* Comments */
+.postCommentsWrapper {
+  display: flex;
+  /* background-color: green; */
+  height: 100%;
+  flex-direction: row-reverse;
+  /* overflow: hidden; */
+}
+
+.postCommentsWrapper .postComments {
+  width: 60%;
+  height: 120%;
+  /* background-color: rgb(55, 149, 149); */
+  background-color: rgba(55, 149, 149, 0.8);
+  border-radius: 0 0 1em 1em;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  justify-content: center;
+  gap: 0;
+  /* align-content: center; */
+}
+
+.comment {
+  padding-left: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 1em 0 1em 0;
+
+  /* background-color: red; */
+}
+.postComments .comment > * {
+  flex: 1 1 1em;
+}
+
+.postComments .comment img {
+  height: 1.5em;
+  width: 1.5em;
+  margin: 2% 0 0 0;
+  border-radius: 100px;
+  background-color: red;
+  flex: 0 1 1.5em;
+  position: relative;
+  left: 6px;
+}
+.postComments .comment h1 {
+  margin: 0;
+  margin-left: 5%;
+  width: 30%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
+  flex-basis: 20%;
+}
+.postComments .comment span {
+  margin: 0;
+  margin-left: 5%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
+  flex-basis: 50%;
+}
+.postComments .comment p {
+  margin: 0;
+  margin-left: 5%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
+  flex-basis: 90%;
+}
+
+.createComment {
+  width: 100%;
+  height: 8vh;
+  margin: 0;
+  display: flex;
+  align-self: flex-end;
+  position: relative;
+  top: 8%;
+}
+
+.createComment input {
+  width: 84%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.createComment button {
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  height: 80%;
+  border: none;
+  border-radius: 0 10px 10px 0;
+}
+
+.rightArrow {
+  width: 20px;
+  height: 20px;
+}
+.btnRightArrow {
+  padding: 0;
+}
+
+.ignoreOverflow {
+  overflow: visible;
+}
