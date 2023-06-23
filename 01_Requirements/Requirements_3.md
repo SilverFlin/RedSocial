@@ -2,9 +2,9 @@
 
 **Implementar las siguientes funcionalidades de su proyecto final:**
 - Registro de usuarios (con todo y subida de archivo de avatar),
--  login,
--  ver publicaciones (junto con comentarios) para todo público,
--  y ver publicaciones para administradores (puede ser en una tabla o en el mismo muro de publicaciones global con las opciones de administrador, mostrando fecha de publicación, y nombre de usuario autor). 
+- login,
+- ver publicaciones (junto con comentarios) para todo público,
+- y ver publicaciones para administradores (puede ser en una tabla o en el mismo muro de publicaciones global con las opciones de administrador, mostrando fecha de publicación, y nombre de usuario autor).
 
 **Se debe contemplar lo siguiente:**
 
@@ -15,7 +15,7 @@
 - Al autenticarse, siempre debe saberse que usuario está autenticado sugerencia: que se vea el nombre del usuario en alguna parte de la cabecera de la aplicación.
 - Debe evitarse el ataque XSS.
 - No deben usarse scriptlets, utilizar en su lugar EL y JSTL.
-- No se permite el uso de AJAX (todavía).
+- No se permite el uso de Ajax (todavía).
 - Debe configurarse al menos 2 páginas de error: una que reaccione a códigos HTTP y la otra a alguna excepción de Java.
 - Deben usarse fragmentos de JSP.
 

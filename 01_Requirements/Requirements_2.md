@@ -16,11 +16,8 @@ Con base en el documento del proyecto final, realizar los prototipos de alta fid
 7. Para los esquemas de colores, íconos e imágenes pueden valerse de los siguientes recursos.
 
 
-**Paquetes de íconos gratuitos**
-https://www.iconfinder.com/
+[Paquetes de íconos gratuitos](https://www.iconfinder.com/)
 
-**Paletas de colores**
-https://coolors.co/palettes/trending
+[Paletas de colores](https://coolors.co/palettes/trending)
 
-**Fuentes**
-https://coolors.co/fonts
+[Fuentes](https://coolors.co/fonts)

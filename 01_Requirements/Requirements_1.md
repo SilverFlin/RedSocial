@@ -6,7 +6,7 @@ Las operaciones a contemplar son al menos las que se definen en el documento del
 
 Se deben tener las clases del modelo en un componente (proyecto) a parte y el componente de acceso a datos debe implementar una fachada y una fábrica, y debe estar encapsulado de tal manera que sólo la fachada y la fábrica sean visibles desde otro componente.
 
-El código debe ser entregado en un repositorio GitHub. 
+El código debe ser entregado en un repositorio GitHub.
 
 Incluir las consideraciones necesarias como validaciones y reglas de negocio.
 
