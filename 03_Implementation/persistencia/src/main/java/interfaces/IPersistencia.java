@@ -62,7 +62,7 @@ public interface IPersistencia {
      * Agrega un usuario a la base de datos y lo regresa con su id.
      *
      * @param usuario
-     * @return Comentario con el id.
+     * @return Usuario con el id.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Usuario agregarUsuario(Usuario usuario) throws PersistenciaException;
@@ -71,7 +71,7 @@ public interface IPersistencia {
      * Eliminar un usuario de la base de datos y lo regresa si se borró.
      *
      * @param usuario
-     * @return Comentario borrado.
+     * @return Usuario borrado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Usuario eliminarUsuario(Usuario usuario) throws PersistenciaException;
@@ -80,7 +80,7 @@ public interface IPersistencia {
      * Actualiza el usuario en base al id registrado en el objeto.
      *
      * @param usuario
-     * @return Comentario actualizado.
+     * @return Usuario actualizado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Usuario actualizarUsuario(Usuario usuario) throws PersistenciaException;
@@ -89,10 +89,19 @@ public interface IPersistencia {
      * Busca un usuario en base a un id.
      *
      * @param id
-     * @return Comentario, si existe.
+     * @return Usuario, si existe.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Usuario buscarUsuarioPorId(String id) throws PersistenciaException;
+
+    /**
+     * Busca un usuario en base a un email.
+     *
+     * @param email
+     * @return Usuario, si existe.
+     * @throws PersistenciaException Si ocurre un error en capa persistencia.
+     */
+    Usuario buscarUsuarioPorEmail(String email) throws PersistenciaException;
 
     /**
      * Consulta todos los usuarios de la base de datos.
@@ -106,7 +115,7 @@ public interface IPersistencia {
      * Agrega un post a la base de datos y lo regresa con su id.
      *
      * @param post
-     * @return Comentario con el id.
+     * @return Post con el id.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Post agregarPost(Post post) throws PersistenciaException;
@@ -115,7 +124,7 @@ public interface IPersistencia {
      * Eliminar un post de la base de datos y lo regresa si se borró.
      *
      * @param post
-     * @return Comentario borrado.
+     * @return Post borrado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Post eliminarPost(Post post) throws PersistenciaException;
@@ -124,7 +133,7 @@ public interface IPersistencia {
      * Actualiza el post en base al id registrado en el objeto.
      *
      * @param post
-     * @return Comentario actualizado.
+     * @return Post actualizado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Post actualizarPost(Post post) throws PersistenciaException;
@@ -133,7 +142,7 @@ public interface IPersistencia {
      * Busca un post en base a un id.
      *
      * @param id
-     * @return Comentario, si existe.
+     * @return Post, si existe.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     Post buscarPostPorId(String id) throws PersistenciaException;
@@ -141,7 +150,7 @@ public interface IPersistencia {
     /**
      * Consulta todos los posts de la base de datos.
      *
-     * @return Una lista con todos los comentarios.
+     * @return Una lista con todos los Posts.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     List<Post> buscarTodosLosPosts() throws PersistenciaException;

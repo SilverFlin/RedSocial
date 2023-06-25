@@ -117,23 +117,12 @@ public final class UsuariosDAO implements IUsuariosDAO {
 
     @Override
     public Usuario buscarPorId(final String id) throws PersistenciaException {
-        Usuario usuario = null;
-        try {
-            ObjectId objectId = new ObjectId(id);
-            Document filtros = new Document();
-            filtros.append("_id", objectId);
-            FindIterable<Usuario> usuarios = this.collection.find(filtros);
-            usuario = usuarios.first();
-        } catch (MongoException ex) {
-            String msg = "No se pudo encontrar el usuario" + ex.getMessage();
-            throw new PersistenciaException(msg);
-        }
-        return usuario;
+        return this.buscarPor("_id", id);
     }
 
     @Override
     public List<Usuario> buscarTodos() throws PersistenciaException {
-        List<Usuario> usuarios = null;
+        List<Usuario> usuarios;
         try {
             usuarios = new LinkedList<>();
             return this.collection.find().into(usuarios);
@@ -141,6 +130,36 @@ public final class UsuariosDAO implements IUsuariosDAO {
             String msg = "No se pudo buscar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
+    }
+
+    @Override
+    public Usuario buscarPorEmail(
+            final String email
+    ) throws PersistenciaException {
+        return buscarPor("email", email);
+    }
+
+    private Usuario buscarPor(
+            final String param,
+            final String value
+    ) throws PersistenciaException {
+
+        Usuario usuario = null;
+        try {
+            Document filtros = new Document();
+            if (param.equals("_id")) {
+                ObjectId objectId = new ObjectId(value);
+                filtros.append(param, objectId);
+            } else {
+                filtros.append(param, value);
+            }
+            FindIterable<Usuario> usuarios = this.collection.find(filtros);
+            usuario = usuarios.first();
+        } catch (MongoException ex) {
+            String msg = "No se pudo encontrar el usuario" + ex.getMessage();
+            throw new PersistenciaException(msg);
+        }
+        return usuario;
     }
 
 }
