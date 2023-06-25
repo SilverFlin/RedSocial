@@ -7,6 +7,7 @@ import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
+import interfaces.IPersistencia;
 
 /**
  *
@@ -16,7 +17,7 @@ public final class UsersBO implements IUsersBO {
     /**
      * Fachada de persistencia.
      */
-    private final FachadaPersistencia persistence;
+    private final IPersistencia persistence;
 
     /**
      * Unico constructor, que instancía la fachada de persistencia.
@@ -29,11 +30,33 @@ public final class UsersBO implements IUsersBO {
     public Usuario register(final Usuario user) throws BusinessException {
         try {
             this.encryptUserPassword(user);
-            return persistence.agregarUsuario(user);
+            return this.persistence.agregarUsuario(user);
         } catch (PersistenciaException ex) {
-            String errorMsg = "Error @ Create Email: " + ex.getMessage();
+            String errorMsg = "Error @ Create Account: " + ex.getMessage();
             throw new BusinessException(errorMsg);
 
+        }
+    }
+
+    @Override
+    public Usuario login(
+            final String email,
+            final String password
+    ) throws BusinessException {
+        try {
+            Usuario user = this.persistence.buscarUsuarioPorEmail(email);
+
+            if (user == null) {
+                return null;
+            }
+            if (!this.validateUserPassword(password, user.getPassword())) {
+                return null;
+            }
+
+            return user;
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ login: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
         }
     }
 
@@ -46,6 +69,14 @@ public final class UsersBO implements IUsersBO {
         IEncryptor encriptor = new BcryptEncryptor();
         String hashedPassword = encriptor.encryptPassword(user.getPassword());
         user.setPassword(hashedPassword);
+    }
+
+    private boolean validateUserPassword(
+            final String password,
+            final String hashedPassword
+    ) {
+        IEncryptor encriptor = new BcryptEncryptor();
+        return encriptor.verifyPassword(password, hashedPassword);
     }
 
 }
