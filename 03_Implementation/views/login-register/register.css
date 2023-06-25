@@ -12,66 +12,65 @@ body {
 }
 
 input {
-  border-radius: 3px;
+  border-radius: 8px;
   height: 30px;
+  border: 1px solid gray;
+  padding: 0.5em;
+}
+
+input:focus {
+  outline: 1px solid dodgerblue;
 }
 
 .grid-register-container {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
-  margin-left: -20px;
-  margin-right: -20px;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   border: solid grey 1px;
   margin-top: 60px;
-  padding-top: 100px;
-  padding-bottom: 150px;
-  padding-left: 80px;
-  padding-right: 80px;
-  border-radius: 5px;
+  padding: 100px 80px 150px;
+  border-radius: 10px;
   width: 300px;
   height: 350px;
 }
 
 .image-logotype {
-  padding-top: 100px;
-  padding-bottom: 50px;
-  border-radius: 5px;
+  margin-top: 60px;
 }
 
-.email-input {
+.image-logotype img {
+  width: 570px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.content {
   display: contents;
 }
 
-.password-input {
-  display: contents;
-}
-
-.confirm-password-input {
-  display: contents;
-}
-
-.submit-button {
-  display: contents;
-}
-
-.confirm-confirm-input {
-  display: contents;
+.content :first-child {
+  margin-top: 20px;
 }
 
 #button-sign-up {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 35px 0 10px;
   border-radius: 20px;
-  background-color: gray;
-  padding-bottom: 10px;
+  border: none;
+  background-color: #525252;
+  padding: 10px 0;
   font-size: large;
+  color: white;
+  font-weight: 600;
+}
+
+#button-sign-up:hover {
+  background-color: #999696;
+  cursor: pointer;
 }
 
 .image-register {
