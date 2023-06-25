@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  */
-@WebServlet(name = "UsersServlet", urlPatterns = {"/users"})
-public class UsersServlet extends HttpServlet {
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
+public class RegisterServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods.">
     /**
@@ -28,7 +28,15 @@ public class UsersServlet extends HttpServlet {
             final HttpServletResponse response
     )
             throws ServletException, IOException {
-//        TODO
+        String action = request.getParameter("action");
+
+        /* Default Action */
+        if (action == null || action.equalsIgnoreCase("register")) {
+            getServletContext()
+                    .getRequestDispatcher("/pages/users/register.jsp")
+                    .forward(request, response);
+            return;
+        }
     }
 
     /**
