@@ -13,28 +13,36 @@
         <img src="strix.png" alt="logotype" class="logotype" />
       </div>
 
-      <form action="example.php" class="login-form">
+      <form action="example.php" class="user-form">
         <div class="login-title"><h1>Login</h1></div>
 
-        <div class="email-input">
+        <div class="content">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email" />
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+            name="email"
+          />
         </div>
 
-        <div class="password-input">
+        <div class="content">
           <label for="password">Password</label>
           <input
             type="password"
             id="password"
             placeholder="Enter your password"
+            required
+            name="password"
           />
         </div>
 
-        <div class="submit-button">
-          <button type="submit" id="button-sign-in">SIGN IN</button>
+        <div class="content">
+          <button type="submit" id="user-form-btn">SIGN IN</button>
           <hr id="bar" />
         </div>
-        <nav class="log-in">
+        <nav class="container-join-now">
           <label for="joinnow" id="label-join-now">New to Strix</label>
           <a href="" id="link-join-now">Join now</a>
         </nav>

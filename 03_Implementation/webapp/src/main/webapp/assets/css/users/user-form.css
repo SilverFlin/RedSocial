@@ -22,13 +22,13 @@ input:focus {
   outline: 1px solid dodgerblue;
 }
 
-.grid-register-container {
+.form-container {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
 }
 
-.register-form {
+.user-form {
   display: flex;
   flex-direction: column;
   border: solid grey 1px;
@@ -57,7 +57,7 @@ input:focus {
   margin-top: 20px;
 }
 
-#button-sign-up {
+#user-form-btn {
   margin: 35px 0 10px;
   border-radius: 20px;
   border: none;
@@ -68,12 +68,12 @@ input:focus {
   font-weight: 600;
 }
 
-#button-sign-up:hover {
+#user-form-btn:hover {
   background-color: #999696;
   cursor: pointer;
 }
 
-.image-register {
+.image-login {
   margin-top: -50px;
 }
 
@@ -88,7 +88,7 @@ input:focus {
   font-weight: bold;
 }
 
-.log-up {
+.container-join-now {
   display: flex;
   justify-content: space-around;
   height: 4px;

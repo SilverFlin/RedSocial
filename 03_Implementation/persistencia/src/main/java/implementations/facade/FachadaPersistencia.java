@@ -19,15 +19,15 @@ public final class FachadaPersistencia implements IPersistencia {
     /**
      * Instancia de ComentariosDAO.
      */
-    private IComentariosDAO comentariosDAO;
+    private final IComentariosDAO comentariosDAO;
     /**
      * Instancia de UsuariosDAO.
      */
-    private IUsuariosDAO usuariosDAO;
+    private final IUsuariosDAO usuariosDAO;
     /**
      * Instancia de PostsDAO.
      */
-    private IPostsDAO postsDAO;
+    private final IPostsDAO postsDAO;
 
     /**
      * Constructor por defecto, inicializa los DAO.
@@ -133,6 +133,17 @@ public final class FachadaPersistencia implements IPersistencia {
     ) throws PersistenciaException {
         try {
             return this.usuariosDAO.buscarPorId(id);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorEmail(
+            final String email
+    ) throws PersistenciaException {
+        try {
+            return this.usuariosDAO.buscarPorEmail(email);
         } catch (PersistenciaException e) {
             throw new PersistenciaException(e.getMessage());
         }

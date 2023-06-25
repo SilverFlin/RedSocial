@@ -5,17 +5,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Register</title>
-        <link rel="stylesheet" href="./assets/css/users/register-user.css" />
+        <link rel="stylesheet" href="./assets/css/users/user-form.css" />
     </head>
 
     <body>
-        <div class="grid-register-container">
+        <div class="form-container">
             <div class="image-logotype">
                 <img src="./assets/images/strix.png" alt="logotype" class="logotype" />
             </div>
 
-            <form action="" class="register-form" method="POST">
-                <div class="register-title"><h1>Register</h1></div>
+            <form action="" class="user-form" method="POST">
+                <div><h1>Register</h1></div>
 
                 <div class="content">
                     <label for="email">Email</label>
@@ -51,10 +51,10 @@
                 </div>
 
                 <div class="content">
-                    <button type="submit" id="button-sign-up">Register</button>
+                    <button type="submit" id="user-form-btn">Register</button>
                     <hr id="bar" />
                 </div>
-                <nav class="log-up">
+                <nav class="container-join-now">
                     <span id="label-join-now">
                         Already have an account?
                     </span>
