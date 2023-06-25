@@ -1,6 +1,8 @@
 package edu.itson.webapp.business.impl;
 
 import edu.itson.dominio.Usuario;
+import edu.itson.webapp.auth.impl.BcryptEncryptor;
+import edu.itson.webapp.auth.interfaces.IEncryptor;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
@@ -24,15 +26,26 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Usuario register(final Usuario usuario) throws BusinessException {
+    public Usuario register(final Usuario user) throws BusinessException {
         try {
-            return persistence.agregarUsuario(usuario);
+            this.encryptUserPassword(user);
+            return persistence.agregarUsuario(user);
         } catch (PersistenciaException ex) {
-            throw new BusinessException(
-                    "Error @ Create Email: " + ex.getMessage()
-            );
+            String errorMsg = "Error @ Create Email: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
 
         }
+    }
+
+    /**
+     * Encripta la password del usuario y se la asigna.
+     *
+     * @param user
+     */
+    private void encryptUserPassword(final Usuario user) {
+        IEncryptor encriptor = new BcryptEncryptor();
+        String hashedPassword = encriptor.encryptPassword(user.getPassword());
+        user.setPassword(hashedPassword);
     }
 
 }
