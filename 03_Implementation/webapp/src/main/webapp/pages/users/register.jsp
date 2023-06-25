@@ -14,30 +14,40 @@
                 <img src="./assets/images/strix.png" alt="logotype" class="logotype" />
             </div>
 
-            <form class="register-form">
+            <form action="" class="register-form" method="POST">
                 <div class="register-title"><h1>Register</h1></div>
 
                 <div class="content">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" />
+                    <input 
+                      required
+                      type="email"
+                      id="email"
+                      placeholder="Enter your email"
+                      name="email"
+                      />
                 </div>
 
                 <div class="content">
                     <label for="password">Password</label>
                     <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        />
+                      required
+                      type="password"
+                      id="password"
+                      placeholder="Enter your password"
+                      name="password"
+                      />
                 </div>
 
                 <div class="content">
                     <label for="confirm-password">Confirm Password</label>
                     <input
-                        type="password"
-                        id="confirm-password"
-                        placeholder="Confirm your password"
-                        />
+                      required
+                      type="password"
+                      id="confirm-password"
+                      placeholder="Confirm your password"
+                      name="confirmPassword"
+                      />
                 </div>
 
                 <div class="content">
