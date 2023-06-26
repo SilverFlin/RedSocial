@@ -6,6 +6,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!--TODO-->
+        ${sessionScope.user.email}
     </body>
 </html>

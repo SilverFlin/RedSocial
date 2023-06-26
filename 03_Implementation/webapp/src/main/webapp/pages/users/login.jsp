@@ -14,7 +14,7 @@
                 <img src="./assets/images/strix.png" alt="logotype" class="logotype" />
             </div>
 
-            <form action="" class="user-form" method="POST">
+            <form action="./auth?action=login" class="user-form" method="POST">
                 <div class="login-title"><h1>Login</h1></div>
 
                 <div class="content">
