@@ -1,82 +1,95 @@
-header {
-    text-align: center;
-    font-size: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 50px;
-    background-color: rgb(75, 75, 75);
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-h1{
-    font-family: Arial, Helvetica, sans-serif;
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
 }
 
-body{
-    margin: 0;
-    padding: 0;
+.edit-profile-form h1 {
+  font-size: 100px;
+  margin-left: 1em;
 }
 
-label {
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 50px;
-    margin-left: 50px;
-    display: block;
-    font-size: 40px;
+.form-container {
+  padding: 50px 0 100px;
+  margin: auto;
+  width: 1550px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 30px black;
+  border: solid 1px gainsboro;
 }
 
-#remark{
-    color: gray;
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#text, #genero {
-    margin-top: 10px;
-    margin-left: 50px;
-    display: block;
-    height: 50px;
+.form-row div {
+  margin: 50px 0 0 50px;
+  font-size: 40px;
+}
+
+#phone-number-span {
+  color: gray;
+}
+
+.input-edit-form {
+  margin-top: 10px;
+  display: block;
+  height: 50px;
+  width: 700px;
+  font-size: 40px;
+  border-radius: 10px;
+}
+
+.form-item-col3 input {
+  display: block;
+  height: 50px;
+  width: 445px;
+  font-size: 40px;
+  border-radius: 10px;
+}
+
+.save-btn {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  padding: 15px 40px;
+  background-color: #525252;
+  border: none;
+  border-radius: 35px;
+  width: 150px;
+  margin: auto;
+  position: relative;
+  left: calc(1400px / 2);
+  top: 30px;
+}
+
+.save-btn:hover {
+  background-color: #999696;
+  cursor: pointer;
+}
+
+input:focus,
+select:focus {
+  outline: 1px solid dodgerblue;
+}
+
+@media (max-width: 1600px) {
+  .form-container {
+    width: 800px;
+  }
+
+  .form-item-col3 input {
     width: 700px;
-    font-size: 40px;
-    border-radius: 10px;
-}
+  }
 
-#formulario, #email {
-    display: flex;
-    flex-wrap: wrap;    
-}
-
-#mText{
-    margin-top: 10px;
-    margin-left: 50px;
-    display: block;
-    height: 50px;
-    width: 460px;
-    font-size: 40px;
-    border-radius: 10px;
-}
-#subir{
-margin-top: 70px;
-float: right;
-text-decoration:none;
-font-weight: 600;
-font-size: 20px;
-color: white;
-padding-top:15px;
-padding-bottom:15px;
-padding-left:40px;
-padding-right:40px;
-background-color:#22201d;
-border-color: #000000;
-border-width: 3px;
-border-style: solid;
-border-radius:35px;
-}
-
-#marco{
-    padding: 50px;
-    margin: 50px;
-    border-radius: 10px;
-  box-shadow:
-       inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
-             
+  .save-btn {
+    left: calc(650px / 2);
+  }
 }
