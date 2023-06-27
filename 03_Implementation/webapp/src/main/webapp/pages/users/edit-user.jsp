@@ -97,6 +97,18 @@
                         <input type="text" name="state" id="state" placeholder="Sonora" />
                     </div>
                 </div>
+                <div class="form-row">
+                    <div>
+                        <label for="profile-picture">Profile Picture</label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="profile-picture"
+                          id="profile-picture"
+                          class="input-edit-form"
+                          />
+                    </div>
+                </div>
             </div>
             <button type="submit" class="save-btn">SAVE</button>
         </form>

@@ -70,7 +70,8 @@ body {
   top: 30px;
 }
 
-.save-btn:hover {
+.save-btn:hover,
+.profile-picture-label:hover {
   background-color: #999696;
   cursor: pointer;
 }
@@ -78,6 +79,20 @@ body {
 input:focus,
 select:focus {
   outline: 1px solid dodgerblue;
+}
+
+input[type="file"] {
+  height: 60px;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #525252;
+  color: white;
+  border: none;
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 @media (max-width: 1600px) {
