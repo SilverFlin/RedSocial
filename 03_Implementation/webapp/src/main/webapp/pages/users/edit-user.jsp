@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <form class="edit-profile-form" action="">
+        <form class="edit-profile-form" action="./edit-user?action=edit" method="POST">
             <h1>Edit profile</h1>
             <div class="form-container">
                 <div class="form-row">
@@ -85,16 +85,16 @@
                 </div>
                 <div class="form-row">
                     <div class="form-item-col3">
-                        <label for="City"> City </label>
-                        <input type="text" name="City" placeholder="Obregon" />
+                        <label for="city"> City </label>
+                        <input type="text" name="city"  id="city" placeholder="Obregon" />
                     </div>
                     <div class="form-item-col3">
-                        <label for="Municipality"> Municipality </label>
-                        <input type="text" name="Municipality" placeholder="Cajeme" />
+                        <label for="municipality"> Municipality </label>
+                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" />
                     </div>
                     <div class="form-item-col3">
-                        <label for="State"> State </label>
-                        <input type="text" name="State" placeholder="Sonora" />
+                        <label for="state"> State </label>
+                        <input type="text" name="state" id="state" placeholder="Sonora" />
                     </div>
                 </div>
             </div>
