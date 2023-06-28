@@ -4,12 +4,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./assets/css/users/edit-profile.css" />
+        <link rel="stylesheet" href="/webapp/assets/css/users/edit-profile.css" />
         <title>Edit Profile</title>
     </head>
 
     <body>
-        <form class="edit-profile-form" action="./edit-user?action=edit" method="POST" enctype="multipart/form-data">
+        <form class="edit-profile-form" action="/webapp/edit-user?action=edit" method="POST">
             <h1>Edit profile</h1>
             <div class="form-container">
                 <div class="form-row">

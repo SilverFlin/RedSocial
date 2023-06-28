@@ -1,19 +1,16 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
-<!--TODO-->
 <head>
-    <link rel="stylesheet" href="./assets/css/errors/footerStyles.css" />
+    <link rel="stylesheet" href="/webapp/assets/css/errors/footerStyles.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Error!</title>
+    <title></title>
 </head>
 <footer class="footer">
 
     <div id="Title">
-        <p id="name"><img src="./assets/images/StrixLogo.png" id="logo"></img>Strix</p>
+        <p id="name"><img src="/webapp/assets/images/StrixLogo.png" id="logo">Strix</p>
     </div>
 
     <div id="Content">
-        <p id="copy">Copyright 2023 ©</p>
+        <p id="copy">Copyright 2023 &#169;</p>
     </div>
 
 </footer>

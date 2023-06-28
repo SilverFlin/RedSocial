@@ -96,7 +96,7 @@ public class AuthServlet extends HttpServlet {
 
         // TODO Redirect Home
         getServletContext()
-                .getRequestDispatcher("/pages/users/edit-user.jsp")
+                .getRequestDispatcher("/home.jsp")
                 .forward(request, response);
 
     }
