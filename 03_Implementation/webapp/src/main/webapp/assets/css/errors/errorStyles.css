@@ -1,0 +1,35 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.contenedor {
+  position: relative;
+  height: 500px;
+}
+
+.hijo {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px gray solid;
+  padding: 30px;
+  border-radius: 35px;
+  text-align: center;
+}
+
+#error-code {
+  border: 1px gray solid;
+  display: flex;
+  background-color: gray;
+  padding: 10px;
+  color: white;
+  font-size: xx-large;
+  font-weight: bolder;
+  border-radius: 10px;
+}
+
+img {
+  width: 100px;
+}
