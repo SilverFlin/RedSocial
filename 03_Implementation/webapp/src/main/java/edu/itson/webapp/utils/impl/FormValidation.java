@@ -1,14 +1,11 @@
-/**
- * Este paquete contiene las validaciones.
- */
 package edu.itson.webapp.utils.impl;
 
 import edu.itson.webapp.utils.interfaces.IFormValidation;
 import java.util.regex.Pattern;
 
 /**
- * Esta clase implementa la interfaz IFormValidation
- * y proporciona métodos para validar formularios.
+ * Esta clase implementa la interfaz IFormValidation y proporciona métodos para
+ * validar formularios.
  */
 public final class FormValidation implements IFormValidation {
 
@@ -45,8 +42,8 @@ public final class FormValidation implements IFormValidation {
     }
 
     /**
-     * Este método se encarga de asignarle un
-     * número máximo de caracteres a un campo.
+     * Este método se encarga de asignarle un número máximo de caracteres a un
+     * campo.
      *
      * @param text el texto a comprobar
      * @param limit el número de caracteres máximo
@@ -61,5 +58,20 @@ public final class FormValidation implements IFormValidation {
         return text.length() > limit;
     }
 
+    /**
+     * Este método se encarga de validar la contraseña.
+     *
+     * La contraseña debe de llevar por lo menos un numero un caracter,una
+     * minuscula,una mayuscula menos 8
+     *
+     * @param password la contraseña a validar
+     * @return true si es válida, false en caso contrario
+     */
+    @Override
+    public boolean isPasswordValid(final String password) {
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        return pattern.matcher(password).matches();
+    }
 }
-
