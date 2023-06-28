@@ -2,12 +2,13 @@ package edu.itson.dominio;
 
 import interfaces.Comentable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
  *
  */
-public class Post implements Comentable {
+public final class Post implements Comentable, Comparable<Post> {
 
     /**
      * ID del Objeto.
@@ -184,6 +185,42 @@ public class Post implements Comentable {
                 + ", contenido=" + contenido
                 + ", fechaHoraEdicion=" + fechaHoraEdicion
                 + ", tipoPost=" + tipoPost + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 2 + 1;
+        final int randomHash = 89;
+        hash = randomHash * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Post other = (Post) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public int compareTo(final Post comparablePost) {
+        LocalDateTime comparableTime = comparablePost.getFechaHoraCreacion();
+
+        if (this.fechaHoraCreacion.isAfter(comparableTime)) {
+            return -1;
+        } else if (this.fechaHoraCreacion.isBefore(comparableTime)) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }
