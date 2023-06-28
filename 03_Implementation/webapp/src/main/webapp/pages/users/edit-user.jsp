@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <form class="edit-profile-form" action="./edit-user?action=edit" method="POST">
+        <form class="edit-profile-form" action="./edit-user?action=edit" method="POST" enctype="multipart/form-data">
             <h1>Edit profile</h1>
             <div class="form-container">
                 <div class="form-row">

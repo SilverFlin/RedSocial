@@ -1,5 +1,6 @@
 package edu.itson.webapp.business.impl;
 
+import edu.itson.dominio.Imagen;
 import edu.itson.dominio.Usuario;
 import edu.itson.webapp.auth.impl.BcryptEncryptor;
 import edu.itson.webapp.auth.interfaces.IEncryptor;
@@ -8,6 +9,8 @@ import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
 import interfaces.IPersistencia;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,6 +59,40 @@ public final class UsersBO implements IUsersBO {
             return user;
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ login: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
+    @Override
+    public Usuario editUser(Usuario user) throws BusinessException {
+        if (user == null) {
+            String errorMsg = "Error @ edit User, user is null";
+            throw new BusinessException(errorMsg);
+        }
+
+        if (user.getId() == null) {
+            String errorMsg = "Error @ edit User, id not found";
+            throw new BusinessException(errorMsg);
+        }
+
+        try {
+            return this.persistence.actualizarUsuario(user);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ editUser: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
+    @Override
+    public Imagen getUserAvatar(final String id) throws BusinessException {
+        if (id == null) {
+            String errorMsg = "Error @ get user avatar, id is null";
+            throw new BusinessException(errorMsg);
+        }
+        try {
+            return this.persistence.buscarUsuarioPorId(id).getAvatar();
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ get user avatar, user not found";
             throw new BusinessException(errorMsg);
         }
     }
