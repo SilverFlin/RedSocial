@@ -10,6 +10,7 @@ import java.util.List;
 import interfaces.IUsuariosDAO;
 import java.util.LinkedList;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -82,37 +83,13 @@ public final class UsuariosDAO implements IUsuariosDAO {
             final Usuario usuario
     ) throws PersistenciaException {
         try {
-            Document filtroActualizacion = new Document("_id",
-                    usuario.getId());
-            Document cambiosARealizar = new Document();
-            cambiosARealizar.append("$set", new Document()
-                    .append("nombres", usuario
-                            .getNombreCompleto().getNombres())
-                    .append("apellidoPaternos", usuario
-                            .getNombreCompleto().getApellidoPaterno())
-                    .append("apellidoMaterno", usuario
-                            .getNombreCompleto().getApellidoMaterno()));
-//                    .append("password", usuario.getPassword())
-//                    .append("telefono", usuario.getTelefono())
-//                    .append("avatar", new Document()
-//                    .append("nombreImagen", usuario.getAvatar().getFileName())
-//                    .append("data", usuario.getAvatar().getImageData()))
-//                    .append("fechaNacimiento", usuario.getFechaNacimiento())
-//                    .append("genero", usuario.getGenero())
-//                    .append("direccion", new Document()
-////                            .append("ciudad",
-//usuario.getDireccion().getCiudad())
-////                            .append("municipio",
-//usuario.getDireccion().getMunicipio())
-////                            .append("estado",
-//usuario.getDireccion().getEstado()))
-//                    .append("tipoUsuario", usuario.getTipoUsuario());
-            this.collection.replaceOne(filtroActualizacion, usuario);
+            Bson filter = new Document("_id", usuario.getId());
+            this.collection.replaceOne(filter, usuario);
+            return usuario;
         } catch (MongoException ex) {
             String msg = "No se pudo actualizar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
-        return usuario;
     }
 
     @Override

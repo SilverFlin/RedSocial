@@ -1,12 +1,18 @@
 package edu.itson.dominio;
 
+import java.util.Objects;
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 
 /**
  *
  */
 public final class Imagen {
 
+    /**
+     * Id de la Imagen.
+     */
+    private ObjectId id;
     /**
      * Nombre del archivo.
      */
@@ -20,20 +26,26 @@ public final class Imagen {
      * Constructor vacío.
      */
     public Imagen() {
-        // No hace falta hacer nada.
     }
+
     /**
-     * Constructor de la imagen
-     * @param fileName
-     * @param imageData 
+     * Obtiene la id de la imágen.
+     *
+     * @return id de la imagen.
      */
-    public Imagen(String fileName, Binary imageData) {
-        this.fileName = fileName;
-        this.imageData = imageData;
+    public ObjectId getId() {
+        return id;
     }
-    
-    
-    
+
+    /**
+     * Establece la id de la imágen.
+     *
+     * @param id
+     */
+    public void setId(final ObjectId id) {
+        this.id = id;
+    }
+
     /**
      * Obtiene el nombre de la imágen.
      *
@@ -71,7 +83,30 @@ public final class Imagen {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Imagen other = (Imagen) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    @Override
     public String toString() {
         return "Image{" + "fileName=" + fileName + '}';
     }
+
 }
