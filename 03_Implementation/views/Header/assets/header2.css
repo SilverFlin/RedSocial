@@ -3,6 +3,7 @@
     display: none;
   }
 }
+
 @media (max-width: 750px) {
   input[type="text"] {
     width: 200px;
@@ -15,6 +16,7 @@ body {
   height: 1000px;
   width: 100%;
 }
+
 .header {
   position: fixed;
   width: 100%;
@@ -44,7 +46,6 @@ input[type="text"] {
 #button-search {
   position: absolute;
   border-radius: 5px;
-  right: 0px;
   top: 6px;
   cursor: pointer;
 }

@@ -1,25 +1,27 @@
 body {
   margin: 0;
 }
-.temporalHeader,
-.temporalFooter {
+
+.temporal-header,
+.temporal-footer {
   background-color: gray;
   height: 10vh;
   width: 100%;
   margin: 0;
 }
+
 .container {
   display: flex;
   height: 190vh;
   width: 100%;
   margin: 0;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex-flow: column wrap;
   padding: 0;
 }
+
 @media screen and (min-width: 900px) {
-  .leftBar,
-  .rightBar {
+  .left-bar,
+  .right-bar {
     height: inherit;
     background-color: darkslategrey;
     width: 10%;
@@ -28,227 +30,202 @@ body {
 }
 
 /* Create Post */
-.createPostBtn {
-  margin: 1em 30% 1em 30%;
+.create-post-btn {
+  margin: 1em 30%;
   border: none;
   color: whitesmoke;
   background-color: #525252;
   border-radius: 20px;
   padding: 1em;
 }
-.createPostBtn:hover {
+
+.create-post-btn:hover {
   background-color: #787676;
 }
+
 /* Post */
 .post {
   margin: auto;
-  margin-top: 5%;
+  margin-top: 3%;
   width: 80%;
 }
 
-.postComponentsWrapper {
+.post-components-wrapper {
   display: flex;
   margin: auto;
-  /* background-color: gray; */
   height: 40vh;
   width: 70%;
   flex-direction: column;
 }
 
-/* Post Header*/
-.postHeaderWrapper {
+/* Post Header */
+.post-header-wrapper {
   display: flex;
-  /* background-color: green; */
   flex-direction: row;
   height: 15%;
   justify-content: space-between;
   overflow: hidden;
 }
 
-.postHeaderWrapper .postHeader {
+.post-header-wrapper .post-header {
   width: 60%;
-
-  background-color: rgb(55, 149, 149);
+  background-color: rgb(55 149 149);
   border-radius: 1em 2.5em 0 0;
-  padding: 5px 10px 10px 10px;
-
-  /* margin: 0; */
+  padding: 5px 10px 10px;
 }
-.postHeaderWrapper .postHeader img {
+
+.post-header-wrapper .post-header img {
   width: 2em;
   height: 2em;
   border-radius: 100px;
   background-color: red;
 }
-.postHeaderWrapper .postHeader h1 {
+
+.post-header-wrapper .post-header h1 {
   display: inline;
   position: relative;
   bottom: 30%;
   margin-left: 5%;
 }
 
-.postHeaderWrapper .postTime label {
+.post-header-wrapper .post-time label {
   display: block;
-
   text-align: end;
   margin-top: 5%;
 }
 
-/* Post Content*/
-.postContentWrapper {
-  background-color: rgb(93, 250, 250, 0.3);
+/* POST TIME */
+.post-time {
+  display: flex;
+  position: relative;
+  right: 45%;
+  top: 5%;
+  margin-right: 10px;
+}
+
+/* Post Content */
+.post-content-wrapper {
+  background-color: rgba(93 250 250 / 30%);
   height: 60%;
-  /* overflow: hidden; */
+  border-top-right-radius: 10px;
   display: flex;
 }
 
-.postComponentsWrapper .postContent {
+.post-components-wrapper .post-content {
   height: auto;
   margin: 10px;
 }
 
-.postContentWrapper .postContent h1 {
+.post-content-wrapper .post-content h1 {
   margin: 0;
 }
-.postContentWrapper .postContent p {
+
+.post-content-wrapper .post-content p {
   overflow: hidden;
   height: 70%;
-  margin: 0.2em 0 0.2em 0;
+  margin: 0.2em 0;
 }
-.postContentWrapper button {
-  /* position: relative; */
-  /* flex: 0 0 10%; */
 
+.post-content-wrapper button {
   align-self: flex-end;
   margin: 0 15px 5px 0;
   height: 2em;
   width: 2em;
   background-color: transparent;
   border: none;
-  /* padding: 1em; */
-
-  /* /* display: block; */
-  /* margin-left: 90%;
-  margin-bottom: 5%; */
-  /* left: 90%;
-  bottom: 90%; */
 }
 
-.postContentWrapper button:hover {
-  background-color: whitesmoke;
-}
-
-/* Post Footer*/
-.postFooterWrapper {
+/* Post Footer */
+.post-footer-wrapper {
   display: flex;
-  /* background-color: green; */
   height: 20%;
   flex-direction: row-reverse;
   overflow: hidden;
 }
 
-.postFooterWrapper .postFooter {
+.post-footer-wrapper .post-footer {
   width: 60%;
-  /* background-color: rgb(55, 149, 149); */
-  background-color: rgba(55, 149, 149, 0.8);
+  background-color: rgba(55 149 149 / 80%);
   border-radius: 0 0 1em 2.5em;
   padding-left: 5px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: center;
   gap: 0;
-  /* align-content: center; */
 }
 
-.postFooterWrapper .postFooter > * {
+.post-footer-wrapper .post-footer > * {
   flex: 1 1 1em;
 }
 
-.postFooterWrapper .postFooter img {
+.post-footer-wrapper .post-footer img {
   height: 1.5em;
   width: 1.5em;
-  margin: 2% 0 2% 0;
+  margin: 2% 0;
   border-radius: 100px;
   background-color: red;
   flex: 0 1 1.5em;
   position: relative;
   left: 6px;
 }
-.postFooterWrapper .postFooter h1 {
+
+.post-footer-wrapper .post-footer h1 {
   margin: 0;
   width: 60%;
   overflow: hidden;
-  flex: 0 2 1.5em;
-  flex-basis: 50%;
-}
-.postFooterWrapper .postFooter p {
-  margin: 0;
-  width: 60%;
-  flex-basis: 50%;
-  overflow: hidden;
-  flex: 0 2 1.5em;
+  flex: 0 2 50%;
 }
 
-.postFooterWrapper .postFooter button {
-  display: inline;
-  flex: 0 0 0;
-  height: 2em;
-  width: 2em;
-  flex: 0 1 1em;
-  /* align-self: flex-end; */
+.post-footer-wrapper .post-footer p {
+  margin: 0;
+  width: 60%;
+  overflow: hidden;
+  flex: 0 2 1.5em;
 }
 
 /* Comments */
-.postCommentsWrapper {
+.post-comments-wrapper {
   display: flex;
-  /* background-color: green; */
   height: 100%;
   flex-direction: row-reverse;
-  /* overflow: hidden; */
 }
 
-.postCommentsWrapper .postComments {
-  width: 60%;
-  height: 120%;
-  /* background-color: rgb(55, 149, 149); */
-  background-color: rgba(55, 149, 149, 0.8);
+.post-comments-wrapper .post-comments {
+  width: 100%;
+  height: 125%;
+  background-color: rgba(55 149 149 / 80%);
   border-radius: 0 0 1em 1em;
   padding-left: 5px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-
+  flex-flow: column nowrap;
   justify-content: center;
   gap: 0;
-  /* align-content: center; */
 }
 
 .comment {
-  padding-left: 5px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0;
-  margin: 1em 0 1em 0;
-
-  /* background-color: red; */
+  flex-flow: row wrap;
+  border-top: rgb(73 135 137) solid 1px;
+  border-bottom: rgb(73 135 137) solid 1px;
+  border: 100%;
 }
-.postComments .comment > * {
+
+.post-comments .comment > * {
   flex: 1 1 1em;
 }
 
-.postComments .comment img {
+.post-comments .comment img {
   height: 1.5em;
   width: 1.5em;
-  margin: 2% 0 0 0;
+  margin: 2% 0 0;
   border-radius: 100px;
   background-color: red;
   flex: 0 1 1.5em;
   position: relative;
   left: 6px;
 }
-.postComments .comment h1 {
+
+.post-comments .comment h1 {
   margin: 0;
   margin-left: 5%;
   width: 30%;
@@ -256,14 +233,16 @@ body {
   flex: 0 2 1.5em;
   flex-basis: 20%;
 }
-.postComments .comment span {
+
+.post-comments .comment span {
   margin: 0;
   margin-left: 5%;
   overflow: hidden;
   flex: 0 2 1.5em;
   flex-basis: 50%;
 }
-.postComments .comment p {
+
+.post-comments .comment p {
   margin: 0;
   margin-left: 5%;
   overflow: hidden;
@@ -271,7 +250,7 @@ body {
   flex-basis: 90%;
 }
 
-.createComment {
+.create-comment {
   width: 100%;
   height: 8vh;
   margin: 0;
@@ -281,7 +260,7 @@ body {
   top: 8%;
 }
 
-.createComment input {
+.create-comment input {
   width: 84%;
   height: 80%;
   margin: 0;
@@ -291,7 +270,7 @@ body {
   border-radius: 10px 0 0 10px;
 }
 
-.createComment button {
+.create-comment button {
   margin: 0;
   padding: 0;
   width: 15%;
@@ -300,33 +279,54 @@ body {
   border-radius: 0 10px 10px 0;
 }
 
-.rightArrow {
+.post-content-wrapper button:hover {
+  background-color: whitesmoke;
+}
+
+.right-arrow {
   width: 20px;
   height: 20px;
 }
-.btnRightArrow {
+
+.btn-right-arrow {
   padding: 0;
 }
 
-.ignoreOverflow {
+.post-footer-wrapper .post-footer button {
+  display: inline;
+  height: 2em;
+  width: 2em;
+  flex: 0 1 1em;
+}
+
+.ignore-overflow {
   overflow: visible;
 }
 
 /* DeletePost */
-
-.deletePost {
-  width: 4em;
-  height: 4em;
+.delete-post {
+  position: relative;
+  width: 2em;
+  height: 2em;
   border-radius: 0 10px 10px 0;
   background-color: red;
-  position: relative;
-  bottom: 80%;
-  left: 104%;
+  bottom: 85%;
+  left: 105%;
   padding: auto;
   margin: 0;
 }
 
-.deletePost svg {
+.delete-post svg {
   width: 80%;
   height: 80%;
+}
+
+.post-header-highlighted {
+  margin-right: 60px;
+  background-color: rgb(21 196 223);
+  border: solid grey 1px;
+  border-top-left-radius: 25%;
+  border-top-right-radius: 25%;
+  width: 150px;
+  text-align: center;
 }
