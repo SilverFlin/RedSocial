@@ -11,7 +11,7 @@
         <div class="contenedor">
             <div  class="hijo">
                 <span id="error-code">Error 400</span>
-                <p id="message">Ups! parece que algo salió mal.</p>
+                <p id="message">Ups! parece que algo sali&oacute; mal.</p>
                 <img src="/webapp/assets/images/ErrorImg.png" alt="iconoError">
             </div>
         </div>
