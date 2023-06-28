@@ -58,7 +58,7 @@
                     <span id="label-join-now">
                         Already have an account?
                     </span>
-                    <a href="" id="link-join-now">Sign in</a>
+                    <a href="./login" id="link-join-now">Sign in</a>
                 </nav>
             </form>
         </div>

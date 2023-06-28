@@ -14,7 +14,7 @@
                 <img src="./assets/images/strix.png" alt="logotype" class="logotype" />
             </div>
 
-            <form action="" class="user-form" method="POST">
+            <form action="./auth?action=login" class="user-form" method="POST">
                 <div class="login-title"><h1>Login</h1></div>
 
                 <div class="content">
@@ -45,7 +45,7 @@
                 </div>
                 <nav class="container-join-now">
                     <label for="joinnow" id="label-join-now">New to Strix</label>
-                    <a href="" id="link-join-now">Join now</a>
+                    <a href="./register" id="link-join-now">Join now</a>
                 </nav>
             </form>
         </div>
