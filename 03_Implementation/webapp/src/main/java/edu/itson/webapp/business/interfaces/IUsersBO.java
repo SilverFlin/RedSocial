@@ -3,7 +3,6 @@ package edu.itson.webapp.business.interfaces;
 import edu.itson.dominio.Imagen;
 import edu.itson.dominio.Usuario;
 import edu.itson.webapp.exceptions.BusinessException;
-import javax.xml.registry.infomodel.User;
 
 /**
  *

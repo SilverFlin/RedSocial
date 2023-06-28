@@ -9,8 +9,6 @@ import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
 import interfaces.IPersistencia;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -64,7 +62,7 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Usuario editUser(Usuario user) throws BusinessException {
+    public Usuario editUser(final Usuario user) throws BusinessException {
         if (user == null) {
             String errorMsg = "Error @ edit User, user is null";
             throw new BusinessException(errorMsg);
