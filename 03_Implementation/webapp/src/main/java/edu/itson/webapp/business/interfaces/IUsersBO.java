@@ -16,8 +16,7 @@ public interface IUsersBO {
      * @return el ususario registrado.
      * @throws BusinessException
      */
-    Usuario register(Usuario usuario)
-            throws BusinessException;
+    Usuario register(Usuario usuario) throws BusinessException;
 
     /**
      * Intenta logear al ususario con las credenciales, regresa al ususario si
@@ -28,8 +27,7 @@ public interface IUsersBO {
      * @return el usuario, si existe.
      * @throws BusinessException
      */
-    Usuario login(String email, String password)
-            throws BusinessException;
+    Usuario login(String email, String password) throws BusinessException;
 
     /**
      * Edita los campos del ususario.

@@ -46,6 +46,7 @@
                           class="input-edit-form"
                           placeholder="John@Doe.com"
                           required
+                          value="${sessionScope.user.email}"
                           disabled
                           />
                     </div>

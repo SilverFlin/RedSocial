@@ -5,6 +5,7 @@ import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
+import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.utils.MongoImageConversor;
 import java.io.IOException;
 import java.io.InputStream;
@@ -97,9 +98,10 @@ public class EditUserServlet extends HttpServlet {
             // TODO redirect action edit-user
             // TODO Mover a otra clase
         } catch (BusinessException ex) {
-            // TODO redirect error page
+            // TODO redirect to java error page.
+            res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
             getServletContext()
-                    .getRequestDispatcher("/testIndex.jsp")
+                    .getRequestDispatcher("/pages/errors/server-error.jsp")
                     .forward(req, res);
             return;
         }

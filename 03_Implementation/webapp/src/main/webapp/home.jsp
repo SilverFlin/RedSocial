@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,8 +7,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:include page="/fragments/header.jspf" />
-        <h1>Home!</h1>
+        <c:set var="myVariable" value="Hello from the main JSP page" />
+        <c:set var="requestScope.myAttribute" value="${myVariable}" />
+
+
+        <jsp:include page="/fragments/header.jsp" />
+
+        <jsp:include page="/pages/posts/feed.jsp" />
+
         <jsp:include page="/fragments/footer.jspf" />
     </body>
 </html>

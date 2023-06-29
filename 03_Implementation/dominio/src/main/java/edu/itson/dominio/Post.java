@@ -172,6 +172,15 @@ public final class Post implements Comentable, Comparable<Post> {
     }
 
     /**
+     * Establece el tipo de post.
+     *
+     * @param tipoPost
+     */
+    public void setTipoPost(final TipoPost tipoPost) {
+        this.tipoPost = tipoPost;
+    }
+
+    /**
      * Regresa un string con todos los atributos de la clase.
      *
      * @return todos los atributos de la clase en string.

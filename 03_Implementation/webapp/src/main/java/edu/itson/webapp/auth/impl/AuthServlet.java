@@ -4,6 +4,7 @@ import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
+import edu.itson.webapp.http.HttpStatusCode;
 import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
 import static edu.itson.webapp.http.HttpStatusCode.OK;
 import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpSession;
  *
  */
 @WebServlet(name = "Auth", urlPatterns = {"/auth"})
-public class AuthServlet extends HttpServlet {
+public final class AuthServlet extends HttpServlet {
 
-    /**
+    /*
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
@@ -41,6 +42,24 @@ public class AuthServlet extends HttpServlet {
             this.processLogin(request, response);
             return;
         }
+
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(
+            final HttpServletRequest request,
+            final HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        String action = request.getParameter("action");
 
         if (action != null && action.equalsIgnoreCase("logout")) {
             this.processLogout(request, response);
@@ -98,9 +117,17 @@ public class AuthServlet extends HttpServlet {
         response.setStatus(OK.getCode());
 
         // TODO Redirect Home
-        getServletContext()
-                .getRequestDispatcher("/home.jsp")
-                .forward(request, response);
+        try {
+            getServletContext()
+                    .getRequestDispatcher("/home.jsp")
+                    .forward(request, response);
+        } catch (ServletException ex) {
+            // TODO Log
+            response.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+            getServletContext()
+                    .getRequestDispatcher("/pages/errors/server-error.jsp")
+                    .forward(request, response);
+        }
 
     }
 

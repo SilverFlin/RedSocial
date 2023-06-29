@@ -1,0 +1,1 @@
+<p> asaasdsd ${requestScope.myVariable} adsads</p>
