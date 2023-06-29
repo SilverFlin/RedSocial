@@ -49,7 +49,8 @@
         </div>
 
         <div class="content" id="buttons-pair">
-            <button>
+            <a href="/webapp/edit-user"> 
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -62,9 +63,10 @@
                       4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"
                       />
                 </svg>
-            </button>
 
-            <button>
+
+            </a>
+            <a href="/webapp/auth?action=logout">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -84,7 +86,8 @@
                         <path d="M9 12h12l-3-3m0 6l3-3" />
                     </g>
                 </svg>
-            </button>
+
+            </a>
         </div>
     </form>
 </header>
