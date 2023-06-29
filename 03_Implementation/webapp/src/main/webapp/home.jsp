@@ -13,11 +13,7 @@
 
         <jsp:include page="/fragments/header.jsp" />
 
-        <!--TODO render 3 posts-->
-        <c:forEach var="item" items="${requestScope.posts}">
-            <p>${item}</p>
-        </c:forEach>
-
+        <jsp:include page="/pages/posts/feed.jsp" />
 
         <jsp:include page="/fragments/footer.jspf" />
     </body>

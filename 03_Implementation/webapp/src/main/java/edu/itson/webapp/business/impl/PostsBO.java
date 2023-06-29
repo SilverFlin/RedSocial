@@ -1,7 +1,9 @@
 package edu.itson.webapp.business.impl;
 
+import edu.itson.dominio.ContenidoPost;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.TipoPost;
+import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
@@ -33,14 +35,21 @@ public final class PostsBO implements IPostBO {
         try {
             // TODO limitar / pagination
 
-            Post post = new Post(TipoPost.NORMAL);
-            post.setFechaHoraCreacion(LocalDateTime.now());
-            this.persistence.agregarPost(post);
+//            Post post = new Post(TipoPost.NORMAL);
+//            post.setFechaHoraCreacion(LocalDateTime.now());
+//            ContenidoPost contenido = new ContenidoPost();
+//            contenido.setTexto("Asdads");
+//            post.setContenido(contenido);
+//            Usuario user = new Usuario();
+//            user.setEmail("asdsadsad");
+//            post.setCreador(user);
+//            post.setTitulo("ASDAS");
+//            this.persistence.agregarPost(post);
 
             List<Post> posts = this.persistence.buscarTodosLosPosts();
             List<Post> orderedPosts = new LinkedList<>();
             for (int i = 0; i < amount; i++) {
-                if (posts.get(i) == null) {
+                if (posts.size() < amount || posts.get(i) == null) {
                     break;
                 }
 
