@@ -27,7 +27,7 @@ body {
   }
 }
 
-/*create post*/
+/*create-post*/
 .create-post-btn {
   margin: 1em 30% 1em 30%;
   border: none;
@@ -54,7 +54,7 @@ body {
   flex-direction: column;
 }
 
-/*post header*/
+/*post-header*/
 .post-header-wrapper {
   display: flex;
   flex-direction: row;
@@ -87,7 +87,7 @@ body {
   text-align: end;
   margin-top: 5%;
 }
-/*post time*/
+/*post-time*/
 .post-time {
   display: flex;
   position: relative;
@@ -96,7 +96,7 @@ body {
   margin-right: 10px;
 }
 
-/*post content*/
+/*postcontent*/
 .post-content-wrapper {
   background-color: rgb(93, 250, 250, 0.3);
   height: 60%;
@@ -130,7 +130,7 @@ body {
   background-color: whitesmoke;
 }
 
-/*post footer*/
+/*post-footer*/
 .post-footer-wrapper {
   display: flex;
   height: 20%;
@@ -187,7 +187,7 @@ body {
   flex: 0 1 1em;
 }
 
-/*comments */
+/*comments*/
 .post-comments-wrapper {
   display: flex;
   height: 100%;
@@ -294,7 +294,7 @@ body {
   overflow: visible;
 }
 
-/*deletePost */
+/*delete-post*/
 .delete-post {
   position: relative;
   width: 2em;
