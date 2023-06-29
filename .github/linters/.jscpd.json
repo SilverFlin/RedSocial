@@ -1,10 +1,6 @@
 {
-    "threshold": 0,
-    "reporters": [
-      "consoleFull"
-    ],
-    "ignore": [
-      "**/agencia_transito/**"
-    ],
-    "absolute": true
-  }
+  "threshold": 0,
+  "reporters": ["consoleFull"],
+  "ignore": ["**/03_Implementation/**"],
+  "absolute": true
+}
