@@ -2,14 +2,13 @@ package implementations.daos;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import edu.itson.dominio.Post;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
 import java.util.List;
 import org.bson.Document;
 import interfaces.IPostsDAO;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
@@ -105,18 +104,12 @@ public final class PostsDAO implements IPostsDAO {
     @Override
     public List<Post> buscarTodos() throws PersistenciaException {
 
+         List<Post> usuarios;
         try {
-            MongoCursor<Post> resultadoConsulta
-                    = this.collection
-                            .find()
-                            .iterator();
-            List<Post> listaP = new ArrayList<>();
-            while (resultadoConsulta.hasNext()) {
-                listaP.add(resultadoConsulta.next());
-            }
-            return listaP;
-        } catch (Exception ex) {
-            String msg = "No se pudo buscar los posts" + ex.getMessage();
+            usuarios = new LinkedList<>();
+            return this.collection.find().into(usuarios);
+        } catch (MongoException ex) {
+            String msg = "No se pudo buscar el usuario" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
     }

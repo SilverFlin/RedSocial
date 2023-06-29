@@ -109,9 +109,9 @@ public final class Pruebapersistencia {
         /*
          * Prueba busqueda por ID
          */
-        Post post2 = postdao.buscarPorId("6488afafd93a496465dc4e82");
-        System.out.println("Prueba Busqueda por ID:");
-        System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: ");
+//        Post post2 = postdao.buscarPorId("6488afafd93a496465dc4e82");
+//        System.out.println("Prueba Busqueda por ID:");
+//       System.out.println("Titulo: " + post2.getTitulo() + " // Contenido: ");
 
         /*
          *   Prueba busqueda de todos
@@ -119,19 +119,19 @@ public final class Pruebapersistencia {
         List<Post> lista = postdao.buscarTodos();
         System.out.println("Prueba busqueda de TODOS:");
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(i + ".- " + lista.get(i).getTitulo());
+            System.out.println(i + ".- " + lista.get(i).getFechaHoraCreacion());
 
         }
 
         /*
          * Prueba Actulizacion
          */
-        Post postNew = postdao.buscarPorId("6488afafd93a496465dc4e82");
-        System.out.println(postNew);
-        postNew.setTitulo("Hola");
-        System.out.println("Prueba actualiza");
-        postdao.actualizar(postNew);
-        System.out.println("Listo");
+//        Post postNew = postdao.buscarPorId("6488afafd93a496465dc4e82");
+//        System.out.println(postNew);
+//        postNew.setTitulo("Hola");
+//        System.out.println("Prueba actualiza");
+//        postdao.actualizar(postNew);
+//        System.out.println("Listo");
 
         /*
          * Prueba Eliminar
@@ -167,9 +167,9 @@ public final class Pruebapersistencia {
 
     private static void probarDaos() {
         try {
-            probarComentariosDao();
+//            probarComentariosDao();
             probarPostsDao();
-            probarUsuariosDao();
+//            probarUsuariosDao();
         } catch (PersistenciaException ex) {
             System.out.println(ex.getMessage());
         }
