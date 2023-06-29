@@ -87,6 +87,9 @@ public class AuthServlet extends HttpServlet {
         if (user == null) {
             request.setAttribute("error", "invalid credentials");
             response.setStatus(UNAUTHORIZED.getCode());
+            getServletContext()
+                    .getRequestDispatcher("/pages/errors/http-error.jsp")
+                    .forward(request, response);
             return;
         }
 
@@ -96,7 +99,7 @@ public class AuthServlet extends HttpServlet {
 
         // TODO Redirect Home
         getServletContext()
-                .getRequestDispatcher("/pages/users/edit-user.jsp")
+                .getRequestDispatcher("/home.jsp")
                 .forward(request, response);
 
     }

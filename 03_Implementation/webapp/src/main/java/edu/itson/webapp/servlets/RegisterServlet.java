@@ -5,6 +5,7 @@ import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
+import edu.itson.webapp.http.HttpStatusCode;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public final class RegisterServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -33,7 +33,6 @@ public final class RegisterServlet extends HttpServlet {
             final HttpServletResponse response
     )
             throws ServletException, IOException {
-
         String action = request.getParameter("action");
 
         /* Default Action */
@@ -59,7 +58,6 @@ public final class RegisterServlet extends HttpServlet {
             final HttpServletResponse response
     )
             throws ServletException, IOException {
-
         String action = request.getParameter("action");
 
         String paramEmail = request.getParameter("email");
@@ -101,6 +99,10 @@ public final class RegisterServlet extends HttpServlet {
             return;
         } catch (BusinessException ex) {
             // TODO redirect to java error page.
+            response.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+            getServletContext()
+                    .getRequestDispatcher("/pages/errors/server-error.jsp")
+                    .forward(request, response);
             return;
         }
     }
@@ -132,6 +134,4 @@ public final class RegisterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    // </editor-fold>
-
 }
