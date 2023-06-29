@@ -11,7 +11,7 @@
         <c:set var="requestScope.myAttribute" value="${myVariable}" />
 
 
-        <jsp:include page="/fragments/header.jspf" />
+        <jsp:include page="/fragments/header.jsp" />
 
         <!--TODO render 3 posts-->
         <c:forEach var="item" items="${requestScope.posts}">
