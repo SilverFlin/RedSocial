@@ -1,11 +1,13 @@
 package edu.itson.webapp.business.impl;
 
 import edu.itson.dominio.Post;
+import edu.itson.dominio.TipoPost;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
 import interfaces.IPersistencia;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +32,6 @@ public final class PostsBO implements IPostBO {
     public List<Post> getPosts(final int amount) throws BusinessException {
         try {
             // TODO limitar / pagination
-
             List<Post> posts = this.persistence.buscarTodosLosPosts();
             List<Post> orderedPosts = new LinkedList<>();
             for (int i = 0; i < amount; i++) {
@@ -47,5 +48,5 @@ public final class PostsBO implements IPostBO {
             throw new BusinessException(errorMsg);
         }
     }
-
+    
 }

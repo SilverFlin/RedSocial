@@ -88,7 +88,7 @@ public final class RegisterServlet extends HttpServlet {
         user.setEmail(paramEmail);
         // TODO Encrypt
         user.setPassword(paramPassword);
-
+        response.sendRedirect(request.getContextPath() + "/login");
         try {
             Usuario registeredUser = userBO.register(user);
             request.setAttribute("user", registeredUser);
