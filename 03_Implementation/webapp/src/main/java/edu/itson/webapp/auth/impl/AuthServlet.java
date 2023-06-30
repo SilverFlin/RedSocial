@@ -5,9 +5,6 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
-import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
-import static edu.itson.webapp.http.HttpStatusCode.OK;
-import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -92,7 +89,7 @@ public final class AuthServlet extends HttpServlet {
         if (validateParamLimit(paramEmail, limitEmail)
                 || validateParamLimit(paramPasswordAttempt, limitPassword)) {
 
-            response.setStatus(BAD_REQUEST.getCode());
+            response.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
             request.setAttribute("email", paramEmail);
             getServletContext()
                     .getRequestDispatcher("/pages/users/login.jsp")
@@ -105,7 +102,7 @@ public final class AuthServlet extends HttpServlet {
 
         if (user == null) {
             request.setAttribute("error", "invalid credentials");
-            response.setStatus(UNAUTHORIZED.getCode());
+            response.setStatus(HttpStatusCode.UNAUTHORIZED.getCode());
             getServletContext()
                     .getRequestDispatcher("/pages/errors/http-error.jsp")
                     .forward(request, response);
@@ -114,20 +111,8 @@ public final class AuthServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        response.setStatus(OK.getCode());
-
-        // TODO Redirect Home
-        try {
-            getServletContext()
-                    .getRequestDispatcher("/home.jsp")
-                    .forward(request, response);
-        } catch (ServletException ex) {
-            // TODO Log
-            response.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-            getServletContext()
-                    .getRequestDispatcher("/pages/errors/server-error.jsp")
-                    .forward(request, response);
-        }
+        response.setStatus(HttpStatusCode.OK.getCode());
+        response.sendRedirect(request.getContextPath() + "/home");
 
     }
 

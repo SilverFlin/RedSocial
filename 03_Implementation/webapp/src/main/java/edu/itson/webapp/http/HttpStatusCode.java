@@ -9,6 +9,10 @@ public enum HttpStatusCode {
      */
     OK(200),
     /**
+     * Status Created 201.
+     */
+    CREATED(201),
+    /**
      * Status Bad Request 400.
      */
     BAD_REQUEST(400),
