@@ -6,7 +6,7 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
-import edu.itson.webapp.utils.MongoImageConversor;
+import edu.itson.webapp.utils.impl.MongoImageConversor;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.servlet.ServletException;
@@ -78,7 +78,7 @@ public class EditUserServlet extends HttpServlet {
 
         Imagen profilePicture
                 = MongoImageConversor
-                        .crearImagen(
+                        .createImageFromInputStream(
                                 inputStream,
                                 profilePicturePart.getSubmittedFileName()
                         );
