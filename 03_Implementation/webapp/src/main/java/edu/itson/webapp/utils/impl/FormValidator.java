@@ -1,13 +1,13 @@
 package edu.itson.webapp.utils.impl;
 
-import edu.itson.webapp.utils.interfaces.IFormValidation;
 import java.util.regex.Pattern;
+import edu.itson.webapp.utils.interfaces.IFormValidator;
 
 /**
  * Esta clase implementa la interfaz IFormValidation y proporciona métodos para
  * validar formularios.
  */
-public final class FormValidation implements IFormValidation {
+public final class FormValidator implements IFormValidator {
 
     /**
      * Este método se encarga de verificar los espacios en blanco de un campo.
@@ -16,7 +16,7 @@ public final class FormValidation implements IFormValidation {
      * @return true si está en blanco, false en caso contrario
      */
     @Override
-    public boolean isBlankSpaces(final String text) {
+    public boolean hasBlankSpaces(final String text) {
         if (text == null || text.trim().isEmpty()) {
             return true;
         }
@@ -61,14 +61,15 @@ public final class FormValidation implements IFormValidation {
     /**
      * Este método se encarga de validar la contraseña.
      *
-     * La contraseña debe de llevar por lo menos un numero un caracter,una
-     * minuscula,una mayuscula menos 8
+     * La contraseña debe de llevar por lo menos un numero un caracter, una
+     * minuscula, una mayuscula, un caracter especial y contener entre 8 y 20
+     * caracteres.
      *
      * @param password la contraseña a validar
      * @return true si es válida, false en caso contrario
      */
     @Override
-    public boolean isPasswordValid(final String password) {
+    public boolean isValidPassword(final String password) {
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         Pattern pattern = Pattern.compile(passwordRegex);
