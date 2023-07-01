@@ -64,8 +64,7 @@ public class PicturesServlet extends HttpServlet {
         String idParam = req.getParameter("id");
 
         if (idParam == null) {
-            res.setStatus(HttpStatusCode.NOT_FOUND.getCode());
-            // TODO redirect error page
+            this.sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND);
             return;
         }
         Imagen avatar;
@@ -73,26 +72,17 @@ public class PicturesServlet extends HttpServlet {
             IUsersBO usersBO = new UsersBO();
             avatar = usersBO.getUserAvatar(idParam);
         } catch (BusinessException ex) {
-            // TODO redirect to java error page.
+            this.sendToServerErrorPage(req, res);
             return;
         }
 
-        // Crea Imagen temporal
         String path = req.getServletContext().getRealPath("");
-        String pathGuardar = path + "archivos";
-        File dir = new File(pathGuardar);
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        byte[] imgData = avatar.getImageData().getData();
+        this.createTemporalDir(path);
 
-        try (OutputStream out = res.getOutputStream()) {
-            out.write(imgData);
-            out.flush();
-        } catch (IOException ex) {
-            // TODO redirect to java error page.
-            return;
-        }
+        byte[] imgData = avatar.getImageData().getData();
+        this.makeOutputResponse(req, res, imgData);
+        return;
+
     }
 
     private void processGetContent(
@@ -102,4 +92,47 @@ public class PicturesServlet extends HttpServlet {
 
     }
 
+    private void createTemporalDir(final String path) {
+        String pathGuardar = path + "archivos";
+        File dir = new File(pathGuardar);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+    }
+
+    private void makeOutputResponse(
+            final HttpServletRequest req,
+            final HttpServletResponse res,
+            final byte[] imgData
+    ) throws ServletException, IOException {
+        try (OutputStream out = res.getOutputStream()) {
+            out.write(imgData);
+            out.flush();
+        } catch (IOException ex) {
+            sendToServerErrorPage(req, res);
+            return;
+        }
+    }
+
+    private void sendToHttpErrorPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res,
+            final HttpStatusCode httpStatusCode
+    ) throws ServletException, IOException {
+        res.setStatus(httpStatusCode.getCode());
+        getServletContext()
+                .getRequestDispatcher("/pages/errors/http-error.jsp")
+                .forward(req, res);
+    }
+
+    private void sendToServerErrorPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+        getServletContext()
+                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .forward(req, res);
+    }
 }
