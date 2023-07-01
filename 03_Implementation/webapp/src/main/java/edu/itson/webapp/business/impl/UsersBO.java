@@ -30,16 +30,14 @@ public final class UsersBO implements IUsersBO {
     @Override
     public Usuario register(final Usuario user) throws BusinessException {
         try {
-            Usuario userObtained = this.persistence.buscarUsuarioPorEmail(user.getEmail());
-            if (userObtained == null) {
-                this.encryptUserPassword(user);
-                return this.persistence.agregarUsuario(user);
+            if (this.validateUserEmail(user)) {
+                throw new BusinessException("Email has already used");
             }
-            return user;
+            this.encryptUserPassword(user);
+            return this.persistence.agregarUsuario(user);
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ Create Account: " + ex.getMessage();
             throw new BusinessException(errorMsg);
-
         }
     }
 
@@ -118,4 +116,14 @@ public final class UsersBO implements IUsersBO {
         return encriptor.verifyPassword(password, hashedPassword);
     }
 
+    private boolean validateUserEmail(final Usuario user)
+            throws BusinessException {
+        try {
+            Usuario userObtained = this.persistence
+                    .buscarUsuarioPorEmail(user.getEmail());
+            return userObtained != null;
+        } catch (PersistenciaException e) {
+            throw new BusinessException("Error @ validate user email");
+        }
+    }
 }

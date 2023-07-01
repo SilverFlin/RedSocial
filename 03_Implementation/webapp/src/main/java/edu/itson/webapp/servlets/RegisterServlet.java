@@ -159,7 +159,6 @@ public final class RegisterServlet extends HttpServlet {
         boolean isValidEmail = validator.isValidEmail(paramEmail);
         boolean isValidPassword = validator.isValidPassword(paramPassword);
         boolean isValidConfirmPass = paramConfirmPassword.equals(paramPassword);
-
         return isValidEmail && isValidPassword && isValidConfirmPass;
     }
 
