@@ -21,41 +21,41 @@ public class FormValidationTest extends TestCase {
      */
     public void testIsBlankSpaces() {
         System.out.println("isBlankSpaces");
-        final FormValidation instance = new FormValidation();
+        final FormValidator instance = new FormValidator();
 
         final String attempt1 = "";
-        final boolean result1 = instance.isBlankSpaces(attempt1);
+        final boolean result1 = instance.hasBlankSpaces(attempt1);
         final boolean expResult1 = true;
         assertEquals("Debe contener al menos 1 caracter",
                 expResult1, result1);
 
         final String attempt2 = "     ";
-        final boolean result2 = instance.isBlankSpaces(attempt2);
+        final boolean result2 = instance.hasBlankSpaces(attempt2);
         final boolean expResult2 = true;
         assertEquals("No debe tener espacios en blanco",
                 expResult2, result2);
 
         final String attempt3 = "aa   ";
-        final boolean result3 = instance.isBlankSpaces(attempt3);
+        final boolean result3 = instance.hasBlankSpaces(attempt3);
         final boolean expResult3 = true;
         assertEquals("Los caracteres no deben tener espacios alrededor",
                 expResult3, result3);
 
         final String attempt4 = "     bb   ";
-        final boolean result4 = instance.isBlankSpaces(attempt4);
+        final boolean result4 = instance.hasBlankSpaces(attempt4);
         final boolean expResult4 = true;
         assertEquals("Los caracteres no deben tener espacios alrededor",
                 expResult4, result4);
 
         final String attempt5 = "aa";
-        final boolean result5 = instance.isBlankSpaces(attempt5);
+        final boolean result5 = instance.hasBlankSpaces(attempt5);
         final boolean expResult5 = false;
         assertEquals("Correcto",
                 expResult5, result5);
 
         final String attempt6 = null;
         final boolean expResult6 = true;
-        final boolean result6 = instance.isBlankSpaces(attempt6);
+        final boolean result6 = instance.hasBlankSpaces(attempt6);
         assertEquals("No debe ser nulo",
                 expResult6, result6);
     }
@@ -66,7 +66,7 @@ public class FormValidationTest extends TestCase {
     public void testIsValidEmail() {
         System.out.println("isValidEmail");
         final String email = "@hotmail.com";
-        final FormValidation instance = new FormValidation();
+        final FormValidator instance = new FormValidator();
         final boolean expResult = false;
         final boolean result = instance.isValidEmail(email);
         assertEquals(expResult, result);
@@ -79,7 +79,7 @@ public class FormValidationTest extends TestCase {
         System.out.println("hasExceededLengthLimit");
         final String text = "HOLa xd";
         final int limit = 2;
-        final FormValidation instance = new FormValidation();
+        final FormValidator instance = new FormValidator();
         final boolean expResult = true;
         final boolean result = instance.hasExceededLengthLimit(text, limit);
         assertEquals(expResult, result);

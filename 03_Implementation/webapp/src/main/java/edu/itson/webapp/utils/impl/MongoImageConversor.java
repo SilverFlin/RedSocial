@@ -1,4 +1,4 @@
-package edu.itson.webapp.utils;
+package edu.itson.webapp.utils.impl;
 
 import edu.itson.dominio.Imagen;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public final class MongoImageConversor {
      * @return El documento con la información de la imagen.
      * @throws IOException
      */
-    public static Imagen crearImagen(
+    public static Imagen createImageFromInputStream(
             final InputStream inputStream,
             final String fileName
     ) throws IOException {

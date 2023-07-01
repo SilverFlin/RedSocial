@@ -1,4 +1,4 @@
 /**
- * En este paquete se encuentran las pruebas de las validaciones.
+ * This module includes utility classes of the system.
  */
 package edu.itson.webapp.utils.impl;

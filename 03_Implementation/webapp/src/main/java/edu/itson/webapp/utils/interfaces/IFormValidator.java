@@ -3,14 +3,14 @@ package edu.itson.webapp.utils.interfaces;
 /**
  * Esta interfaz define las operaciones de validación de formularios.
  */
-public interface IFormValidation {
+public interface IFormValidator {
     /**
      * Realiza la validación de espacios en blanco en un texto.
      *
      * @param text el texto a validar
      * @return true si está en blanco, false en caso contrario
      */
-    boolean isBlankSpaces(String text);
+    boolean hasBlankSpaces(String text);
 
     /**
      * Realiza la validación de un formato de correo electrónico válido.
@@ -35,5 +35,5 @@ public interface IFormValidation {
      * @param password la contraseña a validar
      * @return true si es válida, false en caso contrario
      */
-    boolean isPasswordValid(String password);
+    boolean isValidPassword(String password);
 }
