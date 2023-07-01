@@ -27,6 +27,11 @@
                                 <!--TODO condicional nombre usuario-->
                                 <h1>${item.creador.email}</h1>
                             </header>
+                            <c:if test="${item.tipoPost == 'ANCLADO'}">
+                                <header class="post-header-highlighted">
+                                    <h5>Highlighted</h5>
+                                </header>
+                            </c:if>
                             <div class="post-time">
                                 <!--TODO Formatear Fecha-->
                                 <label>${item.fechaHoraCreacion.dayOfMonth}/${item.fechaHoraCreacion.monthValue}/${item.fechaHoraCreacion.year} </label>
