@@ -30,8 +30,12 @@ public final class UsersBO implements IUsersBO {
     @Override
     public Usuario register(final Usuario user) throws BusinessException {
         try {
-            this.encryptUserPassword(user);
-            return this.persistence.agregarUsuario(user);
+            Usuario userObtained = this.persistence.buscarUsuarioPorEmail(user.getEmail());
+            if (userObtained == null) {
+                this.encryptUserPassword(user);
+                return this.persistence.agregarUsuario(user);
+            }
+            return user;
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ Create Account: " + ex.getMessage();
             throw new BusinessException(errorMsg);

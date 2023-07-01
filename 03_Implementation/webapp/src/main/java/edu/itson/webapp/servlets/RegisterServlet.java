@@ -208,4 +208,5 @@ public final class RegisterServlet extends HttpServlet {
         res.setStatus(HttpStatusCode.OK.getCode());
         res.sendRedirect(req.getContextPath() + "/home");
     }
+
 }
