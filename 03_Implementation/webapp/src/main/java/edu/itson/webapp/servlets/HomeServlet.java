@@ -33,17 +33,7 @@ public class HomeServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws ServletException, IOException {
 
-        try {
-            List<Post> posts = this.getPosts();
-            req.setAttribute("posts", posts);
-        } catch (BusinessException ex) {
-            // TODO Log
-            res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-            getServletContext()
-                    .getRequestDispatcher("/pages/errors/server-error.jsp")
-                    .forward(req, res);
-            return;
-        }
+        this.loadPosts(req, res);
         getServletContext()
                 .getRequestDispatcher("/home.jsp")
                 .forward(req, res);
@@ -60,11 +50,32 @@ public class HomeServlet extends HttpServlet {
         return "Short description";
     }
 
-    private List<Post> getPosts() throws BusinessException {
+    private void loadPosts(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        try {
+            List<Post> posts = this.getPosts();
+            req.setAttribute("posts", posts);
+        } catch (BusinessException ex) {
+            sendToServerErrorPage(req, res);
+            return;
+        }
+    }
 
+    private List<Post> getPosts() throws BusinessException {
         IPostBO postBO = new PostsBO();
         final int cantidadMaximaPosts = 3;
         return postBO.getPosts(cantidadMaximaPosts);
+    }
 
+    private void sendToServerErrorPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+        getServletContext()
+                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .forward(req, res);
     }
 }
