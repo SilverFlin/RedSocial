@@ -6,6 +6,8 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.utils.impl.FormValidator;
+import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,27 +48,27 @@ public final class RegisterServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param req servlet request
+     * @param res servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(
-            final HttpServletRequest request,
-            final HttpServletResponse response
+            final HttpServletRequest req,
+            final HttpServletResponse res
     )
             throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = req.getParameter("action");
 
         if (action == null || action.equalsIgnoreCase("register")) {
-            this.processUserRegister(request, response);
+            this.processUserRegister(req, res);
             return;
         }
 
         if (action != null && !action.equalsIgnoreCase("register")) {
-            response.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
-            this.sendToRegisterPage(request, response);
+            res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
+            this.sendToRegisterPage(req, res);
             return;
         }
 
@@ -74,24 +76,21 @@ public final class RegisterServlet extends HttpServlet {
 
     /**
      *
-     * @param request
-     * @param response
+     * @param req
+     * @param res
      * @throws ServletException
      * @throws IOException
      */
     private void processUserRegister(
-            final HttpServletRequest request,
-            final HttpServletResponse response
+            final HttpServletRequest req,
+            final HttpServletResponse res
     ) throws ServletException, IOException {
 
-        String paramEmail = request.getParameter("email");
-        String paramPassword = request.getParameter("password");
-        String paramConfirmPassword = request.getParameter("confirmPassword");
-
-        // TODO Refactor n Move Validation
-        // TODO Move confirm password validation to client-side
+        String paramEmail = req.getParameter("email");
+        String paramPassword = req.getParameter("password");
+        String paramConfirmPassword = req.getParameter("confirmPassword");
         // TODO Validate existent Email
-        // TODO Password regex Validation
+
         boolean isValidParams = this.validateParams(
                 paramEmail,
                 paramPassword,
@@ -99,8 +98,8 @@ public final class RegisterServlet extends HttpServlet {
         );
 
         if (!isValidParams) {
-            response.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
-            this.sendToRegisterPage(request, response);
+            res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
+            this.sendToRegisterPage(req, res);
             // TODO pass an attribute to show the errors
             // (email already created / password does not match)
             return;
@@ -110,25 +109,21 @@ public final class RegisterServlet extends HttpServlet {
         try {
             registeredUser = this.tryRegisterUser(paramEmail, paramPassword);
         } catch (BusinessException ex) {
-            response.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-            getServletContext()
-                    .getRequestDispatcher("/pages/errors/server-error.jsp")
-                    .forward(request, response);
+            this.sendToServerErrorPage(req, res);
             return;
         }
 
         if (registeredUser == null) {
-            response.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
-            getServletContext()
-                    .getRequestDispatcher("/pages/errors/http-error.jsp")
-                    .forward(request, response);
+            this.sendToHttpErrorPage(
+                    req,
+                    res,
+                    HttpStatusCode.BAD_REQUEST
+            );
             return;
         }
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", registeredUser);
-        response.setStatus(HttpStatusCode.OK.getCode());
-        response.sendRedirect(request.getContextPath() + "/home");
+        this.createSession(req, registeredUser);
+        this.redirectHome(req, res);
         return;
 
     }
@@ -141,15 +136,6 @@ public final class RegisterServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
-
-    private void sendToRegisterPage(
-            final HttpServletRequest request,
-            final HttpServletResponse response
-    ) throws ServletException, IOException {
-        getServletContext()
-                .getRequestDispatcher("/pages/users/register.jsp")
-                .forward(request, response);
     }
 
     private Usuario tryRegisterUser(
@@ -168,16 +154,58 @@ public final class RegisterServlet extends HttpServlet {
             final String paramPassword,
             final String paramConfirmPassword
     ) {
-        final int limitEmail = 100;
-        final int limitPassword = 30;
-        return validateParamLimit(paramEmail, limitEmail)
-                || validateParamLimit(paramPassword, limitPassword)
-                || validateParamLimit(paramConfirmPassword, limitPassword)
-                || !paramPassword.equals(paramConfirmPassword);
+        IFormValidator validator = new FormValidator();
+
+        boolean isValidEmail = validator.isValidEmail(paramEmail);
+        boolean isValidPassword = validator.isValidPassword(paramPassword);
+        boolean isValidConfirmPass = paramConfirmPassword.equals(paramPassword);
+
+        return isValidEmail && isValidPassword && isValidConfirmPass;
     }
 
-    private boolean validateParamLimit(final String param, final int limit) {
+    private void sendToRegisterPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        getServletContext()
+                .getRequestDispatcher("/pages/users/register.jsp")
+                .forward(req, res);
+    }
 
-        return (param == null || param.isBlank() || param.length() > limit);
+    private void sendToHttpErrorPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res,
+            final HttpStatusCode httpStatusCode
+    ) throws ServletException, IOException {
+        res.setStatus(httpStatusCode.getCode());
+        getServletContext()
+                .getRequestDispatcher("/pages/errors/http-error.jsp")
+                .forward(req, res);
+    }
+
+    private void sendToServerErrorPage(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+        getServletContext()
+                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .forward(req, res);
+    }
+
+    private void createSession(
+            final HttpServletRequest req,
+            final Usuario registeredUser
+    ) {
+        HttpSession session = req.getSession();
+        session.setAttribute("user", registeredUser);
+    }
+
+    private void redirectHome(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws IOException {
+        res.setStatus(HttpStatusCode.OK.getCode());
+        res.sendRedirect(req.getContextPath() + "/home");
     }
 }
