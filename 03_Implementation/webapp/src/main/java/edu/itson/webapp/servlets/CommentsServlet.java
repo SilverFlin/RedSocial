@@ -30,6 +30,7 @@ public class CommentsServlet extends HttpServlet {
     )
             throws ServletException, IOException {
 //        TODO
+//        /comments?action=get-all&idPost=id
     }
 
     /**
@@ -46,7 +47,8 @@ public class CommentsServlet extends HttpServlet {
             final HttpServletResponse response
     )
             throws ServletException, IOException {
-//        TODO
+//        TODO /comments path with hidden input
+
     }
 
     /**
