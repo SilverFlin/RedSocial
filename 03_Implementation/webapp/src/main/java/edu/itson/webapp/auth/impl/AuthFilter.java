@@ -57,7 +57,7 @@ public final class AuthFilter implements Filter {
         boolean isPrivatePathReq = AuthRequestProcessor.isPrivatePath(path);
         boolean isUserLoggedIn = AuthRequestProcessor.isUserLoggedIn(httpReq);
 
-        return !isPrivatePathReq && isUserLoggedIn;
+        return !isPrivatePathReq || isUserLoggedIn;
 
     }
 }

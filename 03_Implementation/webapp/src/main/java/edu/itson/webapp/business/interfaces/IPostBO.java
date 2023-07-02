@@ -18,4 +18,13 @@ public interface IPostBO {
      */
     List<Post> getPosts(int amount) throws BusinessException;
 
+    /**
+     * Crea un post y lo regresa.
+     *
+     * @param post
+     * @return el post creado.
+     * @throws BusinessException
+     */
+    Post createPost(Post post) throws BusinessException;
+
 }

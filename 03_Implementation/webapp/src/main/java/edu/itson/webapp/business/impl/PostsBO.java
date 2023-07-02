@@ -48,4 +48,19 @@ public final class PostsBO implements IPostBO {
         }
     }
 
+    @Override
+    public Post createPost(final Post post) throws BusinessException {
+        if (post == null) {
+            String errorMsg = "Error @ create post: Post is null";
+            throw new BusinessException(errorMsg);
+        }
+
+        try {
+            return this.persistence.agregarPost(post);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ create post: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
 }

@@ -26,6 +26,12 @@ public final class Constants {
     public static final String REGISTER_USER_PAGE = "/pages/users/register.jsp";
 
     /**
+     * The path to the create post page.
+     */
+    public static final String CREATE_POST_PAGE
+            = "/pages/posts/create-post.jsp";
+
+    /**
      * The path to the HTTP error page.
      */
     public static final String HTTP_ERROR_PAGE = "/pages/errors/http-error.jsp";

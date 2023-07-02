@@ -11,7 +11,10 @@
     <body>
         <div class="container">
             <div class="left-bar"></div>
-            <button class="create-post-btn">+ Create a new Post</button>
+            <!--TODO move to JS-->
+            <button class="create-post-btn" onclick="window.location.href='/webapp/create-post';">
+                 + Create a new Post
+            </button>
 
             <c:forEach var="item" items="${requestScope.posts}">
                 <section class="post">
