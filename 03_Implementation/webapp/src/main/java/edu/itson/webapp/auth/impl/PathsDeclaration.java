@@ -1,5 +1,6 @@
 package edu.itson.webapp.auth.impl;
 
+import edu.itson.webapp.paths.Constants;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,10 +17,10 @@ public final class PathsDeclaration {
      * Lista de los paths publicos.
      */
     private static final List<String> PUBLIC_PATHS_LIST = List.of(
-            "/login",
-            "/auth",
-            "/register",
-            "/assets"
+            Constants.LOGIN_ENDPOINT,
+            Constants.AUTH_ENDPOINT,
+            Constants.REGISTER_ENDPOINT,
+            Constants.ASSETS_DIR
     );
 
     /**

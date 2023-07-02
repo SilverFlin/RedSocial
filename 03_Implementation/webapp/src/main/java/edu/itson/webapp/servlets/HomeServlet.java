@@ -5,6 +5,7 @@ import edu.itson.webapp.business.impl.PostsBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class HomeServlet extends HttpServlet {
 
         this.loadPosts(req, res);
         getServletContext()
-                .getRequestDispatcher("/home.jsp")
+                .getRequestDispatcher(Constants.HOME_PAGE)
                 .forward(req, res);
         return;
     }
@@ -75,7 +76,7 @@ public class HomeServlet extends HttpServlet {
     ) throws ServletException, IOException {
         res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
         getServletContext()
-                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
                 .forward(req, res);
     }
 }

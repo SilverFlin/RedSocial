@@ -6,6 +6,7 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
@@ -167,7 +168,7 @@ public final class RegisterServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws ServletException, IOException {
         getServletContext()
-                .getRequestDispatcher("/pages/users/register.jsp")
+                .getRequestDispatcher(Constants.REGISTER_USER_PAGE)
                 .forward(req, res);
     }
 
@@ -178,7 +179,7 @@ public final class RegisterServlet extends HttpServlet {
     ) throws ServletException, IOException {
         res.setStatus(httpStatusCode.getCode());
         getServletContext()
-                .getRequestDispatcher("/pages/errors/http-error.jsp")
+                .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
                 .forward(req, res);
     }
 
@@ -188,7 +189,7 @@ public final class RegisterServlet extends HttpServlet {
     ) throws ServletException, IOException {
         res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
         getServletContext()
-                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
                 .forward(req, res);
     }
 
@@ -205,7 +206,7 @@ public final class RegisterServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws IOException {
         res.setStatus(HttpStatusCode.OK.getCode());
-        res.sendRedirect(req.getContextPath() + "/home");
+        res.sendRedirect(req.getContextPath() + Constants.HOME_ENDPOINT);
     }
 
 }

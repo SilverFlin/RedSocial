@@ -2,6 +2,7 @@ package edu.itson.webapp.auth.impl;
 
 import edu.itson.webapp.auth.interfaces.AuthRequestProcessor;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.Filter;
@@ -15,11 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public final class AuthFilter implements Filter {
-
-    /**
-     * Dirección de la página de Login.
-     */
-    private static final String LOGIN_PATH = "/pages/users/login.jsp";
 
     @Override
     public void doFilter(
@@ -50,7 +46,7 @@ public final class AuthFilter implements Filter {
         response.setStatus(HttpStatusCode.UNAUTHORIZED.getCode());
 
         req.getServletContext()
-                .getRequestDispatcher(LOGIN_PATH)
+                .getRequestDispatcher(Constants.LOGIN_PAGE)
                 .forward(req, res);
     }
 

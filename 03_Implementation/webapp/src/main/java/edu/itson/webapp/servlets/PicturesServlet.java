@@ -5,6 +5,7 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -122,7 +123,7 @@ public class PicturesServlet extends HttpServlet {
     ) throws ServletException, IOException {
         res.setStatus(httpStatusCode.getCode());
         getServletContext()
-                .getRequestDispatcher("/pages/errors/http-error.jsp")
+                .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
                 .forward(req, res);
     }
 
@@ -132,7 +133,7 @@ public class PicturesServlet extends HttpServlet {
     ) throws ServletException, IOException {
         res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
         getServletContext()
-                .getRequestDispatcher("/pages/errors/server-error.jsp")
+                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
                 .forward(req, res);
     }
 }
