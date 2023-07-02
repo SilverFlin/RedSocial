@@ -35,6 +35,9 @@ public final class FormValidator implements IFormValidator {
      */
     @Override
     public boolean isValidEmail(final String email) {
+        if (email == null) {
+            return false;
+        }
         String emailRegex = "^(?=.{1,254}$)"
                 + "([A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(emailRegex);
@@ -70,9 +73,39 @@ public final class FormValidator implements IFormValidator {
      */
     @Override
     public boolean isValidPassword(final String password) {
+        if (password == null) {
+            return false;
+        }
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         Pattern pattern = Pattern.compile(passwordRegex);
         return pattern.matcher(password).matches();
+    }
+
+    /**
+     * Valida que el número telefónico sean puros dígitos con longitud de 10.
+     *
+     * @param phoneNumber
+     * @return true, si el número es válido.
+     */
+    @Override
+    public boolean isValidPhoneNumber(final String phoneNumber) {
+        if (phoneNumber == null) {
+            return false;
+        }
+        String phoneNumberRegex = "^\\d{10}$";
+        Pattern pattern = Pattern.compile(phoneNumberRegex);
+        return pattern.matcher(phoneNumber).matches();
+    }
+
+    @Override
+    public boolean isValidDate(final String date) {
+        if (date == null) {
+            return false;
+        }
+        String dateRegex = "^\\d{4}-\\d{2}-\\d{2}$";
+        Pattern pattern = Pattern.compile(dateRegex);
+        return pattern.matcher(date).matches();
+
     }
 }
