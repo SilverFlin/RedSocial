@@ -10,6 +10,8 @@ import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.servlets.Redirect.redirectHome;
+import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.impl.LocalDateTimeProcessor;
 import edu.itson.webapp.utils.impl.MongoImageConversor;
@@ -75,7 +77,7 @@ public class EditUserServlet extends HttpServlet {
 
         this.processEditUser(req, res);
 
-        this.redirectHome(req, res);
+        redirectHome(req, res);
     }
 
     /**
@@ -104,7 +106,7 @@ public class EditUserServlet extends HttpServlet {
             res.setStatus(HttpStatusCode.OK.getCode());
 
         } catch (BusinessException ex) {
-            this.sendToServerErrorPage(req, res);
+            sendToServerErrorPage(req, res, getServletContext());
             return;
         }
     }
@@ -204,23 +206,5 @@ public class EditUserServlet extends HttpServlet {
         } catch (IOException | ServletException ex) {
             return null;
         }
-    }
-
-    private void sendToServerErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-        getServletContext()
-                .getRequestDispatcher("/pages/errors/server-error.jsp")
-                .forward(req, res);
-    }
-
-    private void redirectHome(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws IOException {
-        res.setStatus(HttpStatusCode.OK.getCode());
-        res.sendRedirect(req.getContextPath() + "/home");
     }
 }

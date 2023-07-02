@@ -4,8 +4,8 @@ import edu.itson.dominio.Post;
 import edu.itson.webapp.business.impl.PostsBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
-import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -59,7 +59,7 @@ public class HomeServlet extends HttpServlet {
             List<Post> posts = this.getPosts();
             req.setAttribute("posts", posts);
         } catch (BusinessException ex) {
-            sendToServerErrorPage(req, res);
+            sendToServerErrorPage(req, res, getServletContext());
             return;
         }
     }
@@ -70,13 +70,4 @@ public class HomeServlet extends HttpServlet {
         return postBO.getPosts(cantidadMaximaPosts);
     }
 
-    private void sendToServerErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
-                .forward(req, res);
-    }
 }
