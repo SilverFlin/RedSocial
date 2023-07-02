@@ -7,7 +7,7 @@
         <title>Error</title>
     </head>
     <body>
-        <jsp:include page="/fragments/header.jspf" />
+        <jsp:include page="/fragments/header.jsp" />
         <div class="contenedor">
             <div  class="hijo">
                 <span id="error-code">Error 500</span>

@@ -159,7 +159,6 @@ public final class RegisterServlet extends HttpServlet {
         boolean isValidEmail = validator.isValidEmail(paramEmail);
         boolean isValidPassword = validator.isValidPassword(paramPassword);
         boolean isValidConfirmPass = paramConfirmPassword.equals(paramPassword);
-
         return isValidEmail && isValidPassword && isValidConfirmPass;
     }
 
@@ -208,4 +207,5 @@ public final class RegisterServlet extends HttpServlet {
         res.setStatus(HttpStatusCode.OK.getCode());
         res.sendRedirect(req.getContextPath() + "/home");
     }
+
 }
