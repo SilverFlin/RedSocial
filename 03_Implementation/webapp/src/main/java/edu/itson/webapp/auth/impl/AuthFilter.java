@@ -27,14 +27,9 @@ public final class AuthFilter implements Filter {
             final ServletResponse res,
             final FilterChain chain
     ) throws IOException, ServletException {
-        HttpServletRequest httpReq = (HttpServletRequest) req;
-        String path = AuthRequestProcessor.getRequestedPath(httpReq);
 
-        boolean isPrivatePathReq = AuthRequestProcessor.isPrivatePath(path);
-        boolean isUserLoggedIn = AuthRequestProcessor.isUserLoggedIn(httpReq);
-
-        if (isPrivatePathReq && !isUserLoggedIn) {
-            this.redirectLogin(httpReq, res);
+        if (!this.isAuthorized(req)) {
+            this.redirectLogin(req, res);
             return;
         }
 
@@ -59,4 +54,14 @@ public final class AuthFilter implements Filter {
                 .forward(req, res);
     }
 
+    private boolean isAuthorized(final ServletRequest req) {
+        HttpServletRequest httpReq = (HttpServletRequest) req;
+        String path = AuthRequestProcessor.getRequestedPath(httpReq);
+
+        boolean isPrivatePathReq = AuthRequestProcessor.isPrivatePath(path);
+        boolean isUserLoggedIn = AuthRequestProcessor.isUserLoggedIn(httpReq);
+
+        return !isPrivatePathReq && isUserLoggedIn;
+
+    }
 }
