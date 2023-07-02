@@ -99,10 +99,7 @@ public final class RegisterServlet extends HttpServlet {
         );
 
         if (!isValidParams) {
-            res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
             this.sendToRegisterPage(req, res);
-            // TODO pass an attribute to show the errors
-            // (email already created / password does not match)
             return;
         }
 
@@ -167,6 +164,7 @@ public final class RegisterServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
+        res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
         getServletContext()
                 .getRequestDispatcher(Constants.REGISTER_USER_PAGE)
                 .forward(req, res);

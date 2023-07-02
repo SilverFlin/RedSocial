@@ -11,5 +11,9 @@ public enum GeneroUsuario {
     /**
      * Género Femenino.
      */
-    FEMENINO
+    FEMENINO,
+    /**
+     * Otro.
+     */
+    OTRO
 }
