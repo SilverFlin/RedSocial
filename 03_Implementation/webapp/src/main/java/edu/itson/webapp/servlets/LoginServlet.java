@@ -1,5 +1,6 @@
 package edu.itson.webapp.servlets;
 
+import edu.itson.webapp.paths.Constants;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,7 @@ public final class LoginServlet extends HttpServlet {
         /* Default Action */
         if (action == null || action.equalsIgnoreCase("login")) {
             getServletContext()
-                    .getRequestDispatcher("/pages/users/login.jsp")
+                    .getRequestDispatcher(Constants.LOGIN_PAGE)
                     .forward(request, response);
             return;
         }

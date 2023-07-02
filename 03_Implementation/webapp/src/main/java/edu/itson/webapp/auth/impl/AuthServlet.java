@@ -5,6 +5,7 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -92,7 +93,7 @@ public final class AuthServlet extends HttpServlet {
             response.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
             request.setAttribute("email", paramEmail);
             getServletContext()
-                    .getRequestDispatcher("/pages/users/login.jsp")
+                    .getRequestDispatcher(Constants.LOGIN_PAGE)
                     .forward(request, response);
 
             return;
@@ -104,7 +105,7 @@ public final class AuthServlet extends HttpServlet {
             request.setAttribute("error", "invalid credentials");
             response.setStatus(HttpStatusCode.UNAUTHORIZED.getCode());
             getServletContext()
-                    .getRequestDispatcher("/pages/errors/http-error.jsp")
+                    .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
                     .forward(request, response);
             return;
         }
@@ -112,7 +113,9 @@ public final class AuthServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
         response.setStatus(HttpStatusCode.OK.getCode());
-        response.sendRedirect(request.getContextPath() + "/home");
+        response.sendRedirect(
+                request.getContextPath() + Constants.HOME_ENDPOINT
+        );
 
     }
 
@@ -125,7 +128,7 @@ public final class AuthServlet extends HttpServlet {
         response.setStatus(okHttpStatusCode);
 
         getServletContext()
-                .getRequestDispatcher("/pages/users/login.jsp")
+                .getRequestDispatcher(Constants.LOGIN_PAGE)
                 .forward(request, response);
 
     }

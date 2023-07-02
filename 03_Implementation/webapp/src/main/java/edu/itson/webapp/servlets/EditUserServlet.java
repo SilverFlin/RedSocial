@@ -6,6 +6,7 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import edu.itson.webapp.utils.impl.MongoImageConversor;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +45,7 @@ public class EditUserServlet extends HttpServlet {
         /* Default Action */
         if (action == null || action.equalsIgnoreCase("edit-user")) {
             getServletContext()
-                    .getRequestDispatcher("/pages/users/edit-user.jsp")
+                    .getRequestDispatcher(Constants.EDIT_USER_PAGE)
                     .forward(req, res);
             return;
         }
