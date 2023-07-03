@@ -3,13 +3,16 @@ package implementations.daos;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import edu.itson.dominio.Comentario;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
+import interfaces.Comentable;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
 import interfaces.IComentariosDAO;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -131,6 +134,25 @@ public final class ComentariosDAO implements IComentariosDAO {
             String msg = "No se pudo buscar los comentarios" + ex.getMessage();
             throw new PersistenciaException(msg);
         }
+    }
+
+    @Override
+    public List<Comentario> buscarComentariosPost(final Comentable objetivo)
+            throws PersistenciaException {
+        List<Comentario> comentariosObtenidos = new LinkedList<>();
+        try {
+            Bson filtro = Filters.eq("objetivo", objetivo);
+            FindIterable<Comentario> resultados = this.collection.find(filtro);
+            for (Comentario comentario : resultados) {
+                Comentario comentarioObtenido = comentario;
+                comentariosObtenidos.add(comentarioObtenido);
+            }
+            return comentariosObtenidos;
+        } catch (MongoException e) {
+            throw new PersistenciaException(
+                    "No se pudo buscar los comentarios " + e.getMessage());
+        }
+
     }
 
 }
