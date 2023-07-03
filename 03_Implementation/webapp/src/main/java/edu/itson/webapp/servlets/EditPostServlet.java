@@ -2,12 +2,14 @@ package edu.itson.webapp.servlets;
 
 import edu.itson.dominio.ContenidoPost;
 import edu.itson.dominio.Post;
+import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
 import static edu.itson.webapp.http.HttpStatusCode.NOT_FOUND;
+import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.redirectHome;
 import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
@@ -20,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -132,6 +135,16 @@ public class EditPostServlet extends HttpServlet {
             this.tryEditPost(req);
             res.setStatus(HttpStatusCode.OK.getCode());
         } catch (BusinessException ex) {
+            if (ex.getMessage().equalsIgnoreCase("User is not the creator.")) {
+                res.setStatus(HttpStatusCode.UNAUTHORIZED.getCode());
+                sendToHttpErrorPage(
+                        req,
+                        res,
+                        UNAUTHORIZED,
+                        getServletContext()
+                );
+                return;
+            }
             sendToServerErrorPage(req, res, getServletContext());
             return;
         }
@@ -175,7 +188,10 @@ public class EditPostServlet extends HttpServlet {
         contenido.setTexto(contentParam);
         post.setContenido(contenido);
 
-        postBO.editPost(post);
+        HttpSession session = req.getSession(false);
+        Usuario loggedUser = (Usuario) session.getAttribute("user");
+
+        postBO.editPost(loggedUser, post);
     }
 
 }

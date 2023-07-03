@@ -1,6 +1,7 @@
 package edu.itson.webapp.business.interfaces;
 
 import edu.itson.dominio.Post;
+import edu.itson.dominio.Usuario;
 import edu.itson.webapp.exceptions.BusinessException;
 import java.util.List;
 
@@ -48,10 +49,11 @@ public interface IPostBO {
     /**
      * Edita el post, si existe.
      *
+     * @param user
      * @param post
      * @return el post editado.
      * @throws BusinessException
      */
-    Post editPost(Post post) throws BusinessException;
+    Post editPost(Usuario user, Post post) throws BusinessException;
 
 }
