@@ -6,7 +6,10 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
-import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.servlets.Redirect.redirectHome;
+import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
+import static edu.itson.webapp.servlets.Redirect.sendToRegisterPage;
+import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
@@ -41,7 +44,7 @@ public final class RegisterServlet extends HttpServlet {
 
         /* Default Action */
         if (action == null || action.equalsIgnoreCase("register")) {
-            this.sendToRegisterPage(req, res);
+            sendToRegisterPage(req, res, getServletContext());
             return;
         }
     }
@@ -69,7 +72,7 @@ public final class RegisterServlet extends HttpServlet {
 
         if (action != null && !action.equalsIgnoreCase("register")) {
             res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
-            this.sendToRegisterPage(req, res);
+            sendToRegisterPage(req, res, getServletContext());
             return;
         }
 
@@ -99,7 +102,7 @@ public final class RegisterServlet extends HttpServlet {
         );
 
         if (!isValidParams) {
-            this.sendToRegisterPage(req, res);
+            sendToRegisterPage(req, res, getServletContext());
             return;
         }
 
@@ -107,21 +110,22 @@ public final class RegisterServlet extends HttpServlet {
         try {
             registeredUser = this.tryRegisterUser(paramEmail, paramPassword);
         } catch (BusinessException ex) {
-            this.sendToServerErrorPage(req, res);
+            sendToServerErrorPage(req, res, getServletContext());
             return;
         }
 
         if (registeredUser == null) {
-            this.sendToHttpErrorPage(
+            sendToHttpErrorPage(
                     req,
                     res,
-                    HttpStatusCode.BAD_REQUEST
+                    HttpStatusCode.BAD_REQUEST,
+                    getServletContext()
             );
             return;
         }
 
         this.createSession(req, registeredUser);
-        this.redirectHome(req, res);
+        redirectHome(req, res);
         return;
 
     }
@@ -160,37 +164,6 @@ public final class RegisterServlet extends HttpServlet {
         return isValidEmail && isValidPassword && isValidConfirmPass;
     }
 
-    private void sendToRegisterPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.REGISTER_USER_PAGE)
-                .forward(req, res);
-    }
-
-    private void sendToHttpErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res,
-            final HttpStatusCode httpStatusCode
-    ) throws ServletException, IOException {
-        res.setStatus(httpStatusCode.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
-                .forward(req, res);
-    }
-
-    private void sendToServerErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
-                .forward(req, res);
-    }
-
     private void createSession(
             final HttpServletRequest req,
             final Usuario registeredUser
@@ -198,13 +171,4 @@ public final class RegisterServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("user", registeredUser);
     }
-
-    private void redirectHome(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws IOException {
-        res.setStatus(HttpStatusCode.OK.getCode());
-        res.sendRedirect(req.getContextPath() + Constants.HOME_ENDPOINT);
-    }
-
 }

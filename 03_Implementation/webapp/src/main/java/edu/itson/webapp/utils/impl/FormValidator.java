@@ -97,7 +97,12 @@ public final class FormValidator implements IFormValidator {
         Pattern pattern = Pattern.compile(phoneNumberRegex);
         return pattern.matcher(phoneNumber).matches();
     }
-
+    /**
+     * Este metodo comprueba si la fecha es valida.
+     *
+     * @param date la fecha a validar
+     * @return la fecha valdia
+     */
     @Override
     public boolean isValidDate(final String date) {
         if (date == null) {

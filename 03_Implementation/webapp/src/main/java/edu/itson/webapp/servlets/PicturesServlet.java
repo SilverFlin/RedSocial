@@ -5,7 +5,8 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
-import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
+import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -65,7 +66,8 @@ public class PicturesServlet extends HttpServlet {
         String idParam = req.getParameter("id");
 
         if (idParam == null) {
-            this.sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND);
+            sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
+                    getServletContext());
             return;
         }
         Imagen avatar;
@@ -73,7 +75,7 @@ public class PicturesServlet extends HttpServlet {
             IUsersBO usersBO = new UsersBO();
             avatar = usersBO.getUserAvatar(idParam);
         } catch (BusinessException ex) {
-            this.sendToServerErrorPage(req, res);
+            sendToServerErrorPage(req, res, getServletContext());
             return;
         }
 
@@ -111,29 +113,9 @@ public class PicturesServlet extends HttpServlet {
             out.write(imgData);
             out.flush();
         } catch (IOException ex) {
-            sendToServerErrorPage(req, res);
+            sendToServerErrorPage(req, res, getServletContext());
             return;
         }
     }
 
-    private void sendToHttpErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res,
-            final HttpStatusCode httpStatusCode
-    ) throws ServletException, IOException {
-        res.setStatus(httpStatusCode.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
-                .forward(req, res);
-    }
-
-    private void sendToServerErrorPage(
-            final HttpServletRequest req,
-            final HttpServletResponse res
-    ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-        getServletContext()
-                .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
-                .forward(req, res);
-    }
 }
