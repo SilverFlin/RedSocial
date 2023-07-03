@@ -53,6 +53,7 @@ public final class Redirect {
             final ServletContext servletContext
     ) throws ServletException, IOException {
         res.setStatus(httpStatusCode.getCode());
+        req.setAttribute("errorCode", httpStatusCode.getCode());
         servletContext
                 .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
                 .forward(req, res);

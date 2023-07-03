@@ -4,7 +4,7 @@ import edu.itson.dominio.ContenidoPost;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.TipoPost;
 import edu.itson.dominio.Usuario;
-import edu.itson.webapp.business.impl.PostsBO;
+import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
@@ -157,7 +157,7 @@ public class CreatePostServlet extends HttpServlet {
         postCreated.setContenido(contenidoPost);
         postCreated.setCreador(user);
         postCreated.setFechaHoraCreacion(LocalDateTime.now());
-        IPostBO postBO = new PostsBO();
+        IPostBO postBO = new PostBO();
         return postBO.createPost(postCreated);
     }
 

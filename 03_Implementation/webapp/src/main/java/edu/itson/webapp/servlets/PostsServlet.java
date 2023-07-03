@@ -1,7 +1,7 @@
 package edu.itson.webapp.servlets;
 
 import edu.itson.dominio.Post;
-import edu.itson.webapp.business.impl.PostsBO;
+import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PostsServlet", urlPatterns = {"/posts"})
 public class PostsServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -91,7 +90,7 @@ public class PostsServlet extends HttpServlet {
         }
 
         try {
-            IPostBO postBO = new PostsBO();
+            IPostBO postBO = new PostBO();
             List<Post> posts = postBO.getPosts(limit);
             req.setAttribute("posts", posts);
         } catch (BusinessException ex) {

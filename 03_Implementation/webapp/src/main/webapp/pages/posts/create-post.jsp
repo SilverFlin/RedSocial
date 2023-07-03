@@ -11,7 +11,7 @@
 
     <body>
         <%--<jsp:include page="/fragments/header.jsp" />--%>
-        <div class="fondo-blanco" id="postPreview">
+        <div class="fondo-blanco" id="post-preview">
             <div id="title">
                 <h1>Create Post</h1>
             </div>
@@ -53,12 +53,12 @@
         <form action="create-post" method="POST" class="fondo-blanco container" id="form">
             <div id="contenedor" class="container">
                 <div class="item" id="titlefield">
-                    <label for="title" class="labels">Title</label>
+                    <label for="title-text" class="labels">Title</label>
                     <input type="text" name="title" id="title-text" required />
                 </div>
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
-                    <textarea name="content" required></textarea>
+                    <textarea name="content" id="content"  required></textarea>
                 </div>
                 <div class="item" id="fileField">
                     <input disabled type="file" name="file" id="file" />
