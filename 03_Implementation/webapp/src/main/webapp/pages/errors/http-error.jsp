@@ -10,7 +10,7 @@
         <jsp:include page="/fragments/header.jsp" />
         <div class="contenedor">
             <div  class="hijo">
-                <span id="error-code">Error 400</span>
+                <span id="error-code">Error ${requestScope.errorCode}</span>
                 <p id="message">Ups! parece que algo sali&oacute; mal.</p>
                 <img src="/webapp/assets/images/ErrorImg.png" alt="iconoError">
             </div>
