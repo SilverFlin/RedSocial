@@ -1,12 +1,12 @@
 package interfaces;
 
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.User;
 import exceptions.PersistenciaException;
 
 /**
  *
  */
-public interface IUsuariosDAO extends IBaseDAO<Usuario> {
+public interface IUsuariosDAO extends IBaseDAO<User> {
 
     /**
      * Busca al usuario por email.
@@ -15,5 +15,5 @@ public interface IUsuariosDAO extends IBaseDAO<Usuario> {
      * @return La entidad, si se encuentra.
      * @throws PersistenciaException
      */
-    Usuario buscarPorEmail(String email) throws PersistenciaException;
+    User buscarPorEmail(String email) throws PersistenciaException;
 }

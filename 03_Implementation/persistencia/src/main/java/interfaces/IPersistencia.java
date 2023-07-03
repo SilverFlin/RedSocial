@@ -1,8 +1,8 @@
 package interfaces;
 
-import edu.itson.dominio.Comentario;
+import edu.itson.dominio.Comment;
 import edu.itson.dominio.Post;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.User;
 import exceptions.PersistenciaException;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface IPersistencia {
      * @return Comentario con el id.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Comentario agregarComentario(Comentario comentario)
+    Comment agregarComentario(Comment comentario)
             throws PersistenciaException;
 
     /**
@@ -28,7 +28,7 @@ public interface IPersistencia {
      * @return Comentario borrado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Comentario eliminarComentario(Comentario comentario)
+    Comment eliminarComentario(Comment comentario)
             throws PersistenciaException;
 
     /**
@@ -38,7 +38,7 @@ public interface IPersistencia {
      * @return Comentario actualizado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Comentario actualizarComentario(Comentario comentario)
+    Comment actualizarComentario(Comment comentario)
             throws PersistenciaException;
 
     /**
@@ -48,7 +48,7 @@ public interface IPersistencia {
      * @return Comentario, si existe.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Comentario buscarComentarioPorId(String id) throws PersistenciaException;
+    Comment buscarComentarioPorId(String id) throws PersistenciaException;
 
     /**
      * Consulta todos los comentarios de la base de datos.
@@ -56,7 +56,7 @@ public interface IPersistencia {
      * @return Una lista con todos los comentarios.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    List<Comentario> buscarTodosLosComentarios() throws PersistenciaException;
+    List<Comment> buscarTodosLosComentarios() throws PersistenciaException;
 
     /**
      * Agrega un usuario a la base de datos y lo regresa con su id.
@@ -65,7 +65,7 @@ public interface IPersistencia {
      * @return Usuario con el id.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Usuario agregarUsuario(Usuario usuario) throws PersistenciaException;
+    User agregarUsuario(User usuario) throws PersistenciaException;
 
     /**
      * Eliminar un usuario de la base de datos y lo regresa si se borró.
@@ -74,7 +74,7 @@ public interface IPersistencia {
      * @return Usuario borrado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Usuario eliminarUsuario(Usuario usuario) throws PersistenciaException;
+    User eliminarUsuario(User usuario) throws PersistenciaException;
 
     /**
      * Actualiza el usuario en base al id registrado en el objeto.
@@ -83,7 +83,7 @@ public interface IPersistencia {
      * @return Usuario actualizado.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Usuario actualizarUsuario(Usuario usuario) throws PersistenciaException;
+    User actualizarUsuario(User usuario) throws PersistenciaException;
 
     /**
      * Busca un usuario en base a un id.
@@ -92,7 +92,7 @@ public interface IPersistencia {
      * @return Usuario, si existe.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Usuario buscarUsuarioPorId(String id) throws PersistenciaException;
+    User buscarUsuarioPorId(String id) throws PersistenciaException;
 
     /**
      * Busca un usuario en base a un email.
@@ -101,7 +101,7 @@ public interface IPersistencia {
      * @return Usuario, si existe.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    Usuario buscarUsuarioPorEmail(String email) throws PersistenciaException;
+    User buscarUsuarioPorEmail(String email) throws PersistenciaException;
 
     /**
      * Consulta todos los usuarios de la base de datos.
@@ -109,7 +109,7 @@ public interface IPersistencia {
      * @return Una lista con todos los comentarios.
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
-    List<Usuario> buscarTodosLosUsuarios() throws PersistenciaException;
+    List<User> buscarTodosLosUsuarios() throws PersistenciaException;
 
     /**
      * Agrega un post a la base de datos y lo regresa con su id.

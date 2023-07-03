@@ -3,7 +3,7 @@ package edu.itson.dominio;
 /**
  *
  */
-public enum GeneroUsuario {
+public enum UserGender {
     /**
      * Género Masculino.
      */

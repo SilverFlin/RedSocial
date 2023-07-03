@@ -1,10 +1,10 @@
 package interfaces;
 
-import edu.itson.dominio.Comentario;
+import edu.itson.dominio.Comment;
 
 /**
  *
  */
-public interface IComentariosDAO extends IBaseDAO<Comentario> {
+public interface IComentariosDAO extends IBaseDAO<Comment> {
 
 }

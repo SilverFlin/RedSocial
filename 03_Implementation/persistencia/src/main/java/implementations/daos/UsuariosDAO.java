@@ -3,7 +3,7 @@ package implementations.daos;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.User;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
 import java.util.List;
@@ -21,7 +21,7 @@ public final class UsuariosDAO implements IUsuariosDAO {
     /**
      * Collección con la que el DAO interactúa.
      */
-    private final MongoCollection<Usuario> collection;
+    private final MongoCollection<User> collection;
 
     /**
      * Instancia de esta clase.
@@ -35,7 +35,7 @@ public final class UsuariosDAO implements IUsuariosDAO {
         this.collection
                 = Connection
                         .getDb()
-                        .getCollection("usuarios", Usuario.class);
+                        .getCollection("usuarios", User.class);
     }
 
     /**
@@ -51,7 +51,7 @@ public final class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario agregar(final Usuario usuario) throws PersistenciaException {
+    public User agregar(final User usuario) throws PersistenciaException {
         try {
             if (usuario != null) {
                 this.collection.insertOne(usuario);
@@ -65,8 +65,8 @@ public final class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario eliminar(
-            final Usuario usuario
+    public User eliminar(
+            final User usuario
     ) throws PersistenciaException {
         try {
             Document filtros = new Document("_id", usuario.getId());
@@ -79,8 +79,8 @@ public final class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario actualizar(
-            final Usuario usuario
+    public User actualizar(
+            final User usuario
     ) throws PersistenciaException {
         try {
             Bson filter = new Document("_id", usuario.getId());
@@ -93,13 +93,13 @@ public final class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario buscarPorId(final String id) throws PersistenciaException {
+    public User buscarPorId(final String id) throws PersistenciaException {
         return this.buscarPor("_id", id);
     }
 
     @Override
-    public List<Usuario> buscarTodos() throws PersistenciaException {
-        List<Usuario> usuarios;
+    public List<User> buscarTodos() throws PersistenciaException {
+        List<User> usuarios;
         try {
             usuarios = new LinkedList<>();
             return this.collection.find().into(usuarios);
@@ -110,18 +110,18 @@ public final class UsuariosDAO implements IUsuariosDAO {
     }
 
     @Override
-    public Usuario buscarPorEmail(
+    public User buscarPorEmail(
             final String email
     ) throws PersistenciaException {
         return buscarPor("email", email);
     }
 
-    private Usuario buscarPor(
+    private User buscarPor(
             final String param,
             final String value
     ) throws PersistenciaException {
 
-        Usuario usuario = null;
+        User usuario = null;
         try {
             Document filtros = new Document();
             if (param.equals("_id")) {
@@ -130,7 +130,7 @@ public final class UsuariosDAO implements IUsuariosDAO {
             } else {
                 filtros.append(param, value);
             }
-            FindIterable<Usuario> usuarios = this.collection.find(filtros);
+            FindIterable<User> usuarios = this.collection.find(filtros);
             usuario = usuarios.first();
         } catch (MongoException ex) {
             String msg = "No se pudo encontrar el usuario" + ex.getMessage();

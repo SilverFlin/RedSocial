@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 /**
  *
  */
-public final class Imagen {
+public final class Image {
 
     /**
      * Id de la Imagen.
@@ -25,7 +25,7 @@ public final class Imagen {
     /**
      * Constructor vacío.
      */
-    public Imagen() {
+    public Image() {
     }
 
     /**
@@ -100,7 +100,7 @@ public final class Imagen {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Imagen other = (Imagen) obj;
+        final Image other = (Image) obj;
         return Objects.equals(this.id, other.id);
     }
 

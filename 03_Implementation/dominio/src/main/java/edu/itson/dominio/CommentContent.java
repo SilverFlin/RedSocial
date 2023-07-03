@@ -3,7 +3,7 @@ package edu.itson.dominio;
 /**
  *
  */
-public class ContenidoComentario {
+public class CommentContent {
 
     /**
      * Contenido de texto del comentario.
@@ -12,12 +12,12 @@ public class ContenidoComentario {
     /**
      * Imágen opcional del comentario.
      */
-    private Imagen imagen;
+    private Image imagen;
 
     /**
      * Constructor vacío.
      */
-    public ContenidoComentario() {
+    public CommentContent() {
         // No hace falta hacer nada.
     }
 
@@ -44,7 +44,7 @@ public class ContenidoComentario {
      *
      * @return imágen del comentario, si al hay.
      */
-    public Imagen getImagen() {
+    public Image getImagen() {
         return imagen;
     }
 
@@ -53,7 +53,7 @@ public class ContenidoComentario {
      *
      * @param imagen
      */
-    public void setImagen(final Imagen imagen) {
+    public void setImagen(final Image imagen) {
         this.imagen = imagen;
     }
 

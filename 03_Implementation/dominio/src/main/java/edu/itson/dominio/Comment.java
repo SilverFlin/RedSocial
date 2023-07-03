@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 /**
  *
  */
-public class Comentario implements Comentable {
+public class Comment implements Comentable {
 
     /**
      * Atributo id asignado al comentario.
@@ -16,7 +16,7 @@ public class Comentario implements Comentable {
     /**
      * Usuario que realiza el comentario.
      */
-    private Usuario creador;
+    private User creador;
     /**
      * Objeto al que se le realiza el comentario.
      */
@@ -28,12 +28,12 @@ public class Comentario implements Comentable {
     /**
      * Contenido del comentario.
      */
-    private ContenidoComentario contenido;
+    private CommentContent contenido;
 
     /**
      * Constructor vacío.
      */
-    public Comentario() {
+    public Comment() {
         // No hace falta hacer nada.
     }
 
@@ -60,7 +60,7 @@ public class Comentario implements Comentable {
      *
      * @return obtiene el creador del comentario.
      */
-    public Usuario getCreador() {
+    public User getCreador() {
         return creador;
     }
 
@@ -69,7 +69,7 @@ public class Comentario implements Comentable {
      *
      * @param creador
      */
-    public void setCreador(final Usuario creador) {
+    public void setCreador(final User creador) {
         this.creador = creador;
     }
 
@@ -78,7 +78,7 @@ public class Comentario implements Comentable {
      *
      * @return El usuario creador.
      */
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return creador;
     }
 
@@ -87,7 +87,7 @@ public class Comentario implements Comentable {
      *
      * @param creador
      */
-    public void setUsuario(final Usuario creador) {
+    public void setUsuario(final User creador) {
         this.creador = creador;
     }
 
@@ -132,7 +132,7 @@ public class Comentario implements Comentable {
      *
      * @return contenido del comentario.
      */
-    public ContenidoComentario getContenido() {
+    public CommentContent getContenido() {
         return contenido;
     }
 
@@ -141,7 +141,7 @@ public class Comentario implements Comentable {
      *
      * @param contenido
      */
-    public void setContenido(final ContenidoComentario contenido) {
+    public void setContenido(final CommentContent contenido) {
         this.contenido = contenido;
     }
 

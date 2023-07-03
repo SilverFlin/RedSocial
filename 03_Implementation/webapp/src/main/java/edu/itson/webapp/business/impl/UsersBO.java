@@ -1,7 +1,7 @@
 package edu.itson.webapp.business.impl;
 
-import edu.itson.dominio.Imagen;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.Image;
+import edu.itson.dominio.User;
 import edu.itson.webapp.auth.impl.BcryptEncryptor;
 import edu.itson.webapp.auth.interfaces.IEncryptor;
 import edu.itson.webapp.business.interfaces.IUsersBO;
@@ -28,7 +28,7 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Usuario register(final Usuario user) throws BusinessException {
+    public User register(final User user) throws BusinessException {
         try {
             if (this.validateUserEmail(user)) {
                 throw new BusinessException("Email has already used");
@@ -42,12 +42,12 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Usuario login(
+    public User login(
             final String email,
             final String password
     ) throws BusinessException {
         try {
-            Usuario user = this.persistence.buscarUsuarioPorEmail(email);
+            User user = this.persistence.buscarUsuarioPorEmail(email);
 
             if (user == null) {
                 return null;
@@ -64,7 +64,7 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Usuario editUser(final Usuario user) throws BusinessException {
+    public User editUser(final User user) throws BusinessException {
         if (user == null) {
             String errorMsg = "Error @ edit User, user is null";
             throw new BusinessException(errorMsg);
@@ -84,7 +84,7 @@ public final class UsersBO implements IUsersBO {
     }
 
     @Override
-    public Imagen getUserAvatar(final String id) throws BusinessException {
+    public Image getUserAvatar(final String id) throws BusinessException {
         if (id == null) {
             String errorMsg = "Error @ get user avatar, id is null";
             throw new BusinessException(errorMsg);
@@ -102,7 +102,7 @@ public final class UsersBO implements IUsersBO {
      *
      * @param user
      */
-    private void encryptUserPassword(final Usuario user) {
+    private void encryptUserPassword(final User user) {
         IEncryptor encriptor = new BcryptEncryptor();
         String hashedPassword = encriptor.encryptPassword(user.getPassword());
         user.setPassword(hashedPassword);
@@ -116,10 +116,10 @@ public final class UsersBO implements IUsersBO {
         return encriptor.verifyPassword(password, hashedPassword);
     }
 
-    private boolean validateUserEmail(final Usuario user)
+    private boolean validateUserEmail(final User user)
             throws BusinessException {
         try {
-            Usuario userObtained = this.persistence
+            User userObtained = this.persistence
                     .buscarUsuarioPorEmail(user.getEmail());
             return userObtained != null;
         } catch (PersistenciaException e) {

@@ -1,9 +1,9 @@
 package edu.itson.webapp.servlets;
 
-import edu.itson.dominio.ContenidoPost;
+import edu.itson.dominio.PostContent;
 import edu.itson.dominio.Post;
-import edu.itson.dominio.TipoPost;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.PostType;
+import edu.itson.dominio.User;
 import edu.itson.webapp.business.impl.PostsBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -105,7 +105,7 @@ public class CreatePostServlet extends HttpServlet {
             return;
         }
 
-        Usuario loggedUser = (Usuario) req.getSession().getAttribute("user");
+        User loggedUser = (User) req.getSession().getAttribute("user");
 
         if (loggedUser == null) {
             this.sendToHttpErrorPage(req, res, HttpStatusCode.UNAUTHORIZED);
@@ -148,11 +148,11 @@ public class CreatePostServlet extends HttpServlet {
     private Post tryCreatePost(
             final String titleParam,
             final String contentParam,
-            final Usuario user
+            final User user
     ) throws BusinessException {
-        Post postCreated = new Post(TipoPost.NORMAL);
+        Post postCreated = new Post(PostType.NORMAL);
         postCreated.setTitulo(titleParam);
-        ContenidoPost contenidoPost = new ContenidoPost();
+        PostContent contenidoPost = new PostContent();
         contenidoPost.setTexto(contentParam);
         postCreated.setContenido(contenidoPost);
         postCreated.setCreador(user);

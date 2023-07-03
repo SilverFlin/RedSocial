@@ -3,7 +3,7 @@ package edu.itson.dominio;
 /**
  *
  */
-public class Direccion {
+public class Address {
 
     /**
      * Ciudad.
@@ -21,24 +21,23 @@ public class Direccion {
     /**
      * Constructor vacío.
      */
-    public Direccion() {
+    public Address() {
         // No hace falta hacer nada.
     }
-    
+
     /**
-     * Constructor de la direccion
+     * Constructor de la direccion.
+     *
      * @param ciudad
      * @param municipio
-     * @param estado 
+     * @param estado
      */
-    public Direccion(String ciudad, String municipio, String estado) {
+    public Address(final String ciudad, final String municipio, final String estado) {
         this.ciudad = ciudad;
         this.municipio = municipio;
         this.estado = estado;
     }
-    
-    
-    
+
     /**
      * Obtiene la ciudad de la dirección.
      *

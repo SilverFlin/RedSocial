@@ -3,7 +3,7 @@ package edu.itson.dominio;
 /**
  *
  */
-public class NombreCompleto {
+public class CompleteName {
 
     /**
      * Nombres de la persona.
@@ -21,22 +21,23 @@ public class NombreCompleto {
     /**
      * Constructor vacio.
      */
-    public NombreCompleto() {
+    public CompleteName() {
         // No hace falta hacer nada.
     }
-    
+
     /**
-     * Contructor del nombre completo
+     * Contructor del nombre completo.
+     *
      * @param nombres
      * @param apellidoPaterno
-     * @param apellidoMaterno 
+     * @param apellidoMaterno
      */
-    public NombreCompleto(String nombres, String apellidoPaterno, String apellidoMaterno) {
+    public CompleteName(final String nombres, final String apellidoPaterno, final String apellidoMaterno) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
-    
+
     /**
      * Obtiene los nombres de la persona.
      *

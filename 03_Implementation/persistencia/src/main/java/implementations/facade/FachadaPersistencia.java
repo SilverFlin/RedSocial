@@ -1,9 +1,9 @@
 package implementations.facade;
 
 import implementations.db.DAOFactory;
-import edu.itson.dominio.Comentario;
+import edu.itson.dominio.Comment;
 import edu.itson.dominio.Post;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.User;
 import exceptions.PersistenciaException;
 import interfaces.IPersistencia;
 import java.util.List;
@@ -39,8 +39,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Comentario agregarComentario(
-            final Comentario comentario
+    public Comment agregarComentario(
+            final Comment comentario
     ) throws PersistenciaException {
 
         try {
@@ -51,8 +51,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Comentario eliminarComentario(
-            final Comentario comentario
+    public Comment eliminarComentario(
+            final Comment comentario
     ) throws PersistenciaException {
         try {
             return this.comentariosDAO.eliminar(comentario);
@@ -62,8 +62,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Comentario actualizarComentario(
-            final Comentario comentario
+    public Comment actualizarComentario(
+            final Comment comentario
     ) throws PersistenciaException {
 
         try {
@@ -74,7 +74,7 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Comentario buscarComentarioPorId(
+    public Comment buscarComentarioPorId(
             final String id
     ) throws PersistenciaException {
         try {
@@ -85,7 +85,7 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public List<Comentario> buscarTodosLosComentarios()
+    public List<Comment> buscarTodosLosComentarios()
             throws PersistenciaException {
         try {
             return this.comentariosDAO.buscarTodos();
@@ -95,8 +95,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Usuario agregarUsuario(
-            final Usuario usuario
+    public User agregarUsuario(
+            final User usuario
     ) throws PersistenciaException {
         try {
             return this.usuariosDAO.agregar(usuario);
@@ -106,8 +106,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Usuario eliminarUsuario(
-            final Usuario usuario
+    public User eliminarUsuario(
+            final User usuario
     ) throws PersistenciaException {
         try {
             return this.usuariosDAO.eliminar(usuario);
@@ -117,8 +117,8 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Usuario actualizarUsuario(
-            final Usuario usuario
+    public User actualizarUsuario(
+            final User usuario
     ) throws PersistenciaException {
         try {
             return this.usuariosDAO.actualizar(usuario);
@@ -128,7 +128,7 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Usuario buscarUsuarioPorId(
+    public User buscarUsuarioPorId(
             final String id
     ) throws PersistenciaException {
         try {
@@ -139,7 +139,7 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public Usuario buscarUsuarioPorEmail(
+    public User buscarUsuarioPorEmail(
             final String email
     ) throws PersistenciaException {
         try {
@@ -150,7 +150,7 @@ public final class FachadaPersistencia implements IPersistencia {
     }
 
     @Override
-    public List<Usuario> buscarTodosLosUsuarios() throws PersistenciaException {
+    public List<User> buscarTodosLosUsuarios() throws PersistenciaException {
         try {
             return this.usuariosDAO.buscarTodos();
         } catch (PersistenciaException e) {

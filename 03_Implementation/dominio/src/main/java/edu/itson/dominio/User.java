@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 /**
  *
  */
-public class Usuario {
+public class User {
 
     /**
      * ID del usuario.
@@ -15,7 +15,7 @@ public class Usuario {
     /**
      * Nombre completo del usuario.
      */
-    private NombreCompleto nombreCompleto;
+    private CompleteName nombreCompleto;
 
     /**
      * Email del usuario.
@@ -32,7 +32,7 @@ public class Usuario {
     /**
      * Avatar del usuario.
      */
-    private Imagen avatar;
+    private Image avatar;
     /**
      * Fecha de nacimiento del usuario.
      */
@@ -40,29 +40,29 @@ public class Usuario {
     /**
      * Género del usuario.
      */
-    private GeneroUsuario genero;
+    private UserGender genero;
     /**
      * Dirección del usuario.
      */
-    private Direccion direccion;
+    private Address direccion;
     /**
      * Tipo de usuario.
      */
-    private TipoUsuario tipoUsuario;
+    private UserType tipoUsuario;
 
     /**
      * Constructor vacío.
      *
      * @param tipoUsuario
      */
-    public Usuario(final TipoUsuario tipoUsuario) {
+    public User(final UserType tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
     /**
      * Constructor vacio.
      */
-    public Usuario() {
+    public User() {
     }
 
     /**
@@ -70,7 +70,7 @@ public class Usuario {
      *
      * @return nombre completo del usuario.
      */
-    public NombreCompleto getNombreCompleto() {
+    public CompleteName getNombreCompleto() {
         return nombreCompleto;
     }
 
@@ -79,7 +79,7 @@ public class Usuario {
      *
      * @param nombreCompleto
      */
-    public void setNombreCompleto(final NombreCompleto nombreCompleto) {
+    public void setNombreCompleto(final CompleteName nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
 
@@ -160,7 +160,7 @@ public class Usuario {
      *
      * @return el avatar del usuario.
      */
-    public Imagen getAvatar() {
+    public Image getAvatar() {
         return avatar;
     }
 
@@ -169,7 +169,7 @@ public class Usuario {
      *
      * @param avatar
      */
-    public void setAvatar(final Imagen avatar) {
+    public void setAvatar(final Image avatar) {
         this.avatar = avatar;
     }
 
@@ -196,7 +196,7 @@ public class Usuario {
      *
      * @return genero del usuario.
      */
-    public GeneroUsuario getGenero() {
+    public UserGender getGenero() {
         return genero;
     }
 
@@ -205,7 +205,7 @@ public class Usuario {
      *
      * @param genero
      */
-    public void setGenero(final GeneroUsuario genero) {
+    public void setGenero(final UserGender genero) {
         this.genero = genero;
     }
 
@@ -214,7 +214,7 @@ public class Usuario {
      *
      * @return la dirección del usuario
      */
-    public Direccion getDireccion() {
+    public Address getDireccion() {
         return direccion;
     }
 
@@ -223,7 +223,7 @@ public class Usuario {
      *
      * @param direccion
      */
-    public void setDireccion(final Direccion direccion) {
+    public void setDireccion(final Address direccion) {
         this.direccion = direccion;
     }
 
@@ -232,7 +232,7 @@ public class Usuario {
      *
      * @param tipoUsuario
      */
-    public void setTipoUsuario(final TipoUsuario tipoUsuario) {
+    public void setTipoUsuario(final UserType tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
@@ -241,7 +241,7 @@ public class Usuario {
      *
      * @return tipo de usuario.
      */
-    public TipoUsuario getTipoUsuario() {
+    public UserType getTipoUsuario() {
         return tipoUsuario;
     }
 

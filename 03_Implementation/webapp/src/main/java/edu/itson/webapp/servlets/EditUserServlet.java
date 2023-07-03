@@ -1,10 +1,10 @@
 package edu.itson.webapp.servlets;
 
-import edu.itson.dominio.Direccion;
-import edu.itson.dominio.GeneroUsuario;
-import edu.itson.dominio.Imagen;
-import edu.itson.dominio.NombreCompleto;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.Address;
+import edu.itson.dominio.UserGender;
+import edu.itson.dominio.Image;
+import edu.itson.dominio.CompleteName;
+import edu.itson.dominio.User;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -93,12 +93,12 @@ public class EditUserServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws IOException, ServletException {
 
-        Usuario loggedUser = (Usuario) req.getSession().getAttribute("user");
+        User loggedUser = (User) req.getSession().getAttribute("user");
         this.fillNewAttributesToUser(req, loggedUser);
 
         try {
             IUsersBO userBO = new UsersBO();
-            Usuario updatedUser = userBO.editUser(loggedUser);
+            User updatedUser = userBO.editUser(loggedUser);
             HttpSession session = req.getSession();
             session.setAttribute("user", updatedUser);
             res.setStatus(HttpStatusCode.OK.getCode());
@@ -111,7 +111,7 @@ public class EditUserServlet extends HttpServlet {
 
     private void fillNewAttributesToUser(
             final HttpServletRequest req,
-            final Usuario user
+            final User user
     ) {
 
         String firstNameParam = req.getParameter("first-name");
@@ -122,19 +122,19 @@ public class EditUserServlet extends HttpServlet {
         String cityParam = req.getParameter("city");
         String municipalityParam = req.getParameter("municipality");
         String stateParam = req.getParameter("state");
-        Imagen profilePicture = this.getAvatarImage(req);
+        Image profilePicture = this.getAvatarImage(req);
 
         IFormValidator validator = new FormValidator();
 
         if (!validator.hasBlankSpaces(firstNameParam)) {
             if (user.getNombreCompleto() == null) {
-                user.setNombreCompleto(new NombreCompleto());
+                user.setNombreCompleto(new CompleteName());
             }
             user.getNombreCompleto().setNombres(firstNameParam);
         }
         if (!validator.hasBlankSpaces(lastNameParam)) {
             if (user.getNombreCompleto() == null) {
-                user.setNombreCompleto(new NombreCompleto());
+                user.setNombreCompleto(new CompleteName());
             }
             user.getNombreCompleto().setApellidoPaterno(lastNameParam);
         }
@@ -154,31 +154,31 @@ public class EditUserServlet extends HttpServlet {
         if (genderParam != null) {
 
             if (genderParam.equalsIgnoreCase("male")) {
-                user.setGenero(GeneroUsuario.MASCULINO);
+                user.setGenero(UserGender.MASCULINO);
             } else if (genderParam.equalsIgnoreCase("female")) {
-                user.setGenero(GeneroUsuario.FEMENINO);
+                user.setGenero(UserGender.FEMENINO);
             } else if (genderParam.equalsIgnoreCase("other")) {
-                user.setGenero(GeneroUsuario.OTRO);
+                user.setGenero(UserGender.OTRO);
             }
         }
 
         if (!validator.hasBlankSpaces(cityParam)) {
             if (user.getDireccion() == null) {
-                user.setDireccion(new Direccion());
+                user.setDireccion(new Address());
             }
             user.getDireccion().setCiudad(cityParam);
         }
 
         if (!validator.hasBlankSpaces(municipalityParam)) {
             if (user.getDireccion() == null) {
-                user.setDireccion(new Direccion());
+                user.setDireccion(new Address());
             }
             user.getDireccion().setMunicipio(municipalityParam);
         }
 
         if (!validator.hasBlankSpaces(stateParam)) {
             if (user.getDireccion() == null) {
-                user.setDireccion(new Direccion());
+                user.setDireccion(new Address());
             }
             user.getDireccion().setEstado(stateParam);
         }
@@ -188,7 +188,7 @@ public class EditUserServlet extends HttpServlet {
         }
     }
 
-    private Imagen getAvatarImage(final HttpServletRequest req) {
+    private Image getAvatarImage(final HttpServletRequest req) {
         String inputName = "profile-picture";
         try {
             Part profilePicturePart = req.getPart(inputName);

@@ -1,6 +1,6 @@
 package edu.itson.webapp.utils.impl;
 
-import edu.itson.dominio.Imagen;
+import edu.itson.dominio.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import org.bson.types.Binary;
@@ -22,13 +22,13 @@ public final class MongoImageConversor {
      * @return El documento con la información de la imagen.
      * @throws IOException
      */
-    public static Imagen createImageFromInputStream(
+    public static Image createImageFromInputStream(
             final InputStream inputStream,
             final String fileName
     ) throws IOException {
         byte[] imageData = inputStream.readAllBytes();
 
-        Imagen imagenDocument = new Imagen();
+        Image imagenDocument = new Image();
         imagenDocument.setImageData(new Binary(imageData));
         imagenDocument.setFileName(fileName);
         inputStream.close();

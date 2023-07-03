@@ -1,7 +1,7 @@
 package edu.itson.webapp.servlets;
 
-import edu.itson.dominio.TipoUsuario;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.UserType;
+import edu.itson.dominio.User;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -103,7 +103,7 @@ public final class RegisterServlet extends HttpServlet {
             return;
         }
 
-        Usuario registeredUser;
+        User registeredUser;
         try {
             registeredUser = this.tryRegisterUser(paramEmail, paramPassword);
         } catch (BusinessException ex) {
@@ -136,12 +136,12 @@ public final class RegisterServlet extends HttpServlet {
         return "Short description";
     }
 
-    private Usuario tryRegisterUser(
+    private User tryRegisterUser(
             final String paramEmail,
             final String paramPassword
     ) throws BusinessException {
         IUsersBO userBO = new UsersBO();
-        Usuario user = new Usuario(TipoUsuario.NORMAL);
+        User user = new User(UserType.NORMAL);
         user.setEmail(paramEmail);
         user.setPassword(paramPassword);
         return userBO.register(user);
@@ -193,7 +193,7 @@ public final class RegisterServlet extends HttpServlet {
 
     private void createSession(
             final HttpServletRequest req,
-            final Usuario registeredUser
+            final User registeredUser
     ) {
         HttpSession session = req.getSession();
         session.setAttribute("user", registeredUser);

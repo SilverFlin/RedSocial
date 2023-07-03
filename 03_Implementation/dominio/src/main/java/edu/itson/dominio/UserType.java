@@ -1,10 +1,9 @@
 package edu.itson.dominio;
 
-
 /**
  *
  */
-public enum TipoUsuario {
+public enum UserType {
 
     /**
      * Usuario Normal.

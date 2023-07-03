@@ -1,6 +1,6 @@
 package edu.itson.webapp.servlets;
 
-import edu.itson.dominio.Imagen;
+import edu.itson.dominio.Image;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -68,7 +68,7 @@ public class PicturesServlet extends HttpServlet {
             this.sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND);
             return;
         }
-        Imagen avatar;
+        Image avatar;
         try {
             IUsersBO usersBO = new UsersBO();
             avatar = usersBO.getUserAvatar(idParam);

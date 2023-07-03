@@ -1,7 +1,7 @@
 package edu.itson.webapp.business.impl;
 
 import edu.itson.dominio.Post;
-import edu.itson.dominio.TipoPost;
+import edu.itson.dominio.PostType;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public final class PostSorter {
                 continue;
             }
 
-            if (post.getTipoPost().equals(TipoPost.ANCLADO)) {
+            if (post.getTipoPost().equals(PostType.ANCLADO)) {
                 anchoredPosts.add(post);
             } else {
                 normalPosts.add(post);

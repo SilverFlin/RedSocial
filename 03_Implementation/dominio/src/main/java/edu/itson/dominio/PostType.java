@@ -1,10 +1,9 @@
 package edu.itson.dominio;
 
-
 /**
  *
  */
-public enum TipoPost {
+public enum PostType {
     /**
      * Post Normal.
      */

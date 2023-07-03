@@ -1,7 +1,7 @@
 package edu.itson.webapp.business.interfaces;
 
-import edu.itson.dominio.Imagen;
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.Image;
+import edu.itson.dominio.User;
 import edu.itson.webapp.exceptions.BusinessException;
 
 /**
@@ -16,7 +16,7 @@ public interface IUsersBO {
      * @return el ususario registrado.
      * @throws BusinessException
      */
-    Usuario register(Usuario usuario) throws BusinessException;
+    User register(User usuario) throws BusinessException;
 
     /**
      * Intenta logear al ususario con las credenciales, regresa al ususario si
@@ -27,7 +27,7 @@ public interface IUsersBO {
      * @return el usuario, si existe.
      * @throws BusinessException
      */
-    Usuario login(String email, String password) throws BusinessException;
+    User login(String email, String password) throws BusinessException;
 
     /**
      * Edita los campos del ususario.
@@ -36,7 +36,7 @@ public interface IUsersBO {
      * @return el usuario actualizado.
      * @throws BusinessException
      */
-    Usuario editUser(Usuario user) throws BusinessException;
+    User editUser(User user) throws BusinessException;
 
     /**
      * Obtiene el avatar de un usuario segun su ID.
@@ -45,6 +45,6 @@ public interface IUsersBO {
      * @return el avatar del usuario.
      * @throws BusinessException
      */
-    Imagen getUserAvatar(String id) throws BusinessException;
+    Image getUserAvatar(String id) throws BusinessException;
 
 }

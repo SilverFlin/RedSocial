@@ -1,6 +1,6 @@
 package edu.itson.webapp.auth.impl;
 
-import edu.itson.dominio.Usuario;
+import edu.itson.dominio.User;
 import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -99,7 +99,7 @@ public final class AuthServlet extends HttpServlet {
             return;
         }
 
-        Usuario user = this.tryLogin(paramEmail, paramPasswordAttempt);
+        User user = this.tryLogin(paramEmail, paramPasswordAttempt);
 
         if (user == null) {
             request.setAttribute("error", "invalid credentials");
@@ -137,7 +137,7 @@ public final class AuthServlet extends HttpServlet {
         return (param == null || param.isBlank() || param.length() > limit);
     }
 
-    private Usuario tryLogin(
+    private User tryLogin(
             final String email,
             final String passwordAttempt
     ) {

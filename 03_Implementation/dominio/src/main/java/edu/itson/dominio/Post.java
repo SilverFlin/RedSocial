@@ -21,7 +21,7 @@ public final class Post implements Comentable, Comparable<Post> {
     /**
      * Creador del post.
      */
-    private Usuario creador;
+    private User creador;
     /**
      * Título del post.
      */
@@ -29,7 +29,7 @@ public final class Post implements Comentable, Comparable<Post> {
     /**
      * Contenido del Post.
      */
-    private ContenidoPost contenido;
+    private PostContent contenido;
     /**
      * Fecha y hora de la última edición.
      */
@@ -37,14 +37,14 @@ public final class Post implements Comentable, Comparable<Post> {
     /**
      * Tipo del Post.
      */
-    private TipoPost tipoPost;
+    private PostType tipoPost;
 
     /**
      * Constructor vacío.
      *
      * @param tipoPost
      */
-    public Post(final TipoPost tipoPost) {
+    public Post(final PostType tipoPost) {
         this.tipoPost = tipoPost;
     }
 
@@ -95,7 +95,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @return creador del post.
      */
-    public Usuario getCreador() {
+    public User getCreador() {
         return creador;
     }
 
@@ -104,7 +104,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @param creador
      */
-    public void setCreador(final Usuario creador) {
+    public void setCreador(final User creador) {
         this.creador = creador;
     }
 
@@ -131,7 +131,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @return contenido del post.
      */
-    public ContenidoPost getContenido() {
+    public PostContent getContenido() {
         return contenido;
     }
 
@@ -140,7 +140,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @param contenido
      */
-    public void setContenido(final ContenidoPost contenido) {
+    public void setContenido(final PostContent contenido) {
         this.contenido = contenido;
     }
 
@@ -167,7 +167,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @return tipo del post.
      */
-    public TipoPost getTipoPost() {
+    public PostType getTipoPost() {
         return tipoPost;
     }
 
@@ -176,7 +176,7 @@ public final class Post implements Comentable, Comparable<Post> {
      *
      * @param tipoPost
      */
-    public void setTipoPost(final TipoPost tipoPost) {
+    public void setTipoPost(final PostType tipoPost) {
         this.tipoPost = tipoPost;
     }
 

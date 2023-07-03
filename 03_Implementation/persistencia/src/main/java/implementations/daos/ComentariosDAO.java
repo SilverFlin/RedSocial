@@ -3,7 +3,7 @@ package implementations.daos;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import edu.itson.dominio.Comentario;
+import edu.itson.dominio.Comment;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
 import java.util.LinkedList;
@@ -19,7 +19,7 @@ public final class ComentariosDAO implements IComentariosDAO {
     /**
      * Collección con la que el DAO interactúa.
      */
-    private final MongoCollection<Comentario> collection;
+    private final MongoCollection<Comment> collection;
 
     /**
      * Instancia de esta clase.
@@ -33,7 +33,7 @@ public final class ComentariosDAO implements IComentariosDAO {
         this.collection
                 = Connection
                         .getDb()
-                        .getCollection("comentarios", Comentario.class);
+                        .getCollection("comentarios", Comment.class);
     }
 
     /**
@@ -49,8 +49,8 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public Comentario agregar(
-            final Comentario comentario
+    public Comment agregar(
+            final Comment comentario
     ) throws PersistenciaException {
 
         try {
@@ -63,8 +63,8 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public Comentario eliminar(
-            final Comentario comentario
+    public Comment eliminar(
+            final Comment comentario
     ) throws PersistenciaException {
 
         try {
@@ -79,8 +79,8 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public Comentario actualizar(
-            final Comentario comentario
+    public Comment actualizar(
+            final Comment comentario
     ) throws PersistenciaException {
 
         try {
@@ -104,14 +104,14 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public Comentario buscarPorId(
+    public Comment buscarPorId(
             final String id
     ) throws PersistenciaException {
-        Comentario comentario;
+        Comment comentario;
         try {
             Document filtros = new Document();
             filtros.append("_id", id);
-            FindIterable<Comentario> comentarios
+            FindIterable<Comment> comentarios
                     = this.collection.find(filtros);
             comentario = comentarios.first();
             return comentario;
@@ -122,8 +122,8 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public List<Comentario> buscarTodos() throws PersistenciaException {
-        List<Comentario> listacomentario;
+    public List<Comment> buscarTodos() throws PersistenciaException {
+        List<Comment> listacomentario;
         try {
             listacomentario = new LinkedList<>();
             return this.collection.find().into(listacomentario);
