@@ -2,8 +2,7 @@ package edu.itson.webapp.servlets;
 
 import edu.itson.dominio.TipoUsuario;
 import edu.itson.dominio.Usuario;
-import edu.itson.webapp.business.impl.UsersBO;
-import edu.itson.webapp.business.interfaces.IUsersBO;
+import edu.itson.webapp.business.impl.UserBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import edu.itson.webapp.business.interfaces.IUserBO;
 
 /**
  *
@@ -140,7 +140,7 @@ public final class RegisterServlet extends HttpServlet {
             final String paramEmail,
             final String paramPassword
     ) throws BusinessException {
-        IUsersBO userBO = new UsersBO();
+        IUserBO userBO = new UserBO();
         Usuario user = new Usuario(TipoUsuario.NORMAL);
         user.setEmail(paramEmail);
         user.setPassword(paramPassword);

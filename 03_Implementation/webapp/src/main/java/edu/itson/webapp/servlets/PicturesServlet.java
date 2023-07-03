@@ -1,8 +1,7 @@
 package edu.itson.webapp.servlets;
 
 import edu.itson.dominio.Imagen;
-import edu.itson.webapp.business.impl.UsersBO;
-import edu.itson.webapp.business.interfaces.IUsersBO;
+import edu.itson.webapp.business.impl.UserBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
@@ -14,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.itson.webapp.business.interfaces.IUserBO;
 
 /**
  *
@@ -70,7 +70,7 @@ public class PicturesServlet extends HttpServlet {
         }
         Imagen avatar;
         try {
-            IUsersBO usersBO = new UsersBO();
+            IUserBO usersBO = new UserBO();
             avatar = usersBO.getUserAvatar(idParam);
         } catch (BusinessException ex) {
             this.sendToServerErrorPage(req, res);

@@ -5,8 +5,7 @@ import edu.itson.dominio.GeneroUsuario;
 import edu.itson.dominio.Imagen;
 import edu.itson.dominio.NombreCompleto;
 import edu.itson.dominio.Usuario;
-import edu.itson.webapp.business.impl.UsersBO;
-import edu.itson.webapp.business.interfaces.IUsersBO;
+import edu.itson.webapp.business.impl.UserBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
@@ -26,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import edu.itson.webapp.business.interfaces.IUserBO;
 
 /**
  *
@@ -97,7 +97,7 @@ public class EditUserServlet extends HttpServlet {
         this.fillNewAttributesToUser(req, loggedUser);
 
         try {
-            IUsersBO userBO = new UsersBO();
+            IUserBO userBO = new UserBO();
             Usuario updatedUser = userBO.editUser(loggedUser);
             HttpSession session = req.getSession();
             session.setAttribute("user", updatedUser);

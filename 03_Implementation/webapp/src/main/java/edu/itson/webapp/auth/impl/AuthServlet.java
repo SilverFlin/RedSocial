@@ -1,8 +1,7 @@
 package edu.itson.webapp.auth.impl;
 
 import edu.itson.dominio.Usuario;
-import edu.itson.webapp.business.impl.UsersBO;
-import edu.itson.webapp.business.interfaces.IUsersBO;
+import edu.itson.webapp.business.impl.UserBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
 import edu.itson.webapp.paths.Constants;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import edu.itson.webapp.business.interfaces.IUserBO;
 
 /**
  *
@@ -142,7 +142,7 @@ public final class AuthServlet extends HttpServlet {
             final String passwordAttempt
     ) {
         try {
-            IUsersBO userBO = new UsersBO();
+            IUserBO userBO = new UserBO();
             return userBO.login(email, passwordAttempt);
         } catch (BusinessException ex) {
             // TODO add log ?
