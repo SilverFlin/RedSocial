@@ -32,6 +32,10 @@ public final class Constants {
             = "/pages/posts/create-post.jsp";
 
     /**
+     * The path to the edit post page.
+     */
+    public static final String EDIT_POST_PAGE = "/pages/posts/edit-post.jsp";
+    /**
      * The path to the HTTP error page.
      */
     public static final String HTTP_ERROR_PAGE = "/pages/errors/http-error.jsp";

@@ -27,4 +27,31 @@ public interface IPostBO {
      */
     Post createPost(Post post) throws BusinessException;
 
+    /**
+     * Consigue un post por id.
+     *
+     * @param id
+     * @return El post, o null si no existe.
+     * @throws BusinessException
+     */
+    Post getPostById(String id) throws BusinessException;
+
+    /**
+     * Verifica si el post existe.
+     *
+     * @param id
+     * @return true, si el post existe.
+     * @throws BusinessException
+     */
+    boolean postExists(String id) throws BusinessException;
+
+    /**
+     * Edita el post, si existe.
+     *
+     * @param post
+     * @return el post editado.
+     * @throws BusinessException
+     */
+    Post editPost(Post post) throws BusinessException;
+
 }

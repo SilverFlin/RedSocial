@@ -63,4 +63,29 @@ public final class PostBO implements IPostBO {
         }
     }
 
+    @Override
+    public Post getPostById(final String id) throws BusinessException {
+        try {
+            return this.persistence.buscarPostPorId(id);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ get post: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
+    @Override
+    public boolean postExists(final String id) throws BusinessException {
+        return this.getPostById(id) != null;
+    }
+
+    @Override
+    public Post editPost(final Post post) throws BusinessException {
+        try {
+            return this.persistence.actualizarPost(post);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ edit post: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
 }
