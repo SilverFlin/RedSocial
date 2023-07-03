@@ -1,7 +1,7 @@
 package edu.itson.webapp.servlets;
 
 import edu.itson.dominio.Post;
-import edu.itson.webapp.business.impl.PostsBO;
+import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.paths.Constants;
@@ -65,7 +65,7 @@ public class HomeServlet extends HttpServlet {
     }
 
     private List<Post> getPosts() throws BusinessException {
-        IPostBO postBO = new PostsBO();
+        IPostBO postBO = new PostBO();
         final int cantidadMaximaPosts = 3;
         return postBO.getPosts(cantidadMaximaPosts);
     }

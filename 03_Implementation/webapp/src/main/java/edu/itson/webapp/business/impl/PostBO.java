@@ -12,7 +12,7 @@ import java.util.List;
 /**
  *
  */
-public final class PostsBO implements IPostBO {
+public final class PostBO implements IPostBO {
 
     /**
      * Fachada de persistencia.
@@ -22,7 +22,7 @@ public final class PostsBO implements IPostBO {
     /**
      * Unico constructor, que instancía la fachada de persistencia.
      */
-    public PostsBO() {
+    public PostBO() {
         this.persistence = new FachadaPersistencia();
     }
 
