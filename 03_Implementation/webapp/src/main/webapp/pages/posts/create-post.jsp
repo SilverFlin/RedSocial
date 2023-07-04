@@ -10,8 +10,9 @@
     </head>
 
     <body>
-        <%--<jsp:include page="/fragments/header.jsp" />--%>
-        <div class="fondo-blanco" id="post-preview">
+
+       <jsp:include page="/fragments/header.jsp" />
+        <div class="fondo-blanco" id="postPreview">
             <div id="title">
                 <h1>Create Post</h1>
             </div>
@@ -68,7 +69,7 @@
                 <input type="submit" class="item2" value="Post" id="boton" />
             </div>
         </form>
-        <%--<jsp:include page="/fragments/footer.jspf" />--%>
+      <jsp:include page="/fragments/footer.jspf" />
     </body>
 </html>
 

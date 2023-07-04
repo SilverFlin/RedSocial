@@ -1,64 +1,80 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Oculta el email si no cabe */
 @media (max-width: 800px) {
-  #buttons-pair {
+  #user-email {
     display: none;
   }
 }
 
-@media (max-width: 750px) {
-  input[type="text"] {
-    width: 200px;
-  }
-}
-
-body {
-  margin: 0%;
-  overflow-y: scroll;
-  height: 1000px;
-  width: 100%;
-}
-
-.header {
+/* El contenedor de todos los elementos */
+.container-header {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: space-around;
+  padding: 10px;
+  align-items: center;
+  background-color: gray;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   position: fixed;
+  top: 0;
   width: 100%;
-  background-color: grey;
-  font-size: 30px;
 }
 
-form {
+#header-body {
+  margin: 0%;
+}
+
+.item-header {
+  padding: 5px;
+}
+
+/* Hace que el boton de search no se amontone con el campo de busqueda */
+#txt-container {
   display: flex;
-  flex-direction: row;
-  border: 1px solid;
-  padding: 1px;
-  justify-content: space-between;
+  width: 60%;
+  flex-wrap: nowrap;
 }
 
-input[type="text"] {
-  width: 650px;
-  border-radius: 4px;
-  border-width: 1px;
-  outline: none;
+/* Hace que la barra de busqueda se adapte al tamaño */
+#txt-search {
+  width: 100%;
+  padding: 10px;
+  border: 2px gainsboro none;
+  border-radius: 10px;
 }
 
-#search-container {
-  position: relative;
+/* Pone transparente los botones y les elimina el borde */
+#user-email {
+  color: white;
+  font-weight: bold;
 }
 
-#button-search {
-  position: absolute;
-  border-radius: 5px;
-  top: 6px;
-  cursor: pointer;
-}
-
-.content {
-  display: flex;
-}
-
-#button-left {
-  height: 34px;
-}
-
-button {
+#btn-logout {
   background-color: transparent;
   border: none;
+}
+
+#btn-edit {
+  background-color: transparent;
+  border: none;
+}
+
+#btn-search {
+  background-color: transparent;
+  border: none;
+}
+
+#btn-left {
+  background-color: transparent;
+  border: none;
+}
+
+/* Hace que los dos botones no se amontonen */
+#btn-container {
+  display: flex;
+  flex-wrap: nowrap;
 }

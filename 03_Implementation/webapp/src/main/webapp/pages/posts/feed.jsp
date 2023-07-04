@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/webapp/assets/css/posts/feed.css" />
 
     </head>
-    <body>
+    <body class="thisBody">
         <div class="container">
             <div class="left-bar"></div>
             <!--TODO move to JS-->
@@ -24,7 +24,7 @@
                             <header class="post-header">
                                 <img src="#" alt="" />
                                 <!--TODO condicional nombre usuario-->
-                                <h1>${item.creador.email}</h1>
+                                <span>${item.creador.email}</span>
                             </header>
                             <c:if test="${item.tipoPost == 'ANCLADO'}">
                                 <header class="post-header-highlighted">
