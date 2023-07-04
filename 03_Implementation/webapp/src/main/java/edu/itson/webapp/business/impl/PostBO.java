@@ -1,6 +1,7 @@
 package edu.itson.webapp.business.impl;
 
 import edu.itson.dominio.Post;
+import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
@@ -79,8 +80,29 @@ public final class PostBO implements IPostBO {
     }
 
     @Override
-    public Post editPost(final Post post) throws BusinessException {
+    public Post editPost(
+            final Usuario user,
+            final Post post
+    ) throws BusinessException {
         try {
+
+            Usuario creator = post.getCreador();
+
+            boolean usersExist
+                    = creator.getId() != null
+                    && user.getId() != null;
+            if (!usersExist) {
+                String errorMsg = "Users does not exist.";
+                throw new BusinessException(errorMsg);
+
+            }
+
+            boolean isCreator = creator.getId().equals(user.getId());
+            if (!isCreator) {
+                String errorMsg = "User is not the creator.";
+                throw new BusinessException(errorMsg);
+            }
+
             return this.persistence.actualizarPost(post);
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ edit post: " + ex.getMessage();
