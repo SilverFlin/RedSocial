@@ -9,8 +9,8 @@
     </head>
 
     <body>
+        <h1 id="title-form">Edit profile</h1>
         <form class="edit-profile-form" action="/webapp/edit-user?action=edit" method="POST" enctype="multipart/form-data">
-            <h1>Edit profile</h1>
             <div class="form-container">
                 <div class="form-row">
                     <div>
