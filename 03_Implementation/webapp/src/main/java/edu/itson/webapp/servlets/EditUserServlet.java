@@ -17,6 +17,7 @@ import edu.itson.webapp.utils.impl.LocalDateTimeProcessor;
 import edu.itson.webapp.utils.impl.MongoImageConversor;
 import edu.itson.webapp.utils.interfaces.IDateProcessor;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
+import edu.itson.webapp.utils.interfaces.IimageConversor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -35,7 +36,7 @@ import javax.servlet.http.Part;
 @MultipartConfig
 @WebServlet(name = "EditUserServlet", urlPatterns = {"/edit-user"})
 public class EditUserServlet extends HttpServlet {
-
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -191,13 +192,14 @@ public class EditUserServlet extends HttpServlet {
     }
 
     private Imagen getAvatarImage(final HttpServletRequest req) {
+        IimageConversor imageConversor = new MongoImageConversor();
         String inputName = "profile-picture";
         try {
             Part profilePicturePart = req.getPart(inputName);
 
             InputStream inputStream = profilePicturePart.getInputStream();
 
-            return MongoImageConversor
+            return imageConversor
                     .createImageFromInputStream(
                             inputStream,
                             profilePicturePart.getSubmittedFileName()
