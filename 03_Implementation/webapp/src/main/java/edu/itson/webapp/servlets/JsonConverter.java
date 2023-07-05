@@ -7,8 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 /**
  *
  */
-public class JsonConverter {
+public final class JsonConverter {
 
+    private JsonConverter() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    /**
+     * Saca el JSON que viene en el request y lor regresa en formato de string.
+     *
+     * @param req
+     * @return string representando al json.
+     * @throws IOException
+     */
     public static String getJsonFromRequest(
             final HttpServletRequest req
     ) throws IOException {

@@ -33,7 +33,23 @@ public final class Redirect {
         res.sendRedirect(
                 req.getContextPath() + Constants.HOME_ENDPOINT
         );
+    }
 
+    /**
+     * Este metodo redirecciona a home, con un codigo http personalizado.
+     *
+     * @param req la request
+     * @param res la response
+     * @param statusCode
+     * @throws IOException por si algo sale mal
+     */
+    public static void redirectHome(
+            final HttpServletRequest req,
+            final HttpServletResponse res,
+            final HttpStatusCode statusCode
+    ) throws IOException {
+        res.setStatus(statusCode.getCode());
+        res.sendRedirect(req.getContextPath() + Constants.HOME_ENDPOINT);
     }
 
     /**

@@ -3,7 +3,7 @@ package edu.itson.webapp.json.impl;
 /**
  *
  */
-public class CommentSubmission {
+public final class CreateCommentJson {
 
     /**
      * Contenido del comentario.
@@ -17,7 +17,7 @@ public class CommentSubmission {
     /**
      * Constructor vacio.
      */
-    public CommentSubmission() {
+    public CreateCommentJson() {
     }
 
     /**
