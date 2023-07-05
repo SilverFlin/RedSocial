@@ -56,4 +56,14 @@ public interface IPostBO {
      */
     Post editPost(Usuario user, Post post) throws BusinessException;
 
+    /**
+     * Elimina el post, si existe.
+     *
+     * @param id
+     * @param user
+     * @return el post eliminado.
+     * @throws BusinessException
+     */
+    Post deletePost(String id, Usuario user) throws BusinessException;
+
 }
