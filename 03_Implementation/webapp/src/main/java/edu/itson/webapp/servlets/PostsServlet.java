@@ -6,11 +6,12 @@ import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
+import edu.itson.webapp.http.HttpStatusCode;
+import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
 import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import edu.itson.webapp.json.impl.IdJson;
-import static edu.itson.webapp.servlets.Redirect.redirectHome;
-import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
-import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
+import edu.itson.webapp.json.impl.JsonResponses;
+import edu.itson.webapp.json.impl.ResponseJson;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,6 +85,8 @@ public final class PostsServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
+        ResponseJson<IdJson> responseJson = new ResponseJson<>();
+
         String idParam = req.getParameter("id");
 
         String jsonData = JsonConverter.getJsonFromRequest(req);
@@ -94,7 +97,13 @@ public final class PostsServlet extends HttpServlet {
         Usuario user = (Usuario) req.getSession().getAttribute("user");
 
         if (user == null) {
-            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
+            res.setStatus(UNAUTHORIZED.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "User is null",
+                    null,
+                    res);
             return;
         }
 
@@ -107,16 +116,36 @@ public final class PostsServlet extends HttpServlet {
             }
 
         } catch (BusinessException ex) {
-            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "Post was not deleted",
+                    null,
+                    res);
             return;
         }
 
         if (postDeleted == null) {
-            sendToServerErrorPage(req, res, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "Post is null",
+                    null,
+                    res);
             return;
         }
 
-        redirectHome(req, res);
+        res.setStatus(HttpStatusCode.OK.getCode());
+        ResponseJson.doJsonResponse(
+                responseJson,
+                JsonResponses.STATUS_SUCCESS,
+                "Post was deleted succesfully",
+                idJson,
+                res
+        );
+        return;
 
     }
 

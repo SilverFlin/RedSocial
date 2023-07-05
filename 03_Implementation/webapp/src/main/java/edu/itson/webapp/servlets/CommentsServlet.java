@@ -16,7 +16,6 @@ import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import edu.itson.webapp.json.impl.CreateCommentJson;
 import edu.itson.webapp.json.impl.JsonResponses;
 import edu.itson.webapp.json.impl.ResponseJson;
-import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
@@ -124,7 +123,13 @@ public class CommentsServlet extends HttpServlet {
             }
 
         } catch (BusinessException ex) {
-            sendToServerErrorPage(req, res, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "Comment was not created",
+                    null,
+                    res);
             return;
         }
 

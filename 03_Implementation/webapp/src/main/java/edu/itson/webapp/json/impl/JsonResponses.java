@@ -18,6 +18,9 @@ public enum JsonResponses {
      */
     STATUS_ERROR("error");
 
+    /**
+     * Status de la respuesta.
+     */
     private final String status;
 
     /**
