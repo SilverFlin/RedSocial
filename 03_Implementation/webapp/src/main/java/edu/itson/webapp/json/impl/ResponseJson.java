@@ -26,6 +26,9 @@ public class ResponseJson<T> {
      */
     private T data;
 
+    /**
+     * Constructor vacio.
+     */
     public ResponseJson() {
     }
 
@@ -66,9 +69,9 @@ public class ResponseJson<T> {
     }
 
     /**
-     * Obtiene la informacion, opcional de la resputsta
+     * Obtiene la informacion, opcional de la respuesta.
      *
-     * @return
+     * @return obtiene la informacion de la respuesta.
      */
     public T getData() {
         return data;
@@ -83,8 +86,19 @@ public class ResponseJson<T> {
         this.data = data;
     }
 
+    /**
+     * Crea la respuesta en json.
+     *
+     * @param <T>
+     * @param responseJson
+     * @param response
+     * @param message
+     * @param data
+     * @param res
+     * @throws IOException
+     */
     public static <T> void doJsonResponse(
-            final ResponseJson responseJson,
+            final ResponseJson<T> responseJson,
             final JsonResponses response,
             final String message,
             final T data,
@@ -98,6 +112,13 @@ public class ResponseJson<T> {
         ResponseJson.processJsonResponse(res, responseJson);
     }
 
+    /**
+     * Procesa la respuesta de json.
+     *
+     * @param res
+     * @param responseJson
+     * @throws IOException
+     */
     public static void processJsonResponse(
             final HttpServletResponse res,
             final ResponseJson responseJson

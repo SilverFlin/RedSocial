@@ -14,8 +14,8 @@ import edu.itson.webapp.http.HttpStatusCode;
 import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
 import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import edu.itson.webapp.json.impl.CreateCommentJson;
-import static edu.itson.webapp.servlets.Redirect.redirectHome;
-import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
+import edu.itson.webapp.json.impl.JsonResponses;
+import edu.itson.webapp.json.impl.ResponseJson;
 import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
@@ -88,6 +88,8 @@ public class CommentsServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
+        ResponseJson<CreateCommentJson> responseJson = new ResponseJson<>();
+
         String contentParam = req.getParameter("content");
         String postIdParam = req.getParameter("postId");
 
@@ -101,7 +103,13 @@ public class CommentsServlet extends HttpServlet {
         Usuario loggedUser = (Usuario) req.getSession().getAttribute("user");
 
         if (loggedUser == null) {
-            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
+            res.setStatus(UNAUTHORIZED.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "User is null",
+                    null,
+                    res);
             return;
         }
 
@@ -121,11 +129,25 @@ public class CommentsServlet extends HttpServlet {
         }
 
         if (commentCreated == null) {
-            sendToHttpErrorPage(req, res, BAD_REQUEST, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "Comment is null",
+                    null,
+                    res);
             return;
         }
 
-        redirectHome(req, res, HttpStatusCode.CREATED);
+        res.setStatus(HttpStatusCode.CREATED.getCode());
+        ResponseJson.doJsonResponse(
+                responseJson,
+                JsonResponses.STATUS_SUCCESS,
+                "Comment was created",
+                commentSubmission,
+                res
+        );
+        return;
     }
 
     private boolean validateParams(final String content) {
