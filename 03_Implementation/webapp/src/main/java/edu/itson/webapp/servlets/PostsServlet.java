@@ -1,13 +1,17 @@
 package edu.itson.webapp.servlets;
 
+import com.google.gson.Gson;
 import edu.itson.dominio.Post;
+import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
-import edu.itson.webapp.http.HttpStatusCode;
-import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
+import edu.itson.webapp.json.impl.IdJson;
+import static edu.itson.webapp.servlets.Redirect.redirectHome;
+import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
+import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Toled
  */
 @WebServlet(name = "PostsServlet", urlPatterns = {"/posts"})
-public class PostsServlet extends HttpServlet {
+public final class PostsServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -34,12 +38,7 @@ public class PostsServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
-
-        String actionParam = req.getParameter("action");
-        // /pictures?action=avatar&id=6498a7ebce302d27e8c99b2e
-        if (actionParam != null && actionParam.equalsIgnoreCase("all-posts")) {
-            this.processGetAllPosts(req, res);
-        }
+        // TODO vista Post
     }
 
     /**
@@ -55,7 +54,20 @@ public class PostsServlet extends HttpServlet {
             final HttpServletRequest request,
             final HttpServletResponse response)
             throws ServletException, IOException {
-//        TODO
+
+    }
+
+    @Override
+    protected void doDelete(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        String action = req.getParameter("action");
+
+        if (action == null || action.equalsIgnoreCase("delete-post")) {
+            this.processDeletePost(req, res);
+            return;
+        }
     }
 
     /**
@@ -67,40 +79,56 @@ public class PostsServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    // </editor-fold>
 
-    private void processGetAllPosts(
+    private void processDeletePost(
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
-        String limitParam = req.getParameter("limit");
+        String idParam = req.getParameter("id");
 
-        int limit;
-        try {
-            limit = Integer.parseInt(limitParam);
-        } catch (NumberFormatException ex) {
-            // TODO redirect http-error
+        String jsonData = JsonConverter.getJsonFromRequest(req);
+        Gson gson = new Gson();
+        IdJson idJson = gson.fromJson(jsonData, IdJson.class);
+        String postId = idJson.getId();
+
+        Usuario user = (Usuario) req.getSession().getAttribute("user");
+
+        if (user == null) {
+            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
             return;
         }
 
-        final int limitPosts = 5;
-        if (limitParam == null || limit > limitPosts) {
-            // TODO redirect http-error
-            return;
-        }
-
+        Post postDeleted;
         try {
-            IPostBO postBO = new PostBO();
-            List<Post> posts = postBO.getPosts(limit);
-            req.setAttribute("posts", posts);
+            postDeleted = this.tryDeletePost(idParam, user);
+
+            if (postDeleted == null) {
+                postDeleted = this.tryDeletePost(postId, user);
+            }
+
         } catch (BusinessException ex) {
-            // TODO Log
-            res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
-            getServletContext()
-                    .getRequestDispatcher(Constants.SERVER_ERROR_PAGE)
-                    .forward(req, res);
+            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
+            return;
         }
 
+        if (postDeleted == null) {
+            sendToServerErrorPage(req, res, getServletContext());
+            return;
+        }
+
+        redirectHome(req, res);
+
+    }
+
+    private Post tryDeletePost(
+            final String postId,
+            final Usuario user
+    ) throws BusinessException {
+        if (postId == null || user == null) {
+            return null;
+        }
+        IPostBO postBO = new PostBO();
+        return postBO.deletePost(postId, user);
     }
 
 }
