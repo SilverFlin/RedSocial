@@ -8,14 +8,12 @@ import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
-import edu.itson.webapp.http.HttpStatusCode;
 import static edu.itson.webapp.http.HttpStatusCode.BAD_REQUEST;
-import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
+import static edu.itson.webapp.http.HttpStatusCode.CREATED;
 import edu.itson.webapp.json.impl.CreatePostJson;
+import edu.itson.webapp.json.impl.JsonResponses;
+import edu.itson.webapp.json.impl.ResponseJson;
 import edu.itson.webapp.paths.Constants;
-import static edu.itson.webapp.servlets.Redirect.redirectHome;
-import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
-import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
@@ -102,6 +100,10 @@ public class CreatePostServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
+
+        // TODO Separate tryWithParams / tryWithJson
+        ResponseJson<CreatePostJson> responseJson = new ResponseJson<>();
+
         String titleParam = req.getParameter("title");
         String contentParam = req.getParameter("content");
 
@@ -115,8 +117,15 @@ public class CreatePostServlet extends HttpServlet {
         Usuario user = (Usuario) req.getSession().getAttribute("user");
 
         if (user == null) {
-            sendToHttpErrorPage(req, res, UNAUTHORIZED, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "User is null",
+                    null,
+                    res);
             return;
+
         }
 
         Post postCreated;
@@ -128,16 +137,38 @@ public class CreatePostServlet extends HttpServlet {
             }
 
         } catch (BusinessException ex) {
-            sendToServerErrorPage(req, res, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_ERROR,
+                    "Post was not created: " + ex.getMessage(),
+                    null,
+                    res);
             return;
         }
 
         if (postCreated == null) {
-            sendToHttpErrorPage(req, res, BAD_REQUEST, getServletContext());
+            res.setStatus(BAD_REQUEST.getCode());
+            ResponseJson.doJsonResponse(
+                    responseJson,
+                    JsonResponses.STATUS_FAIL,
+                    "Post is null",
+                    null,
+                    res
+            );
             return;
         }
 
-        redirectHome(req, res, HttpStatusCode.CREATED);
+        res.setStatus(CREATED.getCode());
+        ResponseJson.doJsonResponse(
+                responseJson,
+                JsonResponses.STATUS_SUCCESS,
+                "Post was created",
+                postSubmission,
+                res
+        );
+        return;
+
     }
 
     private boolean validateParams(final String title, final String content) {
