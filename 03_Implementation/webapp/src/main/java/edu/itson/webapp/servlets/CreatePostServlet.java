@@ -120,7 +120,7 @@ public class CreatePostServlet extends HttpServlet {
 
         if (user == null) {
             res.setStatus(BAD_REQUEST.getCode());
-            this.doJsonResponse(
+            ResponseJson.doJsonResponse(
                     responseJson,
                     JsonResponses.STATUS_FAIL,
                     "User is null",
@@ -140,7 +140,7 @@ public class CreatePostServlet extends HttpServlet {
 
         } catch (BusinessException ex) {
             res.setStatus(BAD_REQUEST.getCode());
-            this.doJsonResponse(
+            ResponseJson.doJsonResponse(
                     responseJson,
                     JsonResponses.STATUS_ERROR,
                     "Post was not created: " + ex.getMessage(),
@@ -151,7 +151,7 @@ public class CreatePostServlet extends HttpServlet {
 
         if (postCreated == null) {
             res.setStatus(BAD_REQUEST.getCode());
-            this.doJsonResponse(
+            ResponseJson.doJsonResponse(
                     responseJson,
                     JsonResponses.STATUS_FAIL,
                     "Post is null",
@@ -162,7 +162,7 @@ public class CreatePostServlet extends HttpServlet {
         }
 
         res.setStatus(CREATED.getCode());
-        this.doJsonResponse(
+        ResponseJson.doJsonResponse(
                 responseJson,
                 JsonResponses.STATUS_SUCCESS,
                 "Post was created",
@@ -211,34 +211,6 @@ public class CreatePostServlet extends HttpServlet {
         postCreated.setFechaHoraCreacion(LocalDateTime.now());
         IPostBO postBO = new PostBO();
         return postBO.createPost(postCreated);
-    }
-
-    private void processJsonResponse(
-            final HttpServletResponse res,
-            final ResponseJson responseJson
-    ) throws IOException {
-        res.setContentType("application/json");
-        Gson gson = new Gson();
-        String jsonTest = gson.toJson(responseJson);
-
-        try (PrintWriter out = res.getWriter()) {
-            out.println(jsonTest);
-        }
-    }
-
-    private <T> void doJsonResponse(
-            final ResponseJson responseJson,
-            final JsonResponses response,
-            final String message,
-            final T data,
-            final HttpServletResponse res
-    ) throws IOException {
-        responseJson.setStatus(response);
-        responseJson.setMessage(message);
-        if (data != null) {
-            responseJson.setData(data);
-        }
-        this.processJsonResponse(res, responseJson);
     }
 
 }
