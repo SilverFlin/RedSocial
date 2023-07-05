@@ -1,6 +1,7 @@
 package edu.itson.webapp.business.impl;
 
 import edu.itson.dominio.Post;
+import edu.itson.dominio.TipoUsuario;
 import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
@@ -106,6 +107,30 @@ public final class PostBO implements IPostBO {
             return this.persistence.actualizarPost(post);
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ edit post: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
+    @Override
+    public Post deletePost(
+            final String id,
+            final Usuario user
+    ) throws BusinessException {
+        try {
+            Post post = this.persistence.buscarPostPorId(id);
+            if (post == null) {
+                String errorMsg = "Error @ delete post: post does not exist.";
+                throw new BusinessException(errorMsg);
+            }
+
+            if (!user.getTipoUsuario().equals(TipoUsuario.ADMIN)) {
+                String errorMsg = "Error @ delete post: User is not Admin.";
+                throw new BusinessException(errorMsg);
+            }
+
+            return this.persistence.eliminarPost(post);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ get post: " + ex.getMessage();
             throw new BusinessException(errorMsg);
         }
     }
