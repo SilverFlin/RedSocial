@@ -12,8 +12,8 @@
         <div class="container">
             <div class="left-bar"></div>
             <!--TODO move to JS-->
-            <button class="create-post-btn" onclick="window.location.href='/webapp/create-post';">
-                 + Create a new Post
+            <button class="create-post-btn" onclick="window.location.href = '/webapp/create-post';">
+                + Create a new Post
             </button>
 
             <c:forEach var="item" items="${requestScope.posts}">
@@ -22,7 +22,7 @@
                         <!--HEADER-->
                         <div class="post-header-wrapper">
                             <header class="post-header">
-                                <img src="#" alt="" />
+                                <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
                                 <!--TODO condicional nombre usuario-->
                                 <span>${item.creador.email}</span>
                             </header>
@@ -61,8 +61,10 @@
                                 </c:if>
 
                             </section>
+                            <a href="/webapp/posts?action=get-post&id=${item.id}">
+                                <button> &gt;</button>
+                            </a>
 
-                            <button><a href="/webapp/posts?id=${item.id}"></a> &gt;</button>
                         </div>
 
                         <!--FOOTER--> 
