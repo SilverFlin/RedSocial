@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Toled
  */
 @WebServlet(name = "PostsServlet", urlPatterns = {"/posts"})
 public final class PostsServlet extends HttpServlet {
@@ -98,7 +97,11 @@ public final class PostsServlet extends HttpServlet {
         String jsonData = JsonConverter.getJsonFromRequest(req);
         Gson gson = new Gson();
         IdJson idJson = gson.fromJson(jsonData, IdJson.class);
-        String postId = idJson.getId();
+
+        String postId = null;
+        if (idJson != null) {
+            postId = idJson.getId();
+        }
 
         Usuario user = (Usuario) req.getSession().getAttribute("user");
 

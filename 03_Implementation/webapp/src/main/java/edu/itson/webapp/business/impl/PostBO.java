@@ -38,7 +38,14 @@ public final class PostBO implements IPostBO {
             if (posts.isEmpty()) {
                 return orderedPosts;
             }
-            for (int i = 0; i < amount; i++) {
+
+            int limit = amount;
+
+            if (amount > posts.size()) {
+                limit = posts.size();
+            }
+
+            for (int i = 0; i < limit; i++) {
                 if (posts.get(i) == null) {
                     break;
                 }

@@ -96,8 +96,13 @@ public class CommentsServlet extends HttpServlet {
         Gson gson = new Gson();
         CreateCommentJson commentSubmission
                 = gson.fromJson(formInJson, CreateCommentJson.class);
-        String content = commentSubmission.getContent();
-        String postId = commentSubmission.getPostId();
+
+        String content = null;
+        String postId = null;
+        if (commentSubmission != null) {
+            content = commentSubmission.getContent();
+            postId = commentSubmission.getPostId();
+        }
 
         Usuario loggedUser = (Usuario) req.getSession().getAttribute("user");
 

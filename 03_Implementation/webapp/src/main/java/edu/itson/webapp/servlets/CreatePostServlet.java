@@ -111,8 +111,12 @@ public class CreatePostServlet extends HttpServlet {
         Gson gson = new Gson();
         CreatePostJson postSubmission
                 = gson.fromJson(formInJson, CreatePostJson.class);
-        String title = postSubmission.getTitle();
-        String content = postSubmission.getContent();
+        String title = null;
+        String content = null;
+        if (postSubmission != null) {
+            title = postSubmission.getTitle();
+            content = postSubmission.getContent();
+        }
 
         Usuario user = (Usuario) req.getSession().getAttribute("user");
 
