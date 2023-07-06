@@ -154,4 +154,14 @@ public interface IPersistencia {
      * @throws PersistenciaException Si ocurre un error en capa persistencia.
      */
     List<Post> buscarTodosLosPosts() throws PersistenciaException;
+
+    /**
+     * Obtiene todos los comentarios de un post.
+     *
+     * @param post
+     * @return lista con los comentarios de un post.
+     * @throws exceptions.PersistenciaException
+     */
+    List<Comentario> getPostComments(Comentable post)
+            throws PersistenciaException;
 }

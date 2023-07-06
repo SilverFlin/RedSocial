@@ -24,26 +24,40 @@
                           class="user-icon"
                           />${sessionScope.user.email}
                     </span>
-                    <label class="fecha" >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year} </label>
-                    <label class="hora">${post.fechaHoraCreacion.hour}:${post.fechaHoraCreacion.minute}</label>
+                    <label class="fecha"
+                           >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year}
+                    </label>
+                    <label class="hora"
+                           >${post.fechaHoraCreacion.hour}:${post.fechaHoraCreacion.minute}</label
+                    >
                 </div>
             </section>
             <section id="preview-content">
-
                 <div class="pub-body">
                     <p class="text">
-                        ${post.titulo} <br>
-                        ${post.contenido.texto}
+                    <p id="title-post">${post.titulo}</p> 
+                    <p id="content-post">${post.contenido.texto}</p>
                     </p>
                 </div>
             </section>
         </div>
 
-        <form action="/webapp/edit-post?action=edit&id=${post.id}" method="post" class="fondo-blanco container" id="form">
+        <form
+          action="/webapp/edit-post?action=edit&id=${post.id}"
+          method="post"
+          class="fondo-blanco container"
+          id="form"
+          >
             <div id="contenedor" class="container">
                 <div class="item" id="titlefield">
                     <label for="title-text" class="labels">Title</label>
-                    <input type="text" name="title" id="title-text" required  value="${post.titulo}"/>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title-text"
+                      required
+                      value="${post.titulo}"
+                      />
                 </div>
                 <div class="item" id="txt-area">
                     <label for="content" class="labels">Content</label>
@@ -58,4 +72,5 @@
             </div>
         </form>
     </body>
+    <script src="/webapp/src/posts/edit-post.js"></script>
 </html>

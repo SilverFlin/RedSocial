@@ -79,13 +79,12 @@ body {
   width: 2em;
   height: 2em;
   border-radius: 100px;
-  background-color: red;
 }
 
 .post-header-wrapper .post-header span {
   display: inline;
-  position: relative;
-  bottom: 30%;
+  color: white;
+  font-weight: 800;
 }
 
 .post-header-wrapper .post-time label {
@@ -96,10 +95,7 @@ body {
 
 /* POST TIME */
 .post-time {
-  display: flex;
-  position: relative;
-  right: 0%;
-  top: 5%;
+  display: block;
   margin-right: 10px;
   color: gray;
 }
@@ -110,6 +106,7 @@ body {
   height: 60%;
   border-top-right-radius: 10px;
   display: flex;
+  flex-flow: row nowrap;
 }
 
 .post-components-wrapper .post-content {
@@ -162,12 +159,9 @@ body {
 .post-footer-wrapper .post-footer img {
   height: 1.5em;
   width: 1.5em;
-  margin: 2% 0;
+  margin: 2% 3%;
   border-radius: 100px;
-  background-color: red;
   flex: 0 1 1.5em;
-  position: relative;
-  left: 6px;
 }
 
 .post-footer-wrapper .post-footer h1 {
@@ -220,10 +214,7 @@ body {
   width: 1.5em;
   margin: 2% 0 0;
   border-radius: 100px;
-  background-color: red;
   flex: 0 1 1.5em;
-  position: relative;
-  left: 6px;
 }
 
 .post-comments .comment h1 {
@@ -257,8 +248,6 @@ body {
   margin: 0;
   display: flex;
   align-self: flex-end;
-  position: relative;
-  top: 8%;
 }
 
 .create-comment input {
@@ -306,13 +295,10 @@ body {
 
 /* DeletePost */
 .delete-post {
-  position: relative;
   width: 2em;
   height: 2em;
   border-radius: 0 10px 10px 0;
   background-color: red;
-  bottom: 85%;
-  left: 105%;
   padding: auto;
   margin: 0;
 }
@@ -324,10 +310,9 @@ body {
 
 .post-header-highlighted {
   margin-right: 60px;
-  background-color: rgb(21 196 223);
-  border: solid grey 1px;
+  border: none;
   border-top-left-radius: 25%;
   border-top-right-radius: 25%;
-  width: 150px;
+  width: 1.5em;
   text-align: center;
 }

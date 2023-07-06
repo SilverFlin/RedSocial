@@ -23,18 +23,18 @@
                         <div class="post-header-wrapper">
                             <header class="post-header">
                                 <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
-                                <!--TODO condicional nombre usuario-->
-                                <span>${item.creador.email}</span>
+                                <span>${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}</span>
                             </header>
                             <c:if test="${item.tipoPost == 'ANCLADO'}">
                                 <header class="post-header-highlighted">
-                                    <h5>Highlighted</h5>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1664"><path fill="currentColor" d="M480 736V288q0-14-9-23t-23-9t-23 9t-9 23v448q0 14 9 23t23 9t23-9t9-23zm672 352q0 26-19 45t-45 19H659l-51 483q-2 12-10.5 20.5T577 1664h-1q-27 0-32-27l-76-485H64q-26 0-45-19t-19-45q0-123 78.5-221.5T256 768V256q-52 0-90-38t-38-90t38-90t90-38h640q52 0 90 38t38 90t-38 90t-90 38v512q99 0 177.5 98.5T1152 1088z"/></svg>
                                 </header>
                             </c:if>
                             <div class="post-time">
                                 <!--TODO Formatear Fecha-->
-                                <label>${item.fechaHoraCreacion.dayOfMonth}/${item.fechaHoraCreacion.monthValue}/${item.fechaHoraCreacion.year} </label>
-                                <label>[${item.fechaHoraCreacion.hour}:${item.fechaHoraCreacion.minute}]</label>
+                                <label>${item.fechaHoraCreacion.dayOfMonth}/${item.fechaHoraCreacion.monthValue}/${item.fechaHoraCreacion.year}</label>
+
+                                <label><b>${item.fechaHoraCreacion.hour}:${item.fechaHoraCreacion.minute}</b></label>
                             </div>
                         </div>
                         <!--POST CONTENT-->
