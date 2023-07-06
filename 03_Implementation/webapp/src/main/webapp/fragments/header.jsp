@@ -17,7 +17,7 @@
                 </c:if>
             </c:if>
         </div>
-        <div class="item-header">STRIX</div>
+        <div class="item-header"><a class="home-link" href="./home">STRIX</a></div>
         <div class="item-header" id="btn-container">
             <button id="btn-edit">
                 <a href="/webapp/edit-user"> 
