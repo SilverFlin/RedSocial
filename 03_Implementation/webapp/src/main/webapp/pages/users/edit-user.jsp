@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,6 +23,7 @@
                           id="first-name"
                           class="input-edit-form"
                           placeholder="John"
+                          value="${sessionScope.user.nombreCompleto.nombres}"
                           required
                           />
                     </div>
@@ -32,6 +35,7 @@
                           id="last-name"
                           class="input-edit-form"
                           placeholder="Doe"
+                          value="${sessionScope.user.nombreCompleto.apellidoPaterno}"
                           required
                           />
                     </div>
@@ -61,6 +65,7 @@
                           id="phone-number"
                           class="input-edit-form"
                           placeholder="1234567890"
+                          value="${sessionScope.user.telefono}"
                           />
                     </div>
                 </div>
@@ -72,30 +77,32 @@
                           name="birthday"
                           id="birthday"
                           class="input-edit-form"
+                          value="${sessionScope.user.fechaNacimiento.year}-${sessionScope.user.fechaNacimiento.monthValue < 10 ? '0' : ''}${sessionScope.user.fechaNacimiento.monthValue}-${sessionScope.user.fechaNacimiento.dayOfMonth < 10 ? '0' : ''}${sessionScope.user.fechaNacimiento.dayOfMonth}"
                           />
                     </div>
                     <div>
                         <label for="gender">Gender</label>
                         <select name="gender" id="gender" class="input-edit-form" required>
                             <option selected value="">Select...</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="male" ${sessionScope.user.genero == 'MASCULINO'?'selected':''} >Male</option>
+                            <option value="female" ${sessionScope.user.genero == 'FEMENINO'?'selected':''}>Female</option>
+                            <option value="other" ${sessionScope.user.genero == 'OTRO'?'selected':''}>Other</option>
                         </select>
+                        <!--${sessionScope.user.genero}-->
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-item-col3">
                         <label for="city"> City </label>
-                        <input type="text" name="city"  id="city" placeholder="Obregon" />
+                        <input type="text" name="city"  id="city" placeholder="Obregon" value="${sessionScope.user.direccion.ciudad}" />
                     </div>
                     <div class="form-item-col3">
                         <label for="municipality"> Municipality </label>
-                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" />
+                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" value="${sessionScope.user.direccion.municipio}" />
                     </div>
                     <div class="form-item-col3">
                         <label for="state"> State </label>
-                        <input type="text" name="state" id="state" placeholder="Sonora" />
+                        <input type="text" name="state" id="state" placeholder="Sonora" value="${sessionScope.user.direccion.estado}"/>
                     </div>
                 </div>
                 <div class="form-row">
@@ -108,7 +115,11 @@
                           id="profile-picture"
                           class="input-edit-form"
                           />
+                        <c:if test="${sessionScope.user.avatar != null}">
+                            <img id="edit-profile-picture" src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}" alt="alt"/>
+                        </c:if>
                     </div>
+
                 </div>
             </div>
             <button type="submit" class="save-btn">SAVE</button>

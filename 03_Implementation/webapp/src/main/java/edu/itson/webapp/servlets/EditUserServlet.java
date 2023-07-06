@@ -197,11 +197,16 @@ public class EditUserServlet extends HttpServlet {
 
             InputStream inputStream = profilePicturePart.getInputStream();
 
-            return MongoImageConversor
+            Imagen image = MongoImageConversor
                     .createImageFromInputStream(
                             inputStream,
                             profilePicturePart.getSubmittedFileName()
                     );
+            if (image.getImageData().getData().length < 1) {
+                return null;
+            }
+
+            return image;
 
         } catch (IOException | ServletException ex) {
             return null;
