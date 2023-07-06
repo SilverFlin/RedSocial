@@ -22,7 +22,13 @@
                         <!--HEADER-->
                         <div class="post-header-wrapper">
                             <header class="post-header">
-                                <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
+
+                                <c:if test="${item.creador.avatar == null}">
+                                    <img src="/webapp/assets/images/default-profile.jpg" alt="" />
+                                </c:if>
+                                <c:if test="${item.creador.avatar != null}">
+                                    <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
+                                </c:if>
                                 <span>${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}</span>
                             </header>
                             <c:if test="${item.tipoPost == 'ANCLADO'}">
