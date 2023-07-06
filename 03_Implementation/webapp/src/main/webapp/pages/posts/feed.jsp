@@ -70,6 +70,11 @@
                             <a href="/webapp/posts?action=get-post&id=${item.id}">
                                 <button> &gt;</button>
                             </a>
+                            <c:if test="${item.creador.id == sessionScope.user.id}">
+                                <a href="/webapp/edit-post?action=edit-post&id=${item.id}">
+                                    <button> Edit</button>
+                                </a>
+                            </c:if>
 
                         </div>
 
