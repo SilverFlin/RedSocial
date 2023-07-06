@@ -35,8 +35,11 @@ public final class PostBO implements IPostBO {
 
             List<Post> posts = this.persistence.buscarTodosLosPosts();
             List<Post> orderedPosts = new LinkedList<>();
+            if (posts.isEmpty()) {
+                return orderedPosts;
+            }
             for (int i = 0; i < amount; i++) {
-                if (posts.size() < amount || posts.get(i) == null) {
+                if (posts.get(i) == null) {
                     break;
                 }
 
