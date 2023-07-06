@@ -35,6 +35,12 @@ public final class Constants {
      * The path to the edit post page.
      */
     public static final String EDIT_POST_PAGE = "/pages/posts/edit-post.jsp";
+
+    /**
+     * The path to the show post page.
+     */
+    public static final String SHOW_POST_PAGE = "/pages/posts/post.jsp";
+
     /**
      * The path to the HTTP error page.
      */

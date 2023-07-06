@@ -11,8 +11,8 @@
 
     <body>
 
-       <jsp:include page="/fragments/header.jsp" />
-        <div class="fondo-blanco" id="postPreview">
+        <jsp:include page="/fragments/header.jsp" />
+        <div class="fondo-blanco" id="post-preview">
             <div id="title">
                 <h1>Create Post</h1>
             </div>
@@ -21,10 +21,10 @@
                 <div id="contentHeader" class="grid-container">
                     <span class="username" id="username">
                         <img
-                          src="UserProfilePhoto.jpg"
+                          src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
                           alt="UserProfilePhoto"
                           class="user-icon"
-                          />JohnDoe</span
+                          />${sessionScope.user.nombreCompleto.nombres != null ? sessionScope.user.nombreCompleto.nombres  : sessionScope.user.email}</span
                     >
                     <span class="fecha">dd/mmmm/yy</span>
                     <span class="hora">13:45</span>
@@ -69,7 +69,7 @@
                 <input type="submit" class="item2" value="Post" id="boton" />
             </div>
         </form>
-      <jsp:include page="/fragments/footer.jspf" />
+        <jsp:include page="/fragments/footer.jspf" />
     </body>
 </html>
 

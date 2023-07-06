@@ -111,3 +111,10 @@ input[type="file"]::file-selector-button {
     width: 20%;
   }
 }
+
+img {
+  width: 10%;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  margin-top: 10px;
+}

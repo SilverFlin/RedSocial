@@ -105,7 +105,7 @@ public final class AuthServlet extends HttpServlet {
             request.setAttribute("error", "invalid credentials");
             response.setStatus(HttpStatusCode.UNAUTHORIZED.getCode());
             getServletContext()
-                    .getRequestDispatcher(Constants.HTTP_ERROR_PAGE)
+                    .getRequestDispatcher(Constants.LOGIN_PAGE)
                     .forward(request, response);
             return;
         }

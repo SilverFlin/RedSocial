@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>Home</title>
         <link rel="stylesheet" href="/webapp/assets/css/posts/feed.css" />
 
     </head>
@@ -12,8 +12,8 @@
         <div class="container">
             <div class="left-bar"></div>
             <!--TODO move to JS-->
-            <button class="create-post-btn" onclick="window.location.href='/webapp/create-post';">
-                 + Create a new Post
+            <button class="create-post-btn" onclick="window.location.href = '/webapp/create-post';">
+                + Create a new Post
             </button>
 
             <c:forEach var="item" items="${requestScope.posts}">
@@ -22,7 +22,7 @@
                         <!--HEADER-->
                         <div class="post-header-wrapper">
                             <header class="post-header">
-                                <img src="#" alt="" />
+                                <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
                                 <!--TODO condicional nombre usuario-->
                                 <span>${item.creador.email}</span>
                             </header>
@@ -61,15 +61,17 @@
                                 </c:if>
 
                             </section>
+                            <a href="/webapp/posts?action=get-post&id=${item.id}">
+                                <button> &gt;</button>
+                            </a>
 
-                            <button><a href="/webapp/posts?id=${item.id}"></a> &gt;</button>
                         </div>
 
                         <!--FOOTER--> 
                         <!--TODO Comentarios-->
                         <div class="post-footer-wrapper">
                             <section class="post-footer">
-                                <img src="#" alt="" />
+                                <img src="/webapp/assets/images/default-profile.jpg" alt="" />
                                 <h1>John Doe</h1>
                                 <p>comentario-falso</p>
                                 <!--<button>&gt;</button>-->

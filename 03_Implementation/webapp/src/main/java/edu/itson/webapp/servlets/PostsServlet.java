@@ -12,6 +12,8 @@ import static edu.itson.webapp.http.HttpStatusCode.UNAUTHORIZED;
 import edu.itson.webapp.json.impl.IdJson;
 import edu.itson.webapp.json.impl.JsonResponses;
 import edu.itson.webapp.json.impl.ResponseJson;
+import edu.itson.webapp.paths.Constants;
+import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Toled
  */
 @WebServlet(name = "PostsServlet", urlPatterns = {"/posts"})
 public final class PostsServlet extends HttpServlet {
@@ -39,7 +40,11 @@ public final class PostsServlet extends HttpServlet {
             final HttpServletRequest req,
             final HttpServletResponse res
     ) throws ServletException, IOException {
-        // TODO vista Post
+        String actionParam = req.getParameter("action");
+        // /pictures?action=avatar&id=6498a7ebce302d27e8c99b2e
+        if (actionParam != null && actionParam.equalsIgnoreCase("get-post")) {
+            this.processGetPost(req, res);
+        }
     }
 
     /**
@@ -92,7 +97,11 @@ public final class PostsServlet extends HttpServlet {
         String jsonData = JsonConverter.getJsonFromRequest(req);
         Gson gson = new Gson();
         IdJson idJson = gson.fromJson(jsonData, IdJson.class);
-        String postId = idJson.getId();
+
+        String postId = null;
+        if (idJson != null) {
+            postId = idJson.getId();
+        }
 
         Usuario user = (Usuario) req.getSession().getAttribute("user");
 
@@ -158,6 +167,36 @@ public final class PostsServlet extends HttpServlet {
         }
         IPostBO postBO = new PostBO();
         return postBO.deletePost(postId, user);
+    }
+
+    private void processGetPost(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        String idParam = req.getParameter("id");
+
+        if (idParam == null) {
+            sendToHttpErrorPage(req, res, HttpStatusCode.BAD_REQUEST,
+                    getServletContext());
+            return;
+        }
+
+        Post post;
+        try {
+            IPostBO postBO = new PostBO();
+            post = postBO.getPostById(idParam);
+        } catch (BusinessException ex) {
+            sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
+                    getServletContext());
+            return;
+        }
+
+        req.setAttribute("post", post);
+
+        getServletContext()
+                .getRequestDispatcher(Constants.SHOW_POST_PAGE)
+                .forward(req, res);
+        return;
     }
 
 }

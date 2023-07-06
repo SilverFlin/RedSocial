@@ -6,10 +6,10 @@ import edu.itson.webapp.business.impl.UsersBO;
 import edu.itson.webapp.business.interfaces.IUsersBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.http.HttpStatusCode;
+import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.redirectHome;
 import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
 import static edu.itson.webapp.servlets.Redirect.sendToRegisterPage;
-import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import edu.itson.webapp.utils.impl.FormValidator;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
 import java.io.IOException;
@@ -110,7 +110,9 @@ public final class RegisterServlet extends HttpServlet {
         try {
             registeredUser = this.tryRegisterUser(paramEmail, paramPassword);
         } catch (BusinessException ex) {
-            sendToServerErrorPage(req, res, getServletContext());
+            getServletContext()
+                    .getRequestDispatcher(Constants.REGISTER_USER_PAGE)
+                    .forward(req, res);
             return;
         }
 
