@@ -128,20 +128,27 @@ public class EditUserServlet extends HttpServlet {
 
         IFormValidator validator = new FormValidator();
 
-        if (!validator.hasBlankSpaces(firstNameParam)) {
+        final int limit = 100;
+        final int phoneLimit = 10;
+
+        if (!validator.hasBlankSpaces(firstNameParam)
+                && !validator.hasExceededLengthLimit(firstNameParam, limit)) {
             if (user.getNombreCompleto() == null) {
                 user.setNombreCompleto(new NombreCompleto());
             }
             user.getNombreCompleto().setNombres(firstNameParam);
         }
-        if (!validator.hasBlankSpaces(lastNameParam)) {
+        if (!validator.hasBlankSpaces(lastNameParam)
+                && !validator.hasExceededLengthLimit(lastNameParam, limit)) {
             if (user.getNombreCompleto() == null) {
                 user.setNombreCompleto(new NombreCompleto());
             }
             user.getNombreCompleto().setApellidoPaterno(lastNameParam);
         }
 
-        if (validator.isValidPhoneNumber(phoneNumberParam)) {
+        if (validator.isValidPhoneNumber(phoneNumberParam)
+                && !validator.hasExceededLengthLimit(phoneNumberParam,
+                        phoneLimit)) {
             user.setTelefono(phoneNumberParam);
         }
 
@@ -164,21 +171,25 @@ public class EditUserServlet extends HttpServlet {
             }
         }
 
-        if (!validator.hasBlankSpaces(cityParam)) {
+        if (!validator.hasBlankSpaces(cityParam)
+                && !validator.hasExceededLengthLimit(cityParam, limit)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
             user.getDireccion().setCiudad(cityParam);
         }
 
-        if (!validator.hasBlankSpaces(municipalityParam)) {
+        if (!validator.hasBlankSpaces(municipalityParam)
+                && !validator.hasExceededLengthLimit(municipalityParam,
+                        limit)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
             user.getDireccion().setMunicipio(municipalityParam);
         }
 
-        if (!validator.hasBlankSpaces(stateParam)) {
+        if (!validator.hasBlankSpaces(stateParam)
+                && !validator.hasExceededLengthLimit(stateParam, limit)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
