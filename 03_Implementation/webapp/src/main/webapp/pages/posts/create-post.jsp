@@ -12,7 +12,7 @@
     <body>
 
         <jsp:include page="/fragments/header.jsp" />
-        <div class="fondo-blanco" id="postPreview">
+        <div class="fondo-blanco" id="post-preview">
             <div id="title">
                 <h1>Create Post</h1>
             </div>
