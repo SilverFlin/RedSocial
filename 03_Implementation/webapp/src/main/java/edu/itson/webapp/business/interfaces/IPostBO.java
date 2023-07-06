@@ -1,8 +1,10 @@
 package edu.itson.webapp.business.interfaces;
 
+import edu.itson.dominio.Comentario;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.Usuario;
 import edu.itson.webapp.exceptions.BusinessException;
+import interfaces.Comentable;
 import java.util.List;
 
 /**
@@ -66,4 +68,12 @@ public interface IPostBO {
      */
     Post deletePost(String id, Usuario user) throws BusinessException;
 
+    /**
+     * Obtiene todos los comentarios del post.
+     *
+     * @param post
+     * @return lista de todos los comentarios.
+     * @throws edu.itson.webapp.exceptions.BusinessException
+     */
+    List<Comentario> getPostComments(Comentable post) throws BusinessException;
 }

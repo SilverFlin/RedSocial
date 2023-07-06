@@ -1,5 +1,6 @@
 package edu.itson.webapp.business.impl;
 
+import edu.itson.dominio.Comentario;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.TipoUsuario;
 import edu.itson.dominio.Usuario;
@@ -7,6 +8,7 @@ import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
+import interfaces.Comentable;
 import interfaces.IPersistencia;
 import java.util.LinkedList;
 import java.util.List;
@@ -141,6 +143,18 @@ public final class PostBO implements IPostBO {
             return this.persistence.eliminarPost(post);
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ get post: " + ex.getMessage();
+            throw new BusinessException(errorMsg);
+        }
+    }
+
+    @Override
+    public List<Comentario> getPostComments(
+            final Comentable post
+    ) throws BusinessException {
+        try {
+            return this.persistence.getPostComments(post);
+        } catch (PersistenciaException ex) {
+            String errorMsg = "Error @ get comments: " + ex.getMessage();
             throw new BusinessException(errorMsg);
         }
     }
