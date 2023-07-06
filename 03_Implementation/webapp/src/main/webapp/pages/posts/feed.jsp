@@ -71,7 +71,7 @@
                         <!--TODO Comentarios-->
                         <div class="post-footer-wrapper">
                             <section class="post-footer">
-                                <img src="#" alt="" />
+                                <img src="/webapp/assets/images/default-profile.jpg" alt="" />
                                 <h1>John Doe</h1>
                                 <p>comentario-falso</p>
                                 <!--<button>&gt;</button>-->
