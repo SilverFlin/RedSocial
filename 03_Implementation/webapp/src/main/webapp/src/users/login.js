@@ -49,9 +49,9 @@ function loadLoginForm() {
 
 function loadInvalidCredentialsMessage() {
     const invalidCredentialsDiv = document.getElementById("invalid-credentials-msg");
-    invalidCredentialsDiv.style.visibility = "visible";
+    invalidCredentialsDiv.style.display = "block";
     setTimeout(() => {
-        invalidCredentialsDiv.style.visibility = "hidden";
+        invalidCredentialsDiv.style.display = "none";
     }, 1200);
 }
 

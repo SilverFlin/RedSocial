@@ -47,4 +47,13 @@ public interface IUsersBO {
      */
     Imagen getUserAvatar(String id) throws BusinessException;
 
+    /**
+     * Checa si el email esta registrado.
+     *
+     * @param email
+     * @return true, si el email esta registrado.
+     * @throws BusinessException
+     */
+    boolean existsUserByEmail(String email) throws BusinessException;
+
 }

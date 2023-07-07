@@ -47,7 +47,7 @@
             name="password"
           />
         </div>
-        <div id="invalid-credentials-msg">Invalid Credentials!</div>
+        <p class="form-message" id="invalid-credentials-msg">Invalid Credentials!</p>
 
         <div class="content">
           <button type="submit" id="user-form-btn">SIGN IN</button>
