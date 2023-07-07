@@ -32,21 +32,10 @@
             </section>
             <section id="previewContent">
                 <div class="pub-body">
-                    <p class="text">
-                        Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus
-                        fringilla. Pellentesque habitant morbi tristique senectus et netus
-                        et malesuada fames ac turpis egestas. Cras porta, eros in ultricies
-                        mattis, arcu turpis Nam vitae erat vel sem luctus dapibus. Ut
-                        hendrerit rhoncus fringilla. Pellentesque habitant morbi tristique
-                        senectus et netus et malesuada fames ac turpis egestas. Cras porta,
-                        eros in ultricies mattis, arcu turpis Nam vitae erat vel sem luctus
-                        dapibus. Ut hendrerit rhoncus fringilla. Pellentesque habitant morbi
-                        tristique senectus et netus et malesuada fames ac turpis egestas.
-                        Cras porta, eros in ultricies mattis, arcu turpis Nam vitae erat vel
-                        sem luctus dapibus. Ut hendrerit rhoncus fringilla. Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada fames ac
-                        turpis egestas. Cras porta, eros in ultricies mattis, ...
-                    </p>
+                    <div class="text">
+                        <p  id="title-post">Title</p> 
+                        <p id="content-post">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -71,6 +60,7 @@
         </form>
         <jsp:include page="/fragments/footer.jspf" />
     </body>
+    <script src="./src/posts/create-post.js"></script>
 </html>
 
 

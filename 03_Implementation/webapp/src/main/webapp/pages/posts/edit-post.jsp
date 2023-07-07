@@ -34,10 +34,10 @@
             </section>
             <section id="preview-content">
                 <div class="pub-body">
-                    <p class="text">
-                    <p id="title-post">${post.titulo}</p> 
-                    <p id="content-post">${post.contenido.texto}</p>
-                    </p>
+                    <div class="text">
+                        <p  class="text" id="title-post">${post.titulo}</p> 
+                        <p  class="text" id="content-post">${post.contenido.texto}</p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -72,5 +72,5 @@
             </div>
         </form>
     </body>
-    <script src="/webapp/src/posts/edit-post.js"></script>
+    <script src="./src/posts/edit-post.js"></script>
 </html>

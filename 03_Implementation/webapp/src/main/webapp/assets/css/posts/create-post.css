@@ -143,3 +143,8 @@ textarea {
   color: white;
   font-size: large;
 }
+
+#title-post {
+  font-size: large;
+  font-weight: 800;
+}
