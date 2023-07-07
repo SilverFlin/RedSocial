@@ -65,7 +65,10 @@
                           id="phone-number"
                           class="input-edit-form"
                           placeholder="1234567890"
+                          minlength="10"
+                          maxlength="10"
                           value="${sessionScope.user.telefono}"
+                          pattern="[0-9]{10}"
                           />
                     </div>
                 </div>
