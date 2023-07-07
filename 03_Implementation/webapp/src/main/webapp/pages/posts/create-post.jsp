@@ -44,11 +44,13 @@
             <div id="contenedor" class="container">
                 <div class="item" id="titlefield">
                     <label for="title-text" class="labels">Title</label>
-                    <input type="text" name="title" id="title-text" required />
+                    <input   minlength="1"
+                             maxlength="20" type="text" name="title" id="title-text" required />
                 </div>
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
-                    <textarea name="content" id="content"  required></textarea>
+                    <textarea   minlength="1"
+                                maxlength="500" name="content" id="content"  required></textarea>
                 </div>
                 <div class="item" id="fileField">
                     <input disabled type="file" name="file" id="file" />

@@ -158,7 +158,7 @@ public class EditPostServlet extends HttpServlet {
             final String content
     ) {
         IFormValidator validator = new FormValidator();
-        final int titleLimit = 15;
+        final int titleLimit = 20;
         final int contentLimit = 500;
         boolean isValidTitle
                 = !validator.hasBlankSpaces(title)

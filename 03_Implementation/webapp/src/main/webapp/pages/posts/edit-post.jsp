@@ -56,12 +56,15 @@
                       name="title"
                       id="title-text"
                       required
+                      minlength="1"
+                      maxlength="20"
                       value="${post.titulo}"
                       />
                 </div>
                 <div class="item" id="txt-area">
                     <label for="content" class="labels">Content</label>
-                    <textarea name="content" required id="content">${post.contenido.texto}</textarea>
+                    <textarea minlength="1"
+                              maxlength="500"   name="content" required id="content">${post.contenido.texto}</textarea>
                 </div>
                 <div class="item" id="file-field">
                     <input disabled type="file" name="file" id="file" />

@@ -178,7 +178,7 @@ public class CreatePostServlet extends HttpServlet {
     private boolean validateParams(final String title, final String content) {
         IFormValidator validator = new FormValidator();
 
-        final int titleLimit = 15;
+        final int titleLimit = 20;
         boolean isValidTitle
                 = !validator.hasBlankSpaces(title)
                 && !validator.hasExceededLengthLimit(title, titleLimit);
