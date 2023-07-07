@@ -76,6 +76,7 @@ body {
   margin-top: 0;
   padding: 10px;
   border-bottom-right-radius: 30px;
+  overflow-wrap: break-word;
 }
 
 .labels {
