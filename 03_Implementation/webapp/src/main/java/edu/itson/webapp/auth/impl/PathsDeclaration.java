@@ -20,7 +20,8 @@ public final class PathsDeclaration {
             Constants.LOGIN_ENDPOINT,
             Constants.AUTH_ENDPOINT,
             Constants.REGISTER_ENDPOINT,
-            Constants.ASSETS_DIR
+            Constants.ASSETS_DIR,
+            Constants.SCRIPTS_DIR
     );
 
     /**

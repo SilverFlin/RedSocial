@@ -47,6 +47,11 @@ public final class RegisterServlet extends HttpServlet {
             sendToRegisterPage(req, res, getServletContext());
             return;
         }
+
+        if (action != null && action.equalsIgnoreCase("check-email")) {
+            this.processCheckEmail(req, res);
+            return;
+        }
     }
 
     /**
@@ -93,7 +98,6 @@ public final class RegisterServlet extends HttpServlet {
         String paramEmail = req.getParameter("email");
         String paramPassword = req.getParameter("password");
         String paramConfirmPassword = req.getParameter("confirmPassword");
-        // TODO Validate existent Email
 
         boolean isValidParams = this.validateParams(
                 paramEmail,
@@ -172,5 +176,29 @@ public final class RegisterServlet extends HttpServlet {
     ) {
         HttpSession session = req.getSession();
         session.setAttribute("user", registeredUser);
+    }
+
+    private void processCheckEmail(
+            final HttpServletRequest req,
+            final HttpServletResponse res
+    ) throws ServletException, IOException {
+        String paramEmail = req.getParameter("email");
+        if (paramEmail == null) {
+            res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
+            return;
+        }
+
+        IUsersBO userBO = new UsersBO();
+        try {
+            if (userBO.existsUserByEmail(paramEmail)) {
+                res.setStatus(HttpStatusCode.OK.getCode());
+                return;
+            } else {
+                res.setStatus(HttpStatusCode.NOT_FOUND.getCode());
+                return;
+            }
+        } catch (BusinessException ex) {
+            res.setStatus(HttpStatusCode.INTERNAL_SERVER_ERROR.getCode());
+        }
     }
 }

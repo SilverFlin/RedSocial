@@ -77,6 +77,11 @@ public final class Constants {
      */
     public static final String ASSETS_DIR = "/assets";
 
+    /**
+     * The directory for scripts.
+     */
+    public static final String SCRIPTS_DIR = "/src";
+
     private Constants() {
         throw new IllegalStateException("Utility class");
     }

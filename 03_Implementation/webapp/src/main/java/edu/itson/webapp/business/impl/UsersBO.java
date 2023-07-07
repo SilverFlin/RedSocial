@@ -126,4 +126,22 @@ public final class UsersBO implements IUsersBO {
             throw new BusinessException("Error @ validate user email");
         }
     }
+
+    private boolean validateUserEmail(final String email)
+            throws BusinessException {
+        try {
+            Usuario userObtained = this.persistence
+                    .buscarUsuarioPorEmail(email);
+            return userObtained != null;
+        } catch (PersistenciaException e) {
+            throw new BusinessException("Error @ validate user email");
+        }
+    }
+
+    @Override
+    public boolean existsUserByEmail(
+            final String email
+    ) throws BusinessException {
+        return validateUserEmail(email);
+    }
 }

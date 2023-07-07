@@ -1,61 +1,27 @@
 window.onload = init;
 
 function init() {
-//    loadRegisterForm();
-    console.log("asd")
-
-}
-console.log("asd")
-class User {
-
-    constructor(email, password, confirmPassword) {
-        this._email = email
-        this._password = password
-        this._confirmPassword = confirmPassword
-    }
-
-    get email() {
-        return this._email
-    }
-    set email(nuevoEmail) {
-        this._email = nuevoEmail
-    }
-    get password() {
-        return this._password
-    }
-    set password(newPassword) {
-        this._password = newPassword
-    }
-    get confirmPassword() {
-        return this._confirmPassword
-    }
-    set confirmPassword(confirmPassword) {
-        this._confirmPassword = confirmPassword
-    }
+    loadLoginForm();
 }
 
-
-function loadRegisterForm() {
-
-    const registerForm = document.getElementById("login-form");
+function loadLoginForm() {
+    const loginForm = document.getElementById("login-form");
     const btnLoginForm = document.getElementById("user-form-btn");
     const emailInput = document.querySelector(".content #email");
     const passwordInput = document.querySelector(".content #password");
-    const confirmPasswordInput = document.querySelector(".content #confirm-password");
 
-    registerForm.addEventListener("submit", async (evt) => {
+    loginForm.addEventListener("submit", async (evt) => {
         btnLoginForm.disabled = true;
         btnLoginForm.style.backgroundColor = "#D8D3D3";
         evt.preventDefault();
 
         const host = "http://localhost:8080";
         const basePath = "webapp";
-        const url = `${host}/${basePath}/auth?action=register`;
+        const url = `${host}/${basePath}/auth?action=login`;
 
         const credentials = {
             email: emailInput.value,
             password: passwordInput.value,
-            confirmPassword: confirmPasswordInput.value
         };
 
         let formBody = generateEncodedParams(credentials);
@@ -72,12 +38,21 @@ function loadRegisterForm() {
             window.location.replace(`${host}/${basePath}/home`);
             btnLoginForm.disabled = false;
         } else {
+            loadInvalidCredentialsMessage();
             setTimeout(() => {
                 btnLoginForm.style.backgroundColor = "#525252";
                 btnLoginForm.disabled = false;
             }, 1200);
         }
     });
+}
+
+function loadInvalidCredentialsMessage() {
+    const invalidCredentialsDiv = document.getElementById("invalid-credentials-msg");
+    invalidCredentialsDiv.style.display = "block";
+    setTimeout(() => {
+        invalidCredentialsDiv.style.display = "none";
+    }, 1200);
 }
 
 function generateEncodedParams(obj) {

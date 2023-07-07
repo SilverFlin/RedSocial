@@ -109,7 +109,7 @@ public final class Redirect {
             final HttpServletResponse res,
             final ServletContext servletContext
     ) throws ServletException, IOException {
-        res.setStatus(HttpStatusCode.BAD_REQUEST.getCode());
+        res.setStatus(HttpStatusCode.OK.getCode());
         servletContext
                 .getRequestDispatcher(Constants.REGISTER_USER_PAGE)
                 .forward(req, res);
