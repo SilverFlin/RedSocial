@@ -15,7 +15,11 @@ function bindInputs() {
 }
 
 function bindInputToElement(inputElement, element) {
-    inputElement.addEventListener("keydown", (evt) => {
+    inputElement.addEventListener("input", (evt) => {
         element.innerText = evt.target.value;
     });
+
+    inputElement.addEventListener("focusout", () => {
+        inputElement.value = inputElement.value.trim()
+    })
 }

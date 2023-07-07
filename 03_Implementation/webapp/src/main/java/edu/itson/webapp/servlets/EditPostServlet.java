@@ -123,8 +123,8 @@ public class EditPostServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws ServletException, IOException {
 
-        String titleParam = req.getParameter("title");
-        String contentParam = req.getParameter("content");
+        String titleParam = req.getParameter("title").trim();
+        String contentParam = req.getParameter("content").trim();
 
         if (!this.validateParams(titleParam, contentParam)) {
             sendToHttpErrorPage(req, res, BAD_REQUEST, getServletContext());
