@@ -31,12 +31,22 @@
                                         <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" />
                                     </c:if>
                                     <span>${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}</span>
+                                    <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
+                                        <div>
+                                            <div class="delete-post">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${item.tipoPost == 'ANCLADO'}">
+                                        <div>
+                                            <div class="post-header-highlighted">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1664"><path fill="currentColor" d="M480 736V288q0-14-9-23t-23-9t-23 9t-9 23v448q0 14 9 23t23 9t23-9t9-23zm672 352q0 26-19 45t-45 19H659l-51 483q-2 12-10.5 20.5T577 1664h-1q-27 0-32-27l-76-485H64q-26 0-45-19t-19-45q0-123 78.5-221.5T256 768V256q-52 0-90-38t-38-90t38-90t90-38h640q52 0 90 38t38 90t-38 90t-90 38v512q99 0 177.5 98.5T1152 1088z"/></svg>
+                                            </div>
+                                        </div>
+                                    </c:if>
                                 </header>
-                                <c:if test="${item.tipoPost == 'ANCLADO'}">
-                                    <header class="post-header-highlighted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1664"><path fill="currentColor" d="M480 736V288q0-14-9-23t-23-9t-23 9t-9 23v448q0 14 9 23t23 9t23-9t9-23zm672 352q0 26-19 45t-45 19H659l-51 483q-2 12-10.5 20.5T577 1664h-1q-27 0-32-27l-76-485H64q-26 0-45-19t-19-45q0-123 78.5-221.5T256 768V256q-52 0-90-38t-38-90t38-90t90-38h640q52 0 90 38t38 90t-38 90t-90 38v512q99 0 177.5 98.5T1152 1088z"/></svg>
-                                    </header>
-                                </c:if>
+
                                 <div class="post-time">
                                     <!--TODO Formatear Fecha-->
                                     <label>${item.fechaHoraCreacion.dayOfMonth}/${item.fechaHoraCreacion.monthValue}/${item.fechaHoraCreacion.year}</label>
@@ -58,22 +68,6 @@
                                     <p>
                                         ${item.contenido.texto}
                                     </p>
-                                    <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
-                                        <div class="delete-post">
-                                            <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              width="24"
-                                              height="24"
-                                              viewBox="0 0 24 24"
-                                              >
-                                            <path
-                                              fill="currentColor"
-                                              d="m9.25 22l-.4-3.2q-.325-.125-.613-.3t-.562-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.674q0-.163.025-.338L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375t.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3t.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.338v.674q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375t-.6.3l-.4 3.2h-5.5Zm2.8-6.5q1.45 0 2.475-1.025T15.55 12q0-1.45-1.025-2.475T12.05 8.5q-1.475 0-2.488 1.025T8.55 12q0 1.45 1.012 2.475T12.05 15.5Z"
-                                              />
-                                            </svg>
-                                        </div>
-                                    </c:if>
-
                                 </section>
 
 
