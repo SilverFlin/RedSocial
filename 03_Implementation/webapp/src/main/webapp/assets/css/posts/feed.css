@@ -308,11 +308,15 @@ body {
   padding: 0;
 }
 
-.post-footer-wrapper .post-footer button {
-  display: inline;
-  height: 2em;
-  width: 2em;
-  flex: 0 1 1em;
+.comments-link {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  margin-top: 5%;
+}
+
+.comments-link:hover {
+  cursor: pointer;
 }
 
 .ignore-overflow {
@@ -346,7 +350,7 @@ body {
 }
 
 .edit-post-btn {
-  display: inline;
+  display: inline-block;
 }
 
 .post-header div {
