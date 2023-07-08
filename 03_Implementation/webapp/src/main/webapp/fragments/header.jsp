@@ -6,14 +6,15 @@
 </head>
 <header id="header-body">
     <div class="container-header">
-        
+
         <div class="item-header">
+            <%--<c:out value="${}"/>--%>
             <c:if test="${sessionScope.user != null}">
                 <c:if test="${sessionScope.user.nombreCompleto.nombres != null}">
-                    <span id="user-email">Welcome Back, ${sessionScope.user.nombreCompleto.nombres}!</span>
+                    <span id="user-email">Welcome Back, <c:out value="${sessionScope.user.nombreCompleto.nombres}"/>!</span>
                 </c:if>
-                    <c:if test="${sessionScope.user.nombreCompleto.nombres == null}">
-                    <span id="user-email">Welcome Back, ${sessionScope.user.email}!</span>
+                <c:if test="${sessionScope.user.nombreCompleto.nombres == null}">
+                    <span id="user-email">Welcome Back, <c:out value="${sessionScope.user.email}"/>!</span>
                 </c:if>
             </c:if>
         </div>
