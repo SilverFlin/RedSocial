@@ -66,7 +66,7 @@ public class HomeServlet extends HttpServlet {
 
     private List<Post> getPosts() throws BusinessException {
         IPostBO postBO = new PostBO();
-        final int cantidadMaximaPosts = 3;
+        final int cantidadMaximaPosts = 10;
         return postBO.getPosts(cantidadMaximaPosts);
     }
 

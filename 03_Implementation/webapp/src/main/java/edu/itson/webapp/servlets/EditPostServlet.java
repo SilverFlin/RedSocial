@@ -123,8 +123,8 @@ public class EditPostServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws ServletException, IOException {
 
-        String titleParam = req.getParameter("title");
-        String contentParam = req.getParameter("content");
+        String titleParam = req.getParameter("title").trim();
+        String contentParam = req.getParameter("content").trim();
 
         if (!this.validateParams(titleParam, contentParam)) {
             sendToHttpErrorPage(req, res, BAD_REQUEST, getServletContext());
@@ -158,7 +158,7 @@ public class EditPostServlet extends HttpServlet {
             final String content
     ) {
         IFormValidator validator = new FormValidator();
-        final int titleLimit = 15;
+        final int titleLimit = 20;
         final int contentLimit = 500;
         boolean isValidTitle
                 = !validator.hasBlankSpaces(title)

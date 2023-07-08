@@ -34,10 +34,10 @@
             </section>
             <section id="preview-content">
                 <div class="pub-body">
-                    <p class="text">
-                    <p id="title-post">${post.titulo}</p> 
-                    <p id="content-post">${post.contenido.texto}</p>
-                    </p>
+                    <div class="text">
+                        <p  class="text" id="title-post">${post.titulo}</p> 
+                        <p  class="text" id="content-post">${post.contenido.texto}</p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -56,12 +56,15 @@
                       name="title"
                       id="title-text"
                       required
+                      minlength="1"
+                      maxlength="20"
                       value="${post.titulo}"
                       />
                 </div>
                 <div class="item" id="txt-area">
                     <label for="content" class="labels">Content</label>
-                    <textarea name="content" required id="content">${post.contenido.texto}</textarea>
+                    <textarea minlength="1"
+                              maxlength="500"   name="content" required id="content">${post.contenido.texto}</textarea>
                 </div>
                 <div class="item" id="file-field">
                     <input disabled type="file" name="file" id="file" />
@@ -72,5 +75,5 @@
             </div>
         </form>
     </body>
-    <script src="/webapp/src/posts/edit-post.js"></script>
+    <script src="./src/posts/edit-post.js"></script>
 </html>

@@ -32,21 +32,10 @@
             </section>
             <section id="previewContent">
                 <div class="pub-body">
-                    <p class="text">
-                        Nam vitae erat vel sem luctus dapibus. Ut hendrerit rhoncus
-                        fringilla. Pellentesque habitant morbi tristique senectus et netus
-                        et malesuada fames ac turpis egestas. Cras porta, eros in ultricies
-                        mattis, arcu turpis Nam vitae erat vel sem luctus dapibus. Ut
-                        hendrerit rhoncus fringilla. Pellentesque habitant morbi tristique
-                        senectus et netus et malesuada fames ac turpis egestas. Cras porta,
-                        eros in ultricies mattis, arcu turpis Nam vitae erat vel sem luctus
-                        dapibus. Ut hendrerit rhoncus fringilla. Pellentesque habitant morbi
-                        tristique senectus et netus et malesuada fames ac turpis egestas.
-                        Cras porta, eros in ultricies mattis, arcu turpis Nam vitae erat vel
-                        sem luctus dapibus. Ut hendrerit rhoncus fringilla. Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada fames ac
-                        turpis egestas. Cras porta, eros in ultricies mattis, ...
-                    </p>
+                    <div class="text">
+                        <p  id="title-post">Title</p> 
+                        <p id="content-post">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -55,11 +44,13 @@
             <div id="contenedor" class="container">
                 <div class="item" id="titlefield">
                     <label for="title-text" class="labels">Title</label>
-                    <input type="text" name="title" id="title-text" required />
+                    <input   minlength="1"
+                             maxlength="20" type="text" name="title" id="title-text" required />
                 </div>
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
-                    <textarea name="content" id="content"  required></textarea>
+                    <textarea   minlength="1"
+                                maxlength="500" name="content" id="content"  required></textarea>
                 </div>
                 <div class="item" id="fileField">
                     <input disabled type="file" name="file" id="file" />
@@ -71,6 +62,7 @@
         </form>
         <jsp:include page="/fragments/footer.jspf" />
     </body>
+    <script src="./src/posts/create-post.js"></script>
 </html>
 
 
