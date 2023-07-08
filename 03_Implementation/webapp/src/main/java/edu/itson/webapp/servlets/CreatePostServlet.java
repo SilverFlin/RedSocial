@@ -106,6 +106,9 @@ public class CreatePostServlet extends HttpServlet {
 
         String titleParam = req.getParameter("title");
         String contentParam = req.getParameter("content");
+        boolean isAnchoredParam
+                = req.getParameter("type") != null
+                && req.getParameter("type").equals("true");
 
         String formInJson = JsonConverter.getJsonFromRequest(req);
         Gson gson = new Gson();
@@ -113,9 +116,11 @@ public class CreatePostServlet extends HttpServlet {
                 = gson.fromJson(formInJson, CreatePostJson.class);
         String title = null;
         String content = null;
+        boolean isAnchored = false;
         if (postSubmission != null) {
             title = postSubmission.getTitle();
             content = postSubmission.getContent();
+            isAnchored = postSubmission.getIsAnchored();
         }
 
         Usuario user = (Usuario) req.getSession().getAttribute("user");
@@ -134,10 +139,10 @@ public class CreatePostServlet extends HttpServlet {
 
         Post postCreated;
         try {
-            postCreated = this.tryCreatePost(titleParam, contentParam, user);
+            postCreated = this.tryCreatePost(titleParam, contentParam, isAnchoredParam, user);
 
             if (postCreated == null) {
-                postCreated = this.tryCreatePost(title, content, user);
+                postCreated = this.tryCreatePost(title, content, isAnchored, user);
             }
 
         } catch (BusinessException ex) {
@@ -194,6 +199,7 @@ public class CreatePostServlet extends HttpServlet {
     private Post tryCreatePost(
             final String title,
             final String content,
+            final boolean isAnchored,
             final Usuario user
     ) throws BusinessException {
 
@@ -205,7 +211,8 @@ public class CreatePostServlet extends HttpServlet {
             return null;
         }
 
-        Post postCreated = new Post(TipoPost.NORMAL);
+        Post postCreated
+                = new Post(isAnchored ? TipoPost.ANCLADO : TipoPost.NORMAL);
         postCreated.setTitulo(title);
         ContenidoPost contenidoPost = new ContenidoPost();
         contenidoPost.setTexto(content);

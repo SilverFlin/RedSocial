@@ -52,9 +52,12 @@
                     <textarea   minlength="1"
                                 maxlength="500" name="content" id="content"  required></textarea>
                 </div>
-                <div class="item" id="fileField">
-                    <input disabled type="file" name="file" id="file" />
+                 <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
+                <div class="item" id="type-post-field">
+                    <label for="type"><b> Anchored Post</b></label>
+                    <input  type="checkbox" name="type" id="type" />
                 </div>
+                </c:if>
             </div>
             <div id="botonPart" class="container2">
                 <input type="submit" class="item2" value="Post" id="boton" />

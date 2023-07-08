@@ -15,6 +15,11 @@ public final class CreatePostJson {
     private String content;
 
     /**
+     * Tipo del post.
+     */
+    private boolean isAnchored;
+
+    /**
      * Constructor vacio.
      */
     public CreatePostJson() {
@@ -36,6 +41,15 @@ public final class CreatePostJson {
      */
     public String getContent() {
         return content;
+    }
+
+    /**
+     * Obtiene si el post es anclado.
+     *
+     * @return tipo del post.
+     */
+    public boolean getIsAnchored() {
+        return isAnchored;
     }
 
 }
