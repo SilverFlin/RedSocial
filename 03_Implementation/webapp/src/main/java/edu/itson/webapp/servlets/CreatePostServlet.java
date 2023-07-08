@@ -139,10 +139,20 @@ public class CreatePostServlet extends HttpServlet {
 
         Post postCreated;
         try {
-            postCreated = this.tryCreatePost(titleParam, contentParam, isAnchoredParam, user);
+            postCreated = this.tryCreatePost(
+                    titleParam,
+                    contentParam,
+                    isAnchoredParam,
+                    user
+            );
 
             if (postCreated == null) {
-                postCreated = this.tryCreatePost(title, content, isAnchored, user);
+                postCreated = this.tryCreatePost(
+                        title,
+                        content,
+                        isAnchored,
+                        user
+                );
             }
 
         } catch (BusinessException ex) {

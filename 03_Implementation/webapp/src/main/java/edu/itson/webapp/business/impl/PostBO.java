@@ -36,10 +36,12 @@ public final class PostBO implements IPostBO {
             // TODO limitar / pagination
 
             List<Post> posts = this.persistence.buscarTodosLosPosts();
-            List<Post> orderedPosts = new LinkedList<>();
+
             if (posts.isEmpty()) {
-                return orderedPosts;
+                return posts;
             }
+            posts = PostSorter.sortPosts(posts);
+            List<Post> orderedPosts = new LinkedList<>();
 
             int limit = amount;
 
@@ -55,7 +57,7 @@ public final class PostBO implements IPostBO {
                 orderedPosts.add(posts.get(i));
             }
 
-            return PostSorter.sortPosts(orderedPosts);
+            return orderedPosts;
         } catch (PersistenciaException ex) {
             String errorMsg = "Error @ get posts: " + ex.getMessage();
             throw new BusinessException(errorMsg);
