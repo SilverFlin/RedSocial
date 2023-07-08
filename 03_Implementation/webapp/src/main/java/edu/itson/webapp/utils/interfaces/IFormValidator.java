@@ -53,4 +53,12 @@ public interface IFormValidator {
      * @return true si es válido, false en caso contrario.
      */
     boolean isValidDate(String date);
+
+    /**
+     * Realiza una validacion de que no contenga caracteres especiales.
+     *
+     * @param text el texto a validar
+     * @return el texto validado
+     */
+    boolean hasEspecialCharacters(String text);
 }

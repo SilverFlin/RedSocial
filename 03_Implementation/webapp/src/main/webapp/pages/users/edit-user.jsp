@@ -24,6 +24,7 @@
                           class="input-edit-form"
                           placeholder="John"
                           value="${sessionScope.user.nombreCompleto.nombres}"
+                          pattern="^[a-zA-Z]+$"
                           required
                           />
                     </div>
@@ -36,6 +37,7 @@
                           class="input-edit-form"
                           placeholder="Doe"
                           value="${sessionScope.user.nombreCompleto.apellidoPaterno}"
+                          pattern="^[a-zA-Z]+$"
                           required
                           />
                     </div>
@@ -97,15 +99,18 @@
                 <div class="form-row">
                     <div class="form-item-col3">
                         <label for="city"> City </label>
-                        <input type="text" name="city"  id="city" placeholder="Obregon" value="${sessionScope.user.direccion.ciudad}" />
+                        <input type="text" name="city"  id="city" placeholder="Obregon" value="${sessionScope.user.direccion.ciudad}" pattern="^[a-zA-Z]+$" />
+                       
                     </div>
                     <div class="form-item-col3">
                         <label for="municipality"> Municipality </label>
-                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" value="${sessionScope.user.direccion.municipio}" />
+                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" value="${sessionScope.user.direccion.municipio}" pattern="^[a-zA-Z]+$" />
+                        
                     </div>
                     <div class="form-item-col3">
                         <label for="state"> State </label>
-                        <input type="text" name="state" id="state" placeholder="Sonora" value="${sessionScope.user.direccion.estado}"/>
+                        <input type="text" name="state" id="state" placeholder="Sonora" value="${sessionScope.user.direccion.estado}" pattern="^[a-zA-Z]+$"/>
+                        
                     </div>
                 </div>
                 <div class="form-row">

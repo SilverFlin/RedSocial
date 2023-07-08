@@ -50,7 +50,7 @@
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
                     <textarea   minlength="1"
-                                maxlength="500" name="content" id="content"  required></textarea>
+                                maxlength="500" name="content" id="content"  required pattern="^[a-zA-Z]+$"></textarea>
                 </div>
                 <div class="item" id="fileField">
                     <input disabled type="file" name="file" id="file" />
