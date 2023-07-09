@@ -24,6 +24,9 @@
                       name="email"
                       />
                 </div>
+                <div class="form-message" id="email-already-registered">
+                    Email address already registered!
+                </div>
 
                 <div class="content">
                     <label for="password">Password</label>
@@ -46,16 +49,12 @@
                       name="confirmPassword"
                       />
                 </div>
-                <div class="form-message" id="password-does-not-match">The entered passwords do not match!</div>
-                <div class="form-message" id="email-already-registered">The email address is already registered!</div>
+                <div class="form-message" id="password-does-not-match">
+                    Passwords do not match.
+                </div>
+
                 <div class="form-message" id="strong-password-hint">
-                    <ul>
-                        <li>At least one number</li>
-                        <li>One uppercase letter</li>
-                        <li>One lowercase letter</li>
-                        <li>One special character</li>
-                        <li>Length between 8 and 20 characters</li>
-                    </ul>
+                    Ensure your password meets these criteria: 8-20 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special char.
                 </div>
                 <div class="content">
                     <button type="submit" id="user-form-btn">Register</button>
