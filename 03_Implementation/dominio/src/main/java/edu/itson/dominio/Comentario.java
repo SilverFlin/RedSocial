@@ -20,7 +20,7 @@ public class Comentario implements Comentable {
     /**
      * Objeto al que se le realiza el comentario.
      */
-    private Comentable objetivo;
+    private Post objetivo;
     /**
      * Hora de creación del comentario.
      */
@@ -96,7 +96,7 @@ public class Comentario implements Comentable {
      *
      * @return Objetivo del comentario.
      */
-    public Comentable getObjetivo() {
+    public Post getObjetivo() {
         return objetivo;
     }
 
@@ -105,7 +105,7 @@ public class Comentario implements Comentable {
      *
      * @param objetivo
      */
-    public void setObjetivo(final Comentable objetivo) {
+    public void setObjetivo(final Post objetivo) {
         this.objetivo = objetivo;
     }
 

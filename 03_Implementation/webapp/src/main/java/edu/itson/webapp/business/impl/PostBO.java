@@ -8,7 +8,6 @@ import edu.itson.webapp.business.interfaces.IPostBO;
 import edu.itson.webapp.exceptions.BusinessException;
 import exceptions.PersistenciaException;
 import implementations.facade.FachadaPersistencia;
-import interfaces.Comentable;
 import interfaces.IPersistencia;
 import java.util.LinkedList;
 import java.util.List;
@@ -151,7 +150,7 @@ public final class PostBO implements IPostBO {
 
     @Override
     public List<Comentario> getPostComments(
-            final Comentable post
+            final Post post
     ) throws BusinessException {
         try {
             return this.persistence.getPostComments(post);
