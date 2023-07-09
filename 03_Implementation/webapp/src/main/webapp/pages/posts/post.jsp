@@ -1,17 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="Author" content="Gerardo" />
         <meta name="Description" content="Edit post page" />
-        <link rel="stylesheet" href="/webapp/assets/css/posts/create-post.css" />
+        <link rel="stylesheet" href="/webapp/assets/css/posts/view-post.css" />
         <title>Edit Post</title>
     </head>
 
     <body>
         <div class="fondo-blanco" id="post-preview">
+
             <section id="previewTitle">
+
+                <div id="title">
+                    <h1>Comment post</h1>
+                </div>
                 <div id="content-header" class="grid-container">
                     <span class="username" id="username">
                         <img
@@ -35,23 +41,69 @@
             </section>
         </div>
 
-        <form action="/webapp/edit-post?action=edit&id=${post.id}" method="post" class="fondo-blanco container" id="form">
-            <div id="contenedor" class="container">
-                <div class="item" id="titlefield">
-                    <label for="title-text" class="labels">Title</label>
-                    <input type="text" name="title" id="title-text" required  value="${post.titulo}"/>
-                </div>
-                <div class="item" id="txt-area">
-                    <label for="content" class="labels">Content</label>
-                    <textarea name="content" required id="content">${post.contenido.texto}</textarea>
-                </div>
-                <div class="item" id="file-field">
-                    <input disabled type="file" name="file" id="file" />
-                </div>
+    <content class="fondo-blancobtm container " id="commentsInput">
+        <div id="contenedorEntrada" class="containerCommentInput">
+            <div class="itemComment">
+                <input type="text" id="commentInput" placeholder="Comment here!">
             </div>
-            <div id="boton-part" class="container2">
-                <input type="submit" class="item2" value="Edit" id="boton" />
+            <div id="boton-part" class="containerCommentInput">
+                <button id="btn-comment">Comment</button>
             </div>
-        </form>
-    </body>
+        </div>
+
+        <content class="fondo-blancobtm container" id="commentsContent">
+            <div id="contenedorComments" class="containerComment">
+                <details>
+                    <summary>Comments...</summary>
+
+                    <!-- COMMENTSLOOP -->
+                    <c:forEach var="comment" items="//TODO">
+                        <div id="textoComentario">
+                            <span id="commentUser-Img">
+                                <img
+                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                                  alt="UserProfilePhoto"
+                                  class="user-icon"
+                                  />User: </span>
+                            <span id="commentTextRow">Hola soy un texto!</span>
+                        </div>
+                    </c:forEach>
+
+                    <!-- EXAMPLES -->
+                        
+                    <div id="textoComentario">
+                            <span id="commentUser-Img">
+                                <img
+                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                                  alt="UserProfilePhoto"
+                                  class="user-icon"
+                                  />User: </span>
+                            <span id="commentTextRow">Hola soy un texto!</span>
+                        </div>
+                                  <div id="textoComentario">
+                            <span id="commentUser-Img">
+                                <img
+                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                                  alt="UserProfilePhoto"
+                                  class="user-icon"
+                                  />User: </span>
+                            <span id="commentTextRow">Hola soy un texto!</span>
+                        </div><div id="textoComentario">
+                            <span id="commentUser-Img">
+                                <img
+                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                                  alt="UserProfilePhoto"
+                                  class="user-icon"
+                                  />User: </span>
+                            <span id="commentTextRow">Hola soy un texto!</span>
+                        </div>
+
+
+                </details>
+            </div>
+        </content>
+    </content>
+
+
+</body>
 </html>
