@@ -82,6 +82,9 @@ body {
   background-color: rgb(55 149 149);
   border-radius: 1em 2.5em 0 0;
   padding: 5px 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .post-header-wrapper .post-header img {
@@ -94,6 +97,7 @@ body {
   display: inline;
   color: white;
   font-weight: 800;
+  margin-left: 10px;
 }
 
 .post-header-wrapper .post-time label {
@@ -304,11 +308,15 @@ body {
   padding: 0;
 }
 
-.post-footer-wrapper .post-footer button {
-  display: inline;
-  height: 2em;
-  width: 2em;
-  flex: 0 1 1em;
+.comments-link {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  margin-top: 5%;
+}
+
+.comments-link:hover {
+  cursor: pointer;
 }
 
 .ignore-overflow {
@@ -319,27 +327,32 @@ body {
 .delete-post {
   width: 2em;
   height: 2em;
-  border-radius: 0 10px 10px 0;
-  background-color: red;
   padding: auto;
   margin: 0;
-  display: none;
+  display: inline-block;
+}
+
+.delete-post:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .delete-post svg {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
 }
 
 .post-header-highlighted {
-  margin-right: 60px;
   border: none;
-  border-top-left-radius: 25%;
-  border-top-right-radius: 25%;
   width: 1.5em;
-  text-align: center;
+  height: 1.5em;
+  display: inline-block;
 }
 
 .edit-post-btn {
-  display: inline;
+  display: inline-block;
+}
+
+.post-header div {
+  margin: auto;
 }

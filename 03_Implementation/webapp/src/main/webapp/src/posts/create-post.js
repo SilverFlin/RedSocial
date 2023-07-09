@@ -30,17 +30,16 @@ function loadFormSubmission() {
     const createPostForm = document.getElementById("form")
     const titleInput = document.getElementById("title-text");
     const contentInput = document.getElementById("content");
-    const post = {
-        title: titleInput.value.trim(),
-        content: contentInput.value.trim()
-    }
+    const typeInput = document.getElementById("type")
 
     createPostForm.addEventListener("submit", (evt) => {
         evt.preventDefault()
         const post = {
             title: titleInput.value.trim(),
-            content: contentInput.value.trim()
+            content: contentInput.value.trim(),
+            isAnchored: typeInput.checked
         }
+       
         const fetchSettings = {
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",
@@ -57,8 +56,5 @@ function loadFormSubmission() {
                 alert("Something went wrong, please try again.")
             }
         });
-
-
-
     })
-}out
+}
