@@ -61,4 +61,12 @@ public interface IFormValidator {
      * @return el texto validado
      */
     boolean hasEspecialCharacters(String text);
+
+    /**
+     * Realiza una validacion de que es mayor de 18 años.
+     *
+     * @param date la fecha a comprobar
+     * @return la fecha pasado ya 18 años
+     */
+    boolean isValidAge(String date);
 }

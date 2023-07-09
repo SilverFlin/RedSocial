@@ -8,7 +8,7 @@ body {
 }
 
 #title-form {
-  text-align: center;
+    text-align: center;
 }
 
 .form-container {
@@ -37,10 +37,14 @@ body {
   color: gray;
 }
 
+#birthday-yo-span {
+  color: gray
+}
+
 .input-edit-form {
   margin-top: 10px;
   display: block;
-  padding: 10px;
+  padding: 10px;   
   font-size: large;
   border-radius: 10px;
   width: 90%;
@@ -69,7 +73,7 @@ body {
   border-radius: 20px;
   width: 10%;
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 10px;   
   position: relative;
   left: 80%;
 }
@@ -95,21 +99,21 @@ input[type="file"]::file-selector-button {
 }
 
 @media (max-width: 800px) {
-  .form-container {
-    width: 100%;
-    display: block;
-  }
+    .form-container {
+      width: 100%;
+      display: block;
+    }
 
-  .form-item-col3 input {
-    width: 90%;
-    display: flex;
-  }
+    .form-item-col3 input {
+      width: 90%;
+      display: flex;
+    }
 
-  .save-btn {
-    position: relative;
-    left: 80%;
-    width: 20%;
-  }
+    .save-btn {
+      position: relative;
+      left: 80%;
+      width: 20%;
+    }
 }
 
 img {

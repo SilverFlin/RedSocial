@@ -154,7 +154,9 @@ public class EditUserServlet extends HttpServlet {
             user.setTelefono(phoneNumberParam);
         }
 
-        if (validator.isValidDate(birthdayParam)) {
+        if (validator.isValidDate(birthdayParam)
+                && validator.isValidAge(stateParam)
+                && validator.isValidAge(stateParam)) {
             IDateProcessor<LocalDateTime> dateProcessor
                     = new LocalDateTimeProcessor();
             LocalDateTime birthday

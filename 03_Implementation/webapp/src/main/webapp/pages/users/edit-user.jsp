@@ -76,7 +76,7 @@
                 </div>
                 <div class="form-row">
                     <div>
-                        <label for="birthday">Birthday</label>
+                        <label for="birthday">Birthday <span id="birthday-yo-span">(You must be 18yo)</span></label>
                         <input
                           type="date"
                           name="birthday"

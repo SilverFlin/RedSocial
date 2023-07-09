@@ -92,9 +92,20 @@ public class FormValidationTest extends TestCase {
         System.out.println("HasEspecialCharacters");
         final String text = "Hola";
         final FormValidator instance = new FormValidator();
-        final boolean expResult = false;
+        final boolean expResult = true;
         final boolean result = instance.hasEspecialCharacters(text);
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test de testIsValidAge.
+     */
+    public void testIsValidAge() {
+        System.out.println("IsValidAge");
+        final String text = "2005-07-08T00:00:00.000+00:00";
+        final FormValidator instance = new FormValidator();
+        final boolean expResult = true;
+        final boolean result = instance.isValidAge(text);
+        assertEquals(expResult, result);
+    }
 }

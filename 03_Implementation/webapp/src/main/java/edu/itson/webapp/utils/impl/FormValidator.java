@@ -2,6 +2,10 @@ package edu.itson.webapp.utils.impl;
 
 import java.util.regex.Pattern;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
@@ -131,5 +135,24 @@ public final class FormValidator implements IFormValidator {
         String textRegex = ("^[a-zA-Z]+$");
         Pattern pattern = Pattern.compile(textRegex);
         return pattern.matcher(safeInput).matches();
+    }
+
+    /**
+     * Este metodo valida que el usuario tenga 18 años.
+     *
+     * @param date la fecha a validar
+     * @return la fecha con mas de 18 años
+     */
+    @Override
+    public boolean isValidAge(final String date) {
+        LocalDateTime hoy = LocalDateTime.now();
+        LocalDateTime fechaNacimiento = LocalDateTime.
+                parse(date, DateTimeFormatter.ISO_DATE_TIME);
+        LocalDate todayDate = hoy.toLocalDate();
+        LocalDate birthdayDate = fechaNacimiento.toLocalDate();
+        Period period = Period.between(birthdayDate, todayDate);
+        int edad = period.getYears();
+        final int edadCorrecta = 18;
+        return edad >= edadCorrecta;
     }
 }
