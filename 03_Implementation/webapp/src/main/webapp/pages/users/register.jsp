@@ -10,10 +10,7 @@
 
     <body>
         <div class="form-container">
-            <div class="image-logotype">
-                <img src="/webapp/assets/images/strix.png" alt="logotype" class="logotype" />
-            </div>
-
+            <img id="background-image" src="https://images.unsplash.com/photo-1509828945144-552b3b1a968d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="alt"/>
             <form action="" class="user-form" method="POST" id="register-form">
                 <div><h1>Register</h1></div>
 
