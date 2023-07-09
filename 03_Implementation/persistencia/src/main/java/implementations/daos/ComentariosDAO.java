@@ -5,9 +5,9 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import edu.itson.dominio.Comentario;
+import edu.itson.dominio.Post;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
-import interfaces.Comentable;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
@@ -137,7 +137,7 @@ public final class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public List<Comentario> buscarComentariosPost(final Comentable objetivo)
+    public List<Comentario> buscarComentariosPost(final Post objetivo)
             throws PersistenciaException {
         List<Comentario> comentariosObtenidos = new LinkedList<>();
         try {

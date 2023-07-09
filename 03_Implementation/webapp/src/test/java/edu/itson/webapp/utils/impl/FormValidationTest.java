@@ -85,16 +85,4 @@ public class FormValidationTest extends TestCase {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of testHasEspecialCharacters method, of class FormValidation.
-     */
-    public void testHasEspecialCharacters() {
-        System.out.println("HasEspecialCharacters");
-        final String text = "Hola";
-        final FormValidator instance = new FormValidator();
-        final boolean expResult = false;
-        final boolean result = instance.hasEspecialCharacters(text);
-        assertEquals(expResult, result);
-    }
-
 }

@@ -162,6 +162,6 @@ public interface IPersistencia {
      * @return lista con los comentarios de un post.
      * @throws exceptions.PersistenciaException
      */
-    List<Comentario> getPostComments(Comentable post)
+    List<Comentario> getPostComments(Post post)
             throws PersistenciaException;
 }

@@ -5,7 +5,6 @@ import edu.itson.dominio.Comentario;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.Usuario;
 import exceptions.PersistenciaException;
-import interfaces.Comentable;
 import interfaces.IPersistencia;
 import java.util.List;
 import interfaces.IComentariosDAO;
@@ -206,7 +205,7 @@ public final class FachadaPersistencia implements IPersistencia {
 
     @Override
     public List<Comentario> getPostComments(
-            final Comentable post
+            final Post post
     ) throws PersistenciaException {
         try {
             return this.comentariosDAO.buscarComentariosPost(post);

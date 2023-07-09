@@ -1,6 +1,7 @@
 package edu.itson.webapp.servlets;
 
 import com.google.gson.Gson;
+import edu.itson.dominio.Comentario;
 import edu.itson.dominio.Post;
 import edu.itson.dominio.Usuario;
 import edu.itson.webapp.business.impl.PostBO;
@@ -15,6 +16,7 @@ import edu.itson.webapp.json.impl.ResponseJson;
 import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -176,22 +178,32 @@ public final class PostsServlet extends HttpServlet {
         String idParam = req.getParameter("id");
 
         if (idParam == null) {
-            sendToHttpErrorPage(req, res, HttpStatusCode.BAD_REQUEST,
+            sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
                     getServletContext());
             return;
         }
 
         Post post;
+        List<Comentario> comments;
         try {
             IPostBO postBO = new PostBO();
             post = postBO.getPostById(idParam);
+            comments = postBO.getPostComments(post);
+
         } catch (BusinessException ex) {
             sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
                     getServletContext());
             return;
         }
 
+        if (post == null || comments == null) {
+            sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
+                    getServletContext());
+            return;
+        }
+
         req.setAttribute("post", post);
+        req.setAttribute("comments", comments);
 
         getServletContext()
                 .getRequestDispatcher(Constants.SHOW_POST_PAGE)
