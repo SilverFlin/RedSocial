@@ -2,6 +2,7 @@ package edu.itson.webapp.utils.impl;
 
 import java.util.regex.Pattern;
 import edu.itson.webapp.utils.interfaces.IFormValidator;
+import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * Esta clase implementa la interfaz IFormValidation y proporciona métodos para
@@ -97,6 +98,7 @@ public final class FormValidator implements IFormValidator {
         Pattern pattern = Pattern.compile(phoneNumberRegex);
         return pattern.matcher(phoneNumber).matches();
     }
+
     /**
      * Este metodo comprueba si la fecha es valida.
      *
@@ -112,5 +114,22 @@ public final class FormValidator implements IFormValidator {
         Pattern pattern = Pattern.compile(dateRegex);
         return pattern.matcher(date).matches();
 
+    }
+
+    /**
+     * Este metodo comprueba si tiene caracteres especiales.
+     *
+     * @param text el texto a validar
+     * @return el texto validado
+     */
+    @Override
+    public boolean hasEspecialCharacters(final String text) {
+        if (text == null) {
+            return false;
+        }
+        String safeInput = StringEscapeUtils.escapeHtml(text);
+        String textRegex = ("^[a-zA-Z]+$");
+        Pattern pattern = Pattern.compile(textRegex);
+        return pattern.matcher(safeInput).matches();
     }
 }

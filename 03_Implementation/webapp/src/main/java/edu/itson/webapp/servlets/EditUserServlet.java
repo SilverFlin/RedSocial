@@ -128,18 +128,20 @@ public class EditUserServlet extends HttpServlet {
 
         IFormValidator validator = new FormValidator();
 
-        final int limit = 100;
+        final int limit = 30;
         final int phoneLimit = 10;
 
         if (!validator.hasBlankSpaces(firstNameParam)
-                && !validator.hasExceededLengthLimit(firstNameParam, limit)) {
+                && !validator.hasExceededLengthLimit(firstNameParam, limit)
+                && validator.hasEspecialCharacters(firstNameParam)) {
             if (user.getNombreCompleto() == null) {
                 user.setNombreCompleto(new NombreCompleto());
             }
             user.getNombreCompleto().setNombres(firstNameParam);
         }
         if (!validator.hasBlankSpaces(lastNameParam)
-                && !validator.hasExceededLengthLimit(lastNameParam, limit)) {
+                && !validator.hasExceededLengthLimit(lastNameParam, limit)
+                && !validator.hasEspecialCharacters(lastNameParam)) {
             if (user.getNombreCompleto() == null) {
                 user.setNombreCompleto(new NombreCompleto());
             }
@@ -172,7 +174,8 @@ public class EditUserServlet extends HttpServlet {
         }
 
         if (!validator.hasBlankSpaces(cityParam)
-                && !validator.hasExceededLengthLimit(cityParam, limit)) {
+                && !validator.hasExceededLengthLimit(cityParam, limit)
+                && !validator.hasEspecialCharacters(cityParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
@@ -181,7 +184,8 @@ public class EditUserServlet extends HttpServlet {
 
         if (!validator.hasBlankSpaces(municipalityParam)
                 && !validator.hasExceededLengthLimit(municipalityParam,
-                        limit)) {
+                        limit)
+                && !validator.hasEspecialCharacters(municipalityParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
@@ -189,7 +193,8 @@ public class EditUserServlet extends HttpServlet {
         }
 
         if (!validator.hasBlankSpaces(stateParam)
-                && !validator.hasExceededLengthLimit(stateParam, limit)) {
+                && !validator.hasExceededLengthLimit(stateParam, limit)
+                && !validator.hasEspecialCharacters(stateParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }

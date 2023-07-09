@@ -50,7 +50,7 @@
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
                     <textarea   minlength="1"
-                                maxlength="500" name="content" id="content"  required></textarea>
+                                maxlength="500" name="content" id="content"  required pattern="^[a-zA-Z]+$"></textarea>
                 </div>
                  <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
                 <div class="item" id="type-post-field">

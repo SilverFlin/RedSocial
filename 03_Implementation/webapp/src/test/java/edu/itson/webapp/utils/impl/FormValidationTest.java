@@ -84,4 +84,17 @@ public class FormValidationTest extends TestCase {
         final boolean result = instance.hasExceededLengthLimit(text, limit);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of testHasEspecialCharacters method, of class FormValidation.
+     */
+    public void testHasEspecialCharacters() {
+        System.out.println("HasEspecialCharacters");
+        final String text = "Hola";
+        final FormValidator instance = new FormValidator();
+        final boolean expResult = false;
+        final boolean result = instance.hasEspecialCharacters(text);
+        assertEquals(expResult, result);
+    }
+
 }
