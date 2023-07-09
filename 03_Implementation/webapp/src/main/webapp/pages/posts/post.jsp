@@ -24,7 +24,7 @@
                           src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
                           alt="UserProfilePhoto"
                           class="user-icon"
-                          />${sessionScope.user.email}
+                          />${sessionScope.user.nombreCompleto.nombres==null?sessionScope.user.email:sessionScope.user.nombreCompleto.nombres}
                     </span>
                     <label class="fecha" >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year} </label>
                     <label class="hora">${post.fechaHoraCreacion.hour}:${post.fechaHoraCreacion.minute}</label>
@@ -57,48 +57,19 @@
                     <summary>Comments...</summary>
 
                     <!-- COMMENTSLOOP -->
-                    <c:forEach var="comment" items="//TODO">
+                    <c:forEach var="post" items="${requestScope.posts}">
                         <div id="textoComentario">
                             <span id="commentUser-Img">
                                 <img
-                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                                  src="/webapp/pictures?action=avatar&id= TO-DOCommentProfilePhoto "
                                   alt="UserProfilePhoto"
                                   class="user-icon"
-                                  />User: </span>
-                            <span id="commentTextRow">Hola soy un texto!</span>
+                                  />${""}:</span>
+                            <span id="commentTextRow">${"..."}</span>
                         </div>
                     </c:forEach>
-
+                    
                     <!-- EXAMPLES -->
-                        
-                    <div id="textoComentario">
-                            <span id="commentUser-Img">
-                                <img
-                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                                  alt="UserProfilePhoto"
-                                  class="user-icon"
-                                  />User: </span>
-                            <span id="commentTextRow">Hola soy un texto!</span>
-                        </div>
-                                  <div id="textoComentario">
-                            <span id="commentUser-Img">
-                                <img
-                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                                  alt="UserProfilePhoto"
-                                  class="user-icon"
-                                  />User: </span>
-                            <span id="commentTextRow">Hola soy un texto!</span>
-                        </div><div id="textoComentario">
-                            <span id="commentUser-Img">
-                                <img
-                                  src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                                  alt="UserProfilePhoto"
-                                  class="user-icon"
-                                  />User: </span>
-                            <span id="commentTextRow">Hola soy un texto!</span>
-                        </div>
-
-
                 </details>
             </div>
         </content>
