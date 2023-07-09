@@ -76,18 +76,22 @@ input:focus {
 
 #user-form-btn {
   margin: 35px 0 10px;
-  border-radius: 20px;
+  border-radius: 50px;
   border: none;
   background-color: #525252;
   padding: 10px 0;
   font-size: large;
   color: white;
   font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 15px -6px #525252;
+  cursor: pointer;
 }
 
 #user-form-btn:hover {
   background-color: #999696;
-  cursor: pointer;
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 .image-login {
