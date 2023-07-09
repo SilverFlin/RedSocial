@@ -25,6 +25,7 @@ body {
   justify-self: center;
   display: flex;
   flex-flow: column nowrap;
+  margin-bottom: 30px;
 }
 
 @media screen and (min-width: 900px) {
@@ -47,10 +48,15 @@ body {
   background-color: #525252;
   border-radius: 20px;
   padding: 1em;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 15px -6px #525252;
+  cursor: pointer;
 }
 
 .create-post-btn:hover {
-  background-color: #787676;
+  background-color: #999696;
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /* Post */
