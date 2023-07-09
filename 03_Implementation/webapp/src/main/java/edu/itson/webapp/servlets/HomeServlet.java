@@ -8,8 +8,7 @@ import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -70,7 +69,7 @@ public class HomeServlet extends HttpServlet {
 
     private Map<Post, Comentario> getPosts() throws BusinessException {
         IPostBO postBO = new PostBO();
-        Map<Post, Comentario> feedMap = new HashMap<>();
+        Map<Post, Comentario> feedMap = new LinkedHashMap<>();
 
         final int cantidadMaximaPosts = 25;
         List<Post> posts = postBO.getPosts(cantidadMaximaPosts);
