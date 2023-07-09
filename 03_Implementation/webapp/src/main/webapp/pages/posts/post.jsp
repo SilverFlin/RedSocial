@@ -57,15 +57,15 @@
                     <summary>Comments...</summary>
 
                     <!-- COMMENTSLOOP -->
-                    <c:forEach var="post" items="${requestScope.posts}">
+                    <c:forEach var="item" items="${requestScope.comments}">
                         <div id="textoComentario">
                             <span id="commentUser-Img">
                                 <img
-                                  src="/webapp/pictures?action=avatar&id= TO-DOCommentProfilePhoto "
+                                  src="/webapp/pictures?action=avatar&id=${item.creador.id}"
                                   alt="UserProfilePhoto"
                                   class="user-icon"
-                                  />${""}:</span>
-                            <span id="commentTextRow">${"..."}</span>
+                                  />${item.creador.nombreCompleto.nombres}:</span>
+                            <span id="commentTextRow">${item.contenido.texto}</span>
                         </div>
                     </c:forEach>
                     
