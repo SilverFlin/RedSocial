@@ -175,3 +175,7 @@ body {
   margin-inline-start: 10%;
   padding-bottom: 20px;
 }
+
+.hidden-id {
+  display: none;
+}
