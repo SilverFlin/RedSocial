@@ -143,6 +143,15 @@ textarea {
   font-weight: bolder;
   color: white;
   font-size: large;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 15px -6px #525252;
+  cursor: pointer;
+}
+
+#boton:hover {
+  background-color: #999696;
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 #title-post {
