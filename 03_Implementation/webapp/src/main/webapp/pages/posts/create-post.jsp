@@ -22,12 +22,21 @@
             <section id="previewTitle">
                 <div id="contentHeader" class="grid-container">
                     <span class="username" id="username">
-                        <img
-                          src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                          alt="UserProfilePhoto"
-                          class="user-icon"
-                          />${sessionScope.user.nombreCompleto.nombres != null ? sessionScope.user.nombreCompleto.nombres  : sessionScope.user.email}</span
-                    >
+
+                        <c:if test="${sessionScope.user.avatar == null}">
+                            <img class="user-icon"  src="/webapp/assets/images/default-profile.jpg" alt="" />
+                        </c:if>
+                        <c:if test="${sessionScope.user.avatar != null}">
+                            <img
+                              src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                              alt="UserProfilePhoto"
+                              class="user-icon"
+                              />
+                        </c:if>
+
+
+
+                        ${sessionScope.user.nombreCompleto.nombres != null ? sessionScope.user.nombreCompleto.nombres  : sessionScope.user.email}</span>
                     <span class="fecha">dd/mmmm/yy</span>
                     <span class="hora">13:45</span>
                 </div>

@@ -20,11 +20,19 @@
             <section id="previewTitle">
                 <div id="content-header" class="grid-container">
                     <span class="username" id="username">
-                        <img
-                          src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                          alt="UserProfilePhoto"
-                          class="user-icon"
-                          /> <c:out value="${sessionScope.user.email}"/>
+                        <c:if test="${sessionScope.user.avatar == null}">
+                            <img class="user-icon"  src="/webapp/assets/images/default-profile.jpg" alt="" />
+                        </c:if>
+                        <c:if test="${sessionScope.user.avatar != null}">
+                            <img
+                              src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
+                              alt="UserProfilePhoto"
+                              class="user-icon"
+                              />
+                        </c:if>
+
+
+                        <c:out value="${sessionScope.user.email}"/>
                     </span>
                     <label class="fecha"
                            >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year}
@@ -67,9 +75,6 @@
                     <label for="content" class="labels">Content</label>
                     <textarea minlength="1"
                               maxlength="500"   name="content" required id="content"><c:out value="${post.contenido.texto}"/></textarea>
-                </div>
-                <div class="item" id="file-field">
-                    <input disabled type="file" name="file" id="file" />
                 </div>
             </div>
             <div id="boton-part" class="container2">
