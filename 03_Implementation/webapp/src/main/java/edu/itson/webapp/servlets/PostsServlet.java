@@ -16,6 +16,7 @@ import edu.itson.webapp.json.impl.ResponseJson;
 import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.sendToHttpErrorPage;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -189,7 +190,8 @@ public final class PostsServlet extends HttpServlet {
             IPostBO postBO = new PostBO();
             post = postBO.getPostById(idParam);
             comments = postBO.getPostComments(post);
-
+            Collections.reverse(comments);
+            
         } catch (BusinessException ex) {
             sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
                     getServletContext());

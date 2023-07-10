@@ -11,6 +11,7 @@
     </head>
 
     <body>
+        <jsp:include page="/fragments/header.jsp" />
         <div class="fondo-blanco" id="post-preview">
 
             <section id="previewTitle">
@@ -53,7 +54,7 @@
 
         <content class="fondo-blancobtm container" id="commentsContent">
             <div id="contenedorComments" class="containerComment">
-                <details>
+                <details class="containerComment">
                     <summary>Comments...</summary>
 
                     <!-- COMMENTSLOOP -->
@@ -74,7 +75,7 @@
             </div>
         </content>
     </content>
-
+<jsp:include page="/fragments/footer.jspf" />
 
 </body>
 </html>
