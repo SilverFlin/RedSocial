@@ -14,19 +14,17 @@
         <jsp:include page="/fragments/header.jsp" />
         <div class="hidden-id" id="post-${post.id}"></div>
         <div class="fondo-blanco" id="post-preview">
-
             <section id="previewTitle">
-
                 <div id="title">
                     <h1>Comment post</h1>
                 </div>
                 <div id="content-header" class="grid-container">
                     <span class="username" id="username">
                         <img
-                          src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
-                          alt="UserProfilePhoto"
+                          src="/webapp/pictures?action=avatar&id=${post.creador.id}"
+                          alt="UserProfilePhoto"        
                           class="user-icon"
-                          />${sessionScope.user.nombreCompleto.nombres==null?sessionScope.user.email:sessionScope.user.nombreCompleto.nombres}
+                          />${post.creador.nombreCompleto.nombres==null?post.creador.email:post.creador.nombreCompleto.nombres}
                     </span>
                     <label class="fecha" >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year} </label>
                     <label class="hora">${post.fechaHoraCreacion.hour}:${post.fechaHoraCreacion.minute}</label>
