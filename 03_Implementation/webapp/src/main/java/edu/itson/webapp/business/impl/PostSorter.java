@@ -22,8 +22,8 @@ public final class PostSorter {
      */
     public static List<Post> sortPosts(final List<Post> posts) {
         List<Post> orderedPosts = new LinkedList<>(List.copyOf(posts));
+        orderedPosts.sort((o1, o2) -> -1);
         orderedPosts = splitByType(orderedPosts);
-        orderedPosts.sort((o1, o2) -> 0);
         return orderedPosts;
     }
 

@@ -1,5 +1,6 @@
 package edu.itson.webapp.servlets;
 
+import edu.itson.dominio.Comentario;
 import edu.itson.dominio.Post;
 import edu.itson.webapp.business.impl.PostBO;
 import edu.itson.webapp.business.interfaces.IPostBO;
@@ -7,7 +8,9 @@ import edu.itson.webapp.exceptions.BusinessException;
 import edu.itson.webapp.paths.Constants;
 import static edu.itson.webapp.servlets.Redirect.sendToServerErrorPage;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,18 +59,32 @@ public class HomeServlet extends HttpServlet {
             final HttpServletResponse res
     ) throws ServletException, IOException {
         try {
-            List<Post> posts = this.getPosts();
-            req.setAttribute("posts", posts);
+            Map<Post, Comentario> feedItems = this.getPosts();
+            req.setAttribute("feedItems", feedItems);
         } catch (BusinessException ex) {
             sendToServerErrorPage(req, res, getServletContext());
             return;
         }
     }
 
-    private List<Post> getPosts() throws BusinessException {
+    private Map<Post, Comentario> getPosts() throws BusinessException {
         IPostBO postBO = new PostBO();
+        Map<Post, Comentario> feedMap = new LinkedHashMap<>();
+
         final int cantidadMaximaPosts = 25;
-        return postBO.getPosts(cantidadMaximaPosts);
+        List<Post> posts = postBO.getPosts(cantidadMaximaPosts);
+
+        for (Post post : posts) {
+            Comentario comment = null;
+            List<Comentario> comments = postBO.getPostComments(post);
+            if (!comments.isEmpty()) {
+                comment = comments.get(comments.size() - 1);
+            }
+            feedMap.put(post, comment);
+        }
+
+        return feedMap;
+
     }
 
 }

@@ -10,10 +10,7 @@
 
     <body>
         <div class="form-container">
-            <div class="image-logotype">
-                <img src="/webapp/assets/images/strix.png" alt="logotype" class="logotype" />
-            </div>
-
+            <img id="background-image" src="https://images.unsplash.com/photo-1509828945144-552b3b1a968d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="alt"/>
             <form action="" class="user-form" method="POST" id="register-form">
                 <div><h1>Register</h1></div>
 
@@ -26,6 +23,9 @@
                       placeholder="Enter your email"
                       name="email"
                       />
+                </div>
+                <div class="form-message" id="email-already-registered">
+                    Email address already registered!
                 </div>
 
                 <div class="content">
@@ -49,16 +49,12 @@
                       name="confirmPassword"
                       />
                 </div>
-                <div class="form-message" id="password-does-not-match">The entered passwords do not match!</div>
-                <div class="form-message" id="email-already-registered">The email address is already registered!</div>
+                <div class="form-message" id="password-does-not-match">
+                    Passwords do not match.
+                </div>
+
                 <div class="form-message" id="strong-password-hint">
-                    <ul>
-                        <li>At least one number</li>
-                        <li>One uppercase letter</li>
-                        <li>One lowercase letter</li>
-                        <li>One special character</li>
-                        <li>Length between 8 and 20 characters</li>
-                    </ul>
+                    Ensure your password meets these criteria: 8-20 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special char.
                 </div>
                 <div class="content">
                     <button type="submit" id="user-form-btn">Register</button>

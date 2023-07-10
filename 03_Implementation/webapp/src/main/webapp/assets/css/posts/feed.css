@@ -25,6 +25,7 @@ body {
   justify-self: center;
   display: flex;
   flex-flow: column nowrap;
+  margin-bottom: 30px;
 }
 
 @media screen and (min-width: 900px) {
@@ -47,10 +48,15 @@ body {
   background-color: #525252;
   border-radius: 20px;
   padding: 1em;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 15px -6px #525252;
+  cursor: pointer;
 }
 
 .create-post-btn:hover {
-  background-color: #787676;
+  background-color: #999696;
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 /* Post */
@@ -323,15 +329,11 @@ body {
   overflow: visible;
 }
 
-/* DeletePost */
-.delete-post {
-  width: 2em;
-  height: 2em;
-  padding: auto;
-  margin: 0;
-  display: inline-block;
+.post-header div {
+  margin: auto;
 }
 
+/* DeletePost */
 .delete-post:hover {
   color: red;
   cursor: pointer;
@@ -342,17 +344,23 @@ body {
   height: 100%;
 }
 
-.post-header-highlighted {
-  border: none;
-  width: 1.5em;
-  height: 1.5em;
-  display: inline-block;
-}
-
 .edit-post-btn {
   display: inline-block;
 }
 
-.post-header div {
-  margin: auto;
+.post-header svg {
+  width: 30px;
+  height: 30px;
+}
+
+.post-header .post-header-highlighted {
+  border: none;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.post-header .delete-post {
+  margin-left: 40px;
 }

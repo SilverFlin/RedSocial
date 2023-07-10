@@ -37,9 +37,9 @@ function loadFormSubmission() {
         const post = {
             title: titleInput.value.trim(),
             content: contentInput.value.trim(),
-            isAnchored: typeInput.checked
+            isAnchored: !!typeInput?.checked
         }
-       
+             
         const fetchSettings = {
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",

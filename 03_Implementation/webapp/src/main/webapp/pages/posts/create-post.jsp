@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -49,14 +50,13 @@
                 </div>
                 <div class="item" id="txtArea">
                     <label for="content" class="labels">Content</label>
-                    <textarea   minlength="1"
-                                maxlength="500" name="content" id="content"  required pattern="^[a-zA-Z]+$"></textarea>
+                    <textarea   minlength="1" maxlength="500" name="content" id="content"  required ></textarea>
                 </div>
-                 <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
-                <div class="item" id="type-post-field">
-                    <label for="type"><b> Anchored Post</b></label>
-                    <input  type="checkbox" name="type" id="type" />
-                </div>
+                <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
+                    <div class="item" id="type-post-field">
+                        <label for="type"><b> Anchored Post</b></label>
+                        <input  type="checkbox" name="type" id="type" />
+                    </div>
                 </c:if>
             </div>
             <div id="botonPart" class="container2">

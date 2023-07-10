@@ -2,6 +2,7 @@ package implementations.daos;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.UpdateOptions;
 import edu.itson.dominio.Post;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
@@ -80,10 +81,12 @@ public final class PostsDAO implements IPostsDAO {
     public Post actualizar(final Post post) throws PersistenciaException {
         try {
             Bson filter = new Document("_id", post.getId());
-            this.collection.replaceOne(filter, post);
+            Bson update = new Document("$set", post);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            this.collection.updateOne(filter, update, options);
             return post;
         } catch (MongoException ex) {
-            String msg = "No se pudo actualizar el post" + ex.getMessage();
+            String msg = "No se pudo actualizar el post: " + ex.getMessage();
             throw new PersistenciaException(msg);
         }
     }
@@ -104,7 +107,7 @@ public final class PostsDAO implements IPostsDAO {
     @Override
     public List<Post> buscarTodos() throws PersistenciaException {
 
-         List<Post> usuarios;
+        List<Post> usuarios;
         try {
             usuarios = new LinkedList<>();
             return this.collection.find().into(usuarios);
