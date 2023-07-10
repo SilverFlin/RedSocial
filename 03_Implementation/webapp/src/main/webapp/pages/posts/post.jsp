@@ -36,7 +36,8 @@
 
                 <div class="pub-body">
                     <p class="text">
-                        <c:out value="${post.titulo}"/> <br>
+                        <span><c:out value="${post.titulo}"/></span>
+                        <br>
                         <c:out value="${post.contenido.texto}"/>
                     </p>
                 </div>
