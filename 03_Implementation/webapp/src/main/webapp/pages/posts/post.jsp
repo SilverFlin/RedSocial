@@ -12,6 +12,7 @@
 
     <body>
         <jsp:include page="/fragments/header.jsp" />
+        <div class="hidden-id" id="post-${post.id}"></div>
         <div class="fondo-blanco" id="post-preview">
 
             <section id="previewTitle">
@@ -91,4 +92,5 @@
     <jsp:include page="/fragments/footer.jspf" />
 
 </body>
+<script src="./src/posts/post-view.js"></script>
 </html>
