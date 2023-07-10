@@ -4,6 +4,7 @@
     <head>
         <link rel="stylesheet" href="/webapp/assets/css/errors/errorStyles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
         <title>Error</title>
     </head>
     <body>

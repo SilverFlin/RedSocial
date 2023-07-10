@@ -7,6 +7,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/webapp/assets/css/users/edit-profile.css" />
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
         <title>Edit Profile</title>
     </head>
 

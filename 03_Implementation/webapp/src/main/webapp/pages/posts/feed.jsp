@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
         <link rel="stylesheet" href="/webapp/assets/css/posts/feed.css" />
-
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
     </head>
     <body class="thisBody">
         <div class="container">
@@ -33,7 +33,7 @@
                                     </span>
 
                                 </header>
-                                <c:if test="${sessionScope.user.tipoUsuario != 'ADMIN'}">
+                                <c:if test="${sessionScope.user.tipoUsuario == 'ADMIN'}">
                                     <div class="delete-post" id="delete-${item.getKey().id}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
                                     </div>

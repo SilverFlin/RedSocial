@@ -6,18 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
         <link rel="stylesheet" href="/webapp/assets/css/users/user-form.css" />
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
     </head>
 
     <body>
 
         <div class="form-container">
-            <img id="background-image" src="/webapp/assets/images/background-login.jpg" alt="alt"/>
+            <img id="background-image" src="/webapp/assets/images/background-login.png" alt="alt"/>
             <form
               action="/webapp/auth?action=login"
               class="user-form"
               id="login-form"
               method="POST"
               >
+                <div>
+                    <img id="logo-form" src="/webapp/assets/images/strix-font.png" alt="alt"/>
+                </div>
                 <div class="login-title"><h1>Login</h1></div>
 
                 <div class="content">

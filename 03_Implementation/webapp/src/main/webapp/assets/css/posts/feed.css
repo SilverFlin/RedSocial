@@ -347,11 +347,6 @@ body {
   align-self: flex-end;
 }
 
-.delete-post svg {
-  width: 100%;
-  height: 100%;
-}
-
 .edit-post-btn {
   display: inline-block;
   color: white;
@@ -365,6 +360,10 @@ body {
   width: 30px;
   height: 30px;
   color: white;
+}
+
+.delete-post svg {
+  color: #525252;
 }
 
 .post-header-highlighted {

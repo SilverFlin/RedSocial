@@ -4,12 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
         <title>STRIX</title>
     </head>
     <body>
-        <c:set var="myVariable" value="Hello from the main JSP page" />
-        <c:set var="requestScope.myAttribute" value="${myVariable}" />
-
 
         <jsp:include page="/fragments/header.jsp" />
 

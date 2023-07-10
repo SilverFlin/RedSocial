@@ -7,7 +7,8 @@
         <meta name="Author" content="Gerardo" />
         <meta name="Description" content="Edit post page" />
         <link rel="stylesheet" href="/webapp/assets/css/posts/view-post.css" />
-        <title>Edit Post</title>
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
+        <title>${post.titulo}</title>
     </head>
 
     <body>
