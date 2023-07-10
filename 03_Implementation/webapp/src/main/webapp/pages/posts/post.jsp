@@ -36,8 +36,8 @@
 
                 <div class="pub-body">
                     <p class="text">
-                        ${post.titulo} <br>
-                        ${post.contenido.texto}
+                        <c:out value="${post.titulo}"/> <br>
+                        <c:out value="${post.contenido.texto}"/>
                     </p>
                 </div>
             </section>
@@ -77,7 +77,7 @@
                                         <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" class="user-icon"/>
                                     </c:if></span>
                                 <span id="comment-user-img">${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}: </span>
-                                <span id="commentTextRow">${item.contenido.texto}</span>
+                                <span id="commentTextRow"><c:out value="${item.contenido.texto}"/></span>
                             </div>
                         </c:forEach>
 

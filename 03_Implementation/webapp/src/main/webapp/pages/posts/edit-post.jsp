@@ -22,7 +22,7 @@
                           src="/webapp/pictures?action=avatar&id=${sessionScope.user.id}"
                           alt="UserProfilePhoto"
                           class="user-icon"
-                          />${sessionScope.user.email}
+                          /> <c:out value="${sessionScope.user.email}"/>
                     </span>
                     <label class="fecha"
                            >${post.fechaHoraCreacion.dayOfMonth}/${post.fechaHoraCreacion.monthValue}/${post.fechaHoraCreacion.year}
@@ -35,8 +35,8 @@
             <section id="preview-content">
                 <div class="pub-body">
                     <div class="text">
-                        <p  class="text" id="title-post">${post.titulo}</p> 
-                        <p  class="text" id="content-post">${post.contenido.texto}</p>
+                        <p  class="text" id="title-post"><c:out value="${post.titulo}"/></p> 
+                        <p  class="text" id="content-post"><c:out value="${post.contenido.texto}"/></p>
                     </div>
                 </div>
             </section>
@@ -64,7 +64,7 @@
                 <div class="item" id="txt-area">
                     <label for="content" class="labels">Content</label>
                     <textarea minlength="1"
-                              maxlength="500"   name="content" required id="content">${post.contenido.texto}</textarea>
+                              maxlength="500"   name="content" required id="content"><c:out value="${post.contenido.texto}"/></textarea>
                 </div>
                 <div class="item" id="file-field">
                     <input disabled type="file" name="file" id="file" />
