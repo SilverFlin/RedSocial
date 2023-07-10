@@ -193,3 +193,7 @@ body {
 .hidden-id {
   display: none;
 }
+
+#comment-text-row {
+  overflow-wrap: break-word;
+}

@@ -46,7 +46,7 @@
     <content class="fondo-blancobtm container" id="comments-input">
         <div id="contenedor-entrada" class="container-comment-input">
             <div class="item-comment">
-                <input type="text" id="comment-input" placeholder="Comment here!">
+                <input maxlength="150" type="text" id="comment-input" placeholder="Comment here!">
             </div>
             <div id="boton-part" class="container-comment-input">
                 <button id="btn-comment">Comment</button>
@@ -77,7 +77,7 @@
                                         <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" class="user-icon"/>
                                     </c:if></span>
                                 <span id="comment-user-img">${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}: </span>
-                                <span id="commentTextRow"><c:out value="${item.contenido.texto}"/></span>
+                                <span id="comment-text-row"><c:out value="${item.contenido.texto}"/></span>
                             </div>
                         </c:forEach>
 
