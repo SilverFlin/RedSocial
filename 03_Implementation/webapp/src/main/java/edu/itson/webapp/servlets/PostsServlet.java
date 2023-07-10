@@ -191,7 +191,7 @@ public final class PostsServlet extends HttpServlet {
             post = postBO.getPostById(idParam);
             comments = postBO.getPostComments(post);
             Collections.reverse(comments);
-            
+
         } catch (BusinessException ex) {
             sendToHttpErrorPage(req, res, HttpStatusCode.NOT_FOUND,
                     getServletContext());
