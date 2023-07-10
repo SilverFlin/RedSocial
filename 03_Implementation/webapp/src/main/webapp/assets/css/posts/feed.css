@@ -329,15 +329,11 @@ body {
   overflow: visible;
 }
 
-/* DeletePost */
-.delete-post {
-  width: 2em;
-  height: 2em;
-  padding: auto;
-  margin: 0;
-  display: inline-block;
+.post-header div {
+  margin: auto;
 }
 
+/* DeletePost */
 .delete-post:hover {
   color: red;
   cursor: pointer;
@@ -348,17 +344,23 @@ body {
   height: 100%;
 }
 
-.post-header-highlighted {
-  border: none;
-  width: 1.5em;
-  height: 1.5em;
-  display: inline-block;
-}
-
 .edit-post-btn {
   display: inline-block;
 }
 
-.post-header div {
-  margin: auto;
+.post-header svg {
+  width: 30px;
+  height: 30px;
+}
+
+.post-header .post-header-highlighted {
+  border: none;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.post-header .delete-post {
+  margin-left: 40px;
 }
