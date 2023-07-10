@@ -141,7 +141,7 @@ public class EditUserServlet extends HttpServlet {
         }
         if (!validator.hasBlankSpaces(lastNameParam)
                 && !validator.hasExceededLengthLimit(lastNameParam, limit)
-                && !validator.hasEspecialCharacters(lastNameParam)) {
+                && validator.hasEspecialCharacters(lastNameParam)) {
             if (user.getNombreCompleto() == null) {
                 user.setNombreCompleto(new NombreCompleto());
             }
@@ -175,7 +175,7 @@ public class EditUserServlet extends HttpServlet {
 
         if (!validator.hasBlankSpaces(cityParam)
                 && !validator.hasExceededLengthLimit(cityParam, limit)
-                && !validator.hasEspecialCharacters(cityParam)) {
+                && validator.hasEspecialCharacters(cityParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
@@ -185,7 +185,7 @@ public class EditUserServlet extends HttpServlet {
         if (!validator.hasBlankSpaces(municipalityParam)
                 && !validator.hasExceededLengthLimit(municipalityParam,
                         limit)
-                && !validator.hasEspecialCharacters(municipalityParam)) {
+                && validator.hasEspecialCharacters(municipalityParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }
@@ -194,7 +194,7 @@ public class EditUserServlet extends HttpServlet {
 
         if (!validator.hasBlankSpaces(stateParam)
                 && !validator.hasExceededLengthLimit(stateParam, limit)
-                && !validator.hasEspecialCharacters(stateParam)) {
+                && validator.hasEspecialCharacters(stateParam)) {
             if (user.getDireccion() == null) {
                 user.setDireccion(new Direccion());
             }

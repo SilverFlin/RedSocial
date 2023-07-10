@@ -26,6 +26,7 @@
                           placeholder="John"
                           value="${sessionScope.user.nombreCompleto.nombres}"
                           pattern="^[a-zA-Z]+$"
+                          maxlength="30"
                           required
                           />
                     </div>
@@ -37,6 +38,7 @@
                           id="last-name"
                           class="input-edit-form"
                           placeholder="Doe"
+                          maxlength="30"
                           value="${sessionScope.user.nombreCompleto.apellidoPaterno}"
                           pattern="^[a-zA-Z]+$"
                           required
@@ -100,17 +102,17 @@
                 <div class="form-row">
                     <div class="form-item-col3">
                         <label for="city"> City </label>
-                        <input type="text" name="city"  id="city" placeholder="Obregon" value="${sessionScope.user.direccion.ciudad}" pattern="^[a-zA-Z]+$" />
+                        <input type="text" name="city"   maxlength="30" id="city" placeholder="Obregon" value="${sessionScope.user.direccion.ciudad}" pattern="^[a-zA-Z]+$" />
                        
                     </div>
                     <div class="form-item-col3">
                         <label for="municipality"> Municipality </label>
-                        <input type="text" name="municipality" id="municipality" placeholder="Cajeme" value="${sessionScope.user.direccion.municipio}" pattern="^[a-zA-Z]+$" />
+                        <input type="text" name="municipality"  maxlength="30" id="municipality" placeholder="Cajeme" value="${sessionScope.user.direccion.municipio}" pattern="^[a-zA-Z]+$" />
                         
                     </div>
                     <div class="form-item-col3">
                         <label for="state"> State </label>
-                        <input type="text" name="state" id="state" placeholder="Sonora" value="${sessionScope.user.direccion.estado}" pattern="^[a-zA-Z]+$"/>
+                        <input type="text" name="state" id="state" maxlength="30" placeholder="Sonora" value="${sessionScope.user.direccion.estado}" pattern="^[a-zA-Z]+$"/>
                         
                     </div>
                 </div>
