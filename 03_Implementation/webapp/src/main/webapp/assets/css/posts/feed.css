@@ -334,6 +334,10 @@ body {
 }
 
 /* DeletePost */
+.delete-post {
+  align-self: flex-end;
+}
+
 .delete-post:hover {
   color: red;
   cursor: pointer;
@@ -348,19 +352,14 @@ body {
   display: inline-block;
 }
 
-.post-header svg {
+.post-header-wrapper svg {
   width: 30px;
   height: 30px;
 }
 
-.post-header .post-header-highlighted {
+.post-header-highlighted {
   border: none;
-  width: 1.5em;
-  height: 1.5em;
   display: inline-block;
   margin-right: 15px;
-}
-
-.post-header .delete-post {
-  margin-left: 40px;
+  align-self: flex-end;
 }

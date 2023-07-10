@@ -31,18 +31,18 @@
                                     <span>
                                         <c:out value="${item.getKey().creador.nombreCompleto.nombres == null ? item.getKey().creador.email : item.getKey().creador.nombreCompleto.nombres}"/>
                                     </span>
-                                    <c:if test="${sessionScope.user.tipoUsuario != 'ADMIN'}">
-                                        <div class="delete-post" id="delete-${item.getKey().id}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${item.getKey().tipoPost == 'ANCLADO'}">
-                                        <div class="post-header-highlighted">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1664"><path fill="currentColor" d="M480 736V288q0-14-9-23t-23-9t-23 9t-9 23v448q0 14 9 23t23 9t23-9t9-23zm672 352q0 26-19 45t-45 19H659l-51 483q-2 12-10.5 20.5T577 1664h-1q-27 0-32-27l-76-485H64q-26 0-45-19t-19-45q0-123 78.5-221.5T256 768V256q-52 0-90-38t-38-90t38-90t90-38h640q52 0 90 38t38 90t-38 90t-90 38v512q99 0 177.5 98.5T1152 1088z"/></svg>
-                                        </div>
-                                    </c:if>
-                                </header>
 
+                                </header>
+                                <c:if test="${sessionScope.user.tipoUsuario != 'ADMIN'}">
+                                    <div class="delete-post" id="delete-${item.getKey().id}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3H9m0 5h2v9H9V8m4 0h2v9h-2V8Z"/></svg>
+                                    </div>
+                                </c:if>
+                                <c:if test="${item.getKey().tipoPost == 'ANCLADO'}">
+                                    <div class="post-header-highlighted">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1664"><path fill="currentColor" d="M480 736V288q0-14-9-23t-23-9t-23 9t-9 23v448q0 14 9 23t23 9t23-9t9-23zm672 352q0 26-19 45t-45 19H659l-51 483q-2 12-10.5 20.5T577 1664h-1q-27 0-32-27l-76-485H64q-26 0-45-19t-19-45q0-123 78.5-221.5T256 768V256q-52 0-90-38t-38-90t38-90t90-38h640q52 0 90 38t38 90t-38 90t-90 38v512q99 0 177.5 98.5T1152 1088z"/></svg>
+                                    </div>
+                                </c:if>
                                 <div class="post-time">
                                     <!--TODO Formatear Fecha-->
                                     <label>${item.getKey().fechaHoraCreacion.dayOfMonth}/${item.getKey().fechaHoraCreacion.monthValue}/${item.getKey().fechaHoraCreacion.year}</label>
