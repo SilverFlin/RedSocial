@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <link rel="stylesheet" href="/webapp/assets/css/fragments/header.css" />
+    <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
 </head>
@@ -18,7 +19,11 @@
                 </c:if>
             </c:if>
         </div>
-        <div class="item-header"><a class="home-link" href="./home">STRIX</a></div>
+        <div class="item-header">
+            <a class="home-link" href="./home">
+                <img id="logo-header" src="/webapp/assets/images/strix-font.png" alt="alt"/>
+            </a>
+        </div>
         <div class="item-header" id="btn-container">
             <button id="btn-edit">
                 <a href="/webapp/edit-user"> 

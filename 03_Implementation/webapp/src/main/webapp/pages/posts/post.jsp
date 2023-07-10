@@ -7,7 +7,8 @@
         <meta name="Author" content="Gerardo" />
         <meta name="Description" content="Edit post page" />
         <link rel="stylesheet" href="/webapp/assets/css/posts/view-post.css" />
-        <title>Edit Post</title>
+        <link rel="shortcut icon" href="/webapp/assets/favicon.ico" type="image/x-icon" />  
+        <title>${post.titulo}</title>
     </head>
 
     <body>
@@ -34,8 +35,9 @@
 
                 <div class="pub-body">
                     <p class="text">
-                        ${post.titulo} <br>
-                        ${post.contenido.texto}
+                        <span><c:out value="${post.titulo}"/></span>
+                        <br>
+                        <c:out value="${post.contenido.texto}"/>
                     </p>
                 </div>
             </section>
@@ -75,7 +77,7 @@
                                         <img src="/webapp/pictures?action=avatar&id=${item.creador.id}" alt="" class="user-icon"/>
                                     </c:if></span>
                                 <span id="comment-user-img">${item.creador.nombreCompleto.nombres == null ? item.creador.email : item.creador.nombreCompleto.nombres}: </span>
-                                <span id="commentTextRow">${item.contenido.texto}</span>
+                                <span id="commentTextRow"><c:out value="${item.contenido.texto}"/></span>
                             </div>
                         </c:forEach>
 

@@ -17,7 +17,7 @@
   border-radius: 0 0 15px 15px;
   padding: 10px;
   align-items: center;
-  background-color: gray;
+  background-color: #763d95;
   position: fixed;
   top: 0;
   left: 0;
@@ -31,6 +31,9 @@
 
 .item-header {
   padding: 5px;
+  width: 33%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Hace que el boton de search no se amontone con el campo de busqueda */
@@ -81,12 +84,30 @@
 }
 
 .home-link {
-  color: inherit;
+  color: white;
   text-decoration: none;
+  font-weight: 800;
 }
 
 .home-link:hover {
-  color: #00a0c6;
+  color: #b6b4e5;
   text-decoration: none;
   cursor: pointer;
+}
+
+#btn-edit a,
+#btn-logout a {
+  color: white;
+}
+
+#btn-edit a:hover {
+  color: red;
+}
+
+#btn-logout a:hover {
+  color: red;
+}
+
+#logo-header {
+  filter: invert(100%);
 }

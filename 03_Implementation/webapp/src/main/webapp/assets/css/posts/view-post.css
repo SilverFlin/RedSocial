@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: rgb(119 115 111);
+  background-color: #dbd7e5;
 }
 
 #preview-title-span {
@@ -30,12 +30,13 @@ body {
 }
 
 .username {
-  background-color: gray;
+  background-color: #23144f;
   color: white;
   border-top-left-radius: 36px;
   border-top-right-radius: 100px;
   grid-row: 1 / 3;
   vertical-align: middle;
+  font-weight: 800;
 }
 
 .fecha {
@@ -72,12 +73,16 @@ body {
 
 .text {
   text-align: justify;
-  background-color: gainsboro;
+  background-color: #b6b4e5;
   margin-top: 0;
   margin-bottom: 0;
   padding: 10px;
   border-top-right-radius: 30px;
   overflow-wrap: break-word;
+}
+
+.text span {
+  font-weight: 800;
 }
 
 .labels {
@@ -100,7 +105,7 @@ body {
   margin-right: 30px;
   padding: 20px;
   padding-top: 20px;
-  background-color: gray;
+  background-color: #23144f;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
@@ -141,15 +146,24 @@ body {
 }
 
 #btn-comment {
-  background: lightslategray;
+  background-color: #b6b4e5;
   color: white;
   border-radius: 10px;
   border-style: none;
   font-weight: bolder;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 15px -6px #525252;
+  cursor: pointer;
+}
+
+#btn-comment:hover {
+  background-color: rgb(15 20 100);
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
 .container-comment {
-  background-color: gainsboro;
+  background-color: #b6b4e5;
   padding: 10px;
   align-content: center;
   border-radius: 20px;

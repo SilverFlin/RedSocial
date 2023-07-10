@@ -11,6 +11,7 @@ body {
 }
 
 .container {
+  background-color: #dbd7e5;
   display: flex;
   height: auto;
   width: auto;
@@ -32,7 +33,7 @@ body {
   .left-bar,
   .right-bar {
     height: inherit;
-    background-color: darkslategrey;
+    background-color: #aeaab9;
     width: 5%;
     margin: 0;
   }
@@ -45,7 +46,7 @@ body {
   margin-top: 70px;
   border: none;
   color: whitesmoke;
-  background-color: #525252;
+  background-color: rgb(35 20 80);
   border-radius: 20px;
   padding: 1em;
   transition: all 0.3s ease-in-out;
@@ -54,7 +55,7 @@ body {
 }
 
 .create-post-btn:hover {
-  background-color: #999696;
+  background-color: rgb(15 20 100);
   transform: translateY(3px);
   box-shadow: none;
 }
@@ -85,7 +86,7 @@ body {
 
 .post-header-wrapper .post-header {
   width: 60%;
-  background-color: rgb(55 149 149);
+  background-color: #23144f;
   border-radius: 1em 2.5em 0 0;
   padding: 5px 10px 10px;
   display: flex;
@@ -119,9 +120,13 @@ body {
   color: gray;
 }
 
+.post-time b {
+  color: black;
+}
+
 /* Post Content */
 .post-content-wrapper {
-  background-color: rgba(93 250 250 / 30%);
+  background-color: #b6b4e5;
   height: 60%;
   border-radius: 0 85px 0 60px;
   flex-flow: column nowrap;
@@ -164,7 +169,7 @@ body {
 
 .post-footer-wrapper .post-footer {
   width: 60%;
-  background-color: rgba(55 149 149 / 80%);
+  background-color: #23144f;
   border-radius: 0 0 1em 2.5em;
   padding-left: 5px;
   display: flex;
@@ -175,6 +180,7 @@ body {
 
 .post-footer-wrapper .post-footer > * {
   flex: 1 1 1em;
+  color: white;
 }
 
 .post-footer-wrapper .post-footer img {
@@ -224,6 +230,7 @@ body {
   border-top: rgb(73 135 137) solid 1px;
   border-bottom: rgb(73 135 137) solid 1px;
   border: 100%;
+  color: white;
 }
 
 .post-comments .comment > * {
@@ -319,10 +326,12 @@ body {
   height: 1em;
   width: 1em;
   margin-top: 5%;
+  color: white;
 }
 
 .comments-link:hover {
   cursor: pointer;
+  color: red;
 }
 
 .ignore-overflow {
@@ -334,33 +343,41 @@ body {
 }
 
 /* DeletePost */
-.delete-post:hover {
-  color: red;
-  cursor: pointer;
-}
-
-.delete-post svg {
-  width: 100%;
-  height: 100%;
+.delete-post {
+  align-self: flex-end;
 }
 
 .edit-post-btn {
   display: inline-block;
+  color: white;
 }
 
-.post-header svg {
+.edit-post-btn:hover {
+  color: red;
+}
+
+.post-header-wrapper svg {
   width: 30px;
   height: 30px;
+  color: white;
 }
 
-.post-header .post-header-highlighted {
+.delete-post svg {
+  color: #525252;
+}
+
+.post-header-highlighted {
   border: none;
-  width: 1.5em;
-  height: 1.5em;
   display: inline-block;
   margin-right: 15px;
+  align-self: flex-end;
 }
 
-.post-header .delete-post {
-  margin-left: 40px;
+.post-header-highlighted svg {
+  color: graytext;
+}
+
+.delete-post svg:hover {
+  color: red;
+  cursor: pointer;
 }
