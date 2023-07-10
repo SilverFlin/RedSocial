@@ -141,7 +141,7 @@ public final class ComentariosDAO implements IComentariosDAO {
             throws PersistenciaException {
         List<Comentario> comentariosObtenidos = new LinkedList<>();
         try {
-            Bson filtro = Filters.eq("objetivo", objetivo);
+            Bson filtro = Filters.eq("objetivo._id", objetivo.getId());
             FindIterable<Comentario> resultados = this.collection.find(filtro);
             for (Comentario comentario : resultados) {
                 Comentario comentarioObtenido = comentario;

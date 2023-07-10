@@ -3,6 +3,7 @@ package implementations.daos;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.UpdateOptions;
 import edu.itson.dominio.Usuario;
 import exceptions.PersistenciaException;
 import implementations.db.Connection;
@@ -84,7 +85,9 @@ public final class UsuariosDAO implements IUsuariosDAO {
     ) throws PersistenciaException {
         try {
             Bson filter = new Document("_id", usuario.getId());
-            this.collection.replaceOne(filter, usuario);
+            Bson update = new Document("$set", usuario);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            this.collection.updateOne(filter, update, options);
             return usuario;
         } catch (MongoException ex) {
             String msg = "No se pudo actualizar el usuario" + ex.getMessage();
