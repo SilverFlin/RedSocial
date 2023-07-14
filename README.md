@@ -1,9 +1,9 @@
 
-# RedSocial
+# Strix
 
 <p align="center">
 <image src="03_Implementation/views/login-register/strix.png"><br>
-  RedSocial is a web application called "Strix" built with Java, HTML, CSS, JavaScript, and Love.
+  Strix is a web application built with Java, HTML, CSS, JavaScript, and Love.
 
 
 ---
